@@ -7,7 +7,7 @@ Mathematically, availability, A, is a ratio. The higher the A value, the better.
 
 A (in percent) = (total time - amount of time service was down)/total time * 100
 
-[the nines](Grokking-Modern-System-Design-Interview/Non-functional System Characteristics/Availability/nine_availability.jpg)
+[the nines](./nine_availability.jpg)
 
 We measure availability as a number of nines. The following table shows how much downtime is permitted when we’re using a given number of nines.
 
