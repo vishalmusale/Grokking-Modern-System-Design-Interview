@@ -1,6 +1,7 @@
 # Reliability
 
 ##What is reliability?
+
 Reliability, R, is the probability that the service will perform its functions for a specified time. R measures how the service performs under varying operating conditions.
 We often use mean time between failures (MTBF) and mean time to repair (MTTR) as metrics to measure R.
 
