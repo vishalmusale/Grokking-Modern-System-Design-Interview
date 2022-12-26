@@ -18,9 +18,9 @@ System design uses the concepts of computer networking, parallel computing, and 
 System design aims to build systems that are reliable, effective, and maintainable, among other characteristics.
 
 ```
-•Reliable systems handle faults, failures, and errors.
-•Effective systems meet all user needs and business requirements.
-•Maintainable systems are flexible and easy to scale up or down. The ability to add new features also comes under the umbrella of maintainability.
+• Reliable systems handle faults, failures, and errors.
+• Effective systems meet all user needs and business requirements.
+• Maintainable systems are flexible and easy to scale up or down. The ability to add new features also comes under the umbrella of maintainability.
 ```
 
 Modern system design using building blocks.
