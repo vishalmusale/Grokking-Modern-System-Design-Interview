@@ -1,6 +1,6 @@
 # Reliability
 
-##What is reliability?
+## What is reliability?
 
 Reliability, R, is the probability that the service will perform its functions for a specified time. R measures how the service performs under varying operating conditions.
 We often use mean time between failures (MTBF) and mean time to repair (MTTR) as metrics to measure R.
@@ -10,7 +10,7 @@ MTTR = total maintainance time / total number of repairs
 
 (We strive for a higher MTBF value and a lower MTTR value.)
 
-###Reliability and availability
+### Reliability and availability
 
 Reliability and availability are two important metrics to measure compliance of service to agreed-upon service level objectives (SLO).
 
