@@ -97,6 +97,6 @@ The total outgoing traffic required will be equal to: 0.3 + 23.2 + 174 =approx 1
 
 ```
 Twitter will need a total of 12 Gbps of incoming traffic and 197.5 Gbps of outgoing, assuming that the uploaded content is not compressed. Total bandwidth requirements = 12 + 197.5 =209.5 Gbps
-```
+
 
 [The total bandwidth required by Twitter](./total_bandwidth.jpg)
