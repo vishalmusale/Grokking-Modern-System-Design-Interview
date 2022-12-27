@@ -58,13 +58,19 @@ Note: The servers described above are not the only types of servers in a data ce
 ```
 The numbers open-sourced by Facebook are outdated as of now. In the table below, we depict the capabilities of a server that can be used in the data centers of today:
 
+[server spec](./server_spec.jpg)
+
 The numbers above are inspired by the Amazon bare-metal server, but there can be more or less powerful machines supporting much higher RAM (up to 8 TB), disk storage (up to 24 disks with up to 20 TB each, circa 2021), and cache memory (up to 120 MB).
 
 
 ## Standard numbers to remember
 A lot of effort goes into the planning and implementation of a service. But without any basic knowledge of the kind of workloads machines can handle, this planning isn’t possible. Latencies play an important role in deciding the amount of workload a machine can handle. The table below depicts some of the important numbers system designers should know in order to perform resource estimation.
 
+[important latencies](./important_latencies.jpg)
+
 Apart from the latencies listed above, there are also throughput numbers measured as queries per second (QPS) that a typical single-server datastore can handle.
+
+[important rates](./important_rates.jpg)
 
 The numbers above are approximations and vary greatly depending on a number of reasons like the type of query (point and range), the specification of the machine, the design of the database, the indexing, and so on.
 ```
