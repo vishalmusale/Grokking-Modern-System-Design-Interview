@@ -58,7 +58,7 @@ Caching refers to the temporary storage of frequently requested resource records
 
 The slideshow below demonstrates the power of caching in the DNS:
 
-[Caching](./dns_flow)
+[Caching](./Introduction to Domain Name System (DNS)/dns_flow)
 
 ## DNS as a distributed system
 Although the DNS hierarchy facilitates the distributed Internet that we know today, it’s a distributed system itself. The distributed nature of DNS has the following advantages:
