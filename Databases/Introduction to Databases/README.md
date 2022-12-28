@@ -14,7 +14,7 @@ How will the system scale and be available when adding thousands of entries?
 
 How will we search content for different users in a short time?
 ```
-[The limitations of file storage]
+[The limitations of file storage](./file.jpg)
 ### Solution
 The above limitations can be addressed using databases.
 
@@ -31,7 +31,7 @@ SQL (relational databases)
 NoSQL (non-relational databases)
 ```
 They differ in terms of their intended use case, the type of information they hold, and the storage method they employ.
-[SQL versus. NoSQL]
+[SQL versus. NoSQL](./db_type.jpg)
 Relational databases, like phone books that record contact numbers and addresses, are organized and have predetermined schemas. Non-relational databases, like file directories that store anything from a person’s constant information to shopping preferences, are unstructured, scattered, and feature a dynamic schema. We’ll discuss their differences and their types in detail in the next lesson.
 
 ## Advantages
