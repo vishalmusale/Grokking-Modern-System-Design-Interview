@@ -113,7 +113,9 @@ use_backend slidesServers if slidesApp  // use a set of backend servers if the r
 backend slidesServers                   // listing servers serving slidesApp
 server slides1 192.168.12.1:80          //using slides1 server to serve slidesApp. 
 ```
+
                                                HAProxy sample configuration for layer 7 load balancers
+                                               
                                               
 ```                                              
 Question 1
