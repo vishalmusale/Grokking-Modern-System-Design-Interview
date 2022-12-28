@@ -168,7 +168,7 @@ With the advent of the field of cloud computing, Load Balancers as a Service (LB
 ```
 Note: Another interesting implementation of load balancers comes in the form of client-side load balancing. Client-side load balancing is suited where there are numerous services, each with many instances (such as load balancing in Twitter). Our focus, however, is on traditional load balancers because most three-tier applications employ these in their design.
 ```
-
+[GSLB is obtained through LBaaS, and the regions contain data centers that are the property of application providers](./gslb.jpg)
 
 ## Conclusion
 LBs have come a long way to become a service offered in the cloud, starting since their inception in the form of hardware. They’re a key component of any enterprise-level service. Horizontal scalability of hosting servers will always require a good load balancing layer capable of providing load balancing, session maintenance, TLS offloading, service discovery, and more.
