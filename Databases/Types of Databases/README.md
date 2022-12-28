@@ -61,7 +61,7 @@ Relational databases guarantee the state of data is consistent at any time. The 
 #### Impedance mismatch
 Impedance mismatch is the difference between the relational model and the in-memory data structures. The relational model organizes data into a tabular structure with relations and tuples. SQL operation on this structured data yields relations aligned with relational algebra. However, it has some limitations. In particular, the values in a table take simple values that can’t be a structure or a list. The case is different for in-memory, where a complex data structure can be stored. To make the complex structures compatible with the relations, we would need a translation of the data in light of relational algebra. So, the impedance mismatch requires translation between two representations, as denoted in the following figure:
 
-[A single aggregated value in the view is composed of several rows and tables in the relational database]
+[A single aggregated value in the view is composed of several rows and tables in the relational database](./mismatch.jpg)
 
 ## Why non-relational (NoSQL) databases?
 A NoSQL database is designed for a variety of data models to access and manage data. There are various types of NoSQL databases, which we’ll explain in the next section. These databases are used in applications that require a large volume of semi-structured and unstructured data, low latency, and flexible data models. This can be achieved by relaxing some of the data consistency restrictions of other databases. Following are some characteristics of the NoSQL database:
@@ -87,7 +87,7 @@ NoSQL databases are divided into various categories based on the nature of the o
 ### Types of NoSQL databases
 Various types of NoSQL databases are described below:
 
-[The types of NoSQL databases]
+[The types of NoSQL databases](./nonrelational.jpg)
 
 
 #### Key-value database
@@ -96,7 +96,7 @@ Key-value databases use key-value methods like hash tables to store data in key-
 Use case: Key-value databases are efficient for session-oriented applications. Session oriented-applications, such as web applications, store users’ data in the main memory or in a database during a session. This data may include user profile information, recommendations, targeted promotions, discounts, and more. A unique ID (a key) is assigned to each user’s session for easy access and storage. Therefore, a better choice to store such data is the key-value database.
 
 The following figure shows an example of a key-value database. The Product ID and Type of the item are collectively considered as the primary key. This is considered as a key for this key-value database. Moreover, the schema for storing the item attributes is defined based on the nature of the item and the number of attributes it possesses.
-[Data stored in the form of key-value pair in DynamoDB, where the key is the combination of two attributes (Product ID and Type)]
+[Data stored in the form of key-value pair in DynamoDB, where the key is the combination of two attributes (Product ID and Type)](./dynamo.jpg)
 
 #### Document database
 A document database is designed to store and retrieve documents in formats like XML, JSON, BSON, and so on. These documents are composed of a hierarchical tree data structure that can include maps, collections, and scalar values. Documents in this type of database may have varying structures and data. MongoDB and Google Cloud Firestore are examples of document databases.
@@ -128,7 +128,7 @@ Graph databases use the graph data structure to store data, where nodes represen
 
 In the following figure, some data is stored using a graph data structure in nodes connected to each other via edges representing relationships between nodes. Each node has some properties, like Name, ID, and Age. The node having ID: 2 has the Name of James and Age of 29 years.
 
-[A graph consists of nodes and links. This graph captures entities and their relationships with each other]
+[A graph consists of nodes and links. This graph captures entities and their relationships with each other](./graph.jpg)
 
 Use case: Graph databases can be used in social applications and provide interesting facts and figures among different kinds of users and their activities. The focus of graph databases is to store data and pave the way to drive analyses and decisions based on relationships between entities. The nature of graph databases makes them suitable for various applications, such as data regulation and privacy, machine learning research, financial services-based applications, and many more.
 
@@ -139,7 +139,7 @@ Columnar databases store data in columns instead of rows. They enable access to 
 Use case: Columnar databases are efficient for a large number of aggregation and data analytics queries. It drastically reduces the disk I/O requirements and the amount of data required to load from the disk. For example, in applications related to financial institutions, there’s a need to sum the financial transaction over a period of time. Columnar databases make this operation quicker by just reading the column for the amount of money, ignoring other attributes of customers.
 
 The following figure shows an example of a columnar database, where data is stored in a column-oriented format. This is unlike relational databases, which store data in a row-oriented fashion:
-[Column-oriented and row-oriented database]
+[Column-oriented and row-oriented database](./col_row.jpg)
 
 ### Drawbacks of NoSQL databases
 
@@ -149,7 +149,7 @@ NoSQL doesn’t follow any specific standard, like how relational databases foll
 NoSQL databases provide different products based on the specific trade-offs between consistency and availability when failures can happen. We won’t have strong data integrity, like primary and referential integrities in a relational database. Data might not be strongly consistent but slowly converging using a weak model like eventual consistency.
 ## Choose the right database
 Various factors affect the choice of database to be used in an application. A comparison between the relational and non-relational databases is shown in the following table to help us choose:
-[Relational and Non-relational Databases]
+[Relational and Non-relational Databases](relational_nonrelational.jpg)
 
 ```
 Note: When NoSQL databases first came into being, they were drastically different to program and use as compared to traditional databases. Though, due to extensive research in academia and industry over the last many years, the programmer-facing differences between NoSQL and traditional stores are blurring. We might be using the same SQL constructs to talk to a NoSQL store and get a similar level of performance and consistency as a traditional store. Google’s Cloud Spanner is one such database that’s geo-replicated with automatic horizontal sharding ability and high-speed global snapshots of data.
