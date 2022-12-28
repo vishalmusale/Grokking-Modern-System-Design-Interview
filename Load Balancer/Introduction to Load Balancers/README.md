@@ -62,9 +62,9 @@ TLS termination, also called TLS/SSL offloading, is the establishment of secure 
 Service registry is a repository of the (micro)services and the instances available against each service.
 ```
 
-'''
+```
 The DoS is an attack where a client floods the server with traffic to exhaust the server’s resources (processing and/or memory) such that it is unable to process a legitimate user’s request.
-'''
+```
 
 ```
 The open systems interconnection (OSI) model is a conceptual framework that divides the problem of connecting any two machines into seven different layers.
