@@ -44,6 +44,27 @@ Security: LBs may also improve security by mitigating attacks like denial-of-ser
 As a whole, load balancers provide flexibility, reliability, redundancy, and efficiency to the overall design of the system.
 
 ```
+
+```
+The heartbeat protocol is a way of identifying failures in distributed systems. Using this protocol, every node in a cluster periodically reports its health to a monitoring service.
+```
+
+```
+TLS termination, also called TLS/SSL offloading, is the establishment of secure communication channels between clients and servers through encryption/decryption of data.
+```
+
+```
+Service registry is a repository of the (micro)services and the instances available against each service.
+```
+
+'''
+The DoS is an attack where a client floods the server with traffic to exhaust the server’s resources (processing and/or memory) such that it is unable to process a legitimate user’s request.
+'''
+
+```
+The open systems interconnection (OSI) model is a conceptual framework that divides the problem of connecting any two machines into seven different layers.
+```
+
 Flexibility: Add or remove machines transparently on the fly.
 Reliability: Buggy hosts can be removed through health monitoring which makes the system reliable.
 Redundancy: Multiple paths leading to the same destination or failed server’s load is rerouted to the failover machine.
