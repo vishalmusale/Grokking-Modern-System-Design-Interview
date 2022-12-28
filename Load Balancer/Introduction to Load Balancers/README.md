@@ -35,15 +35,20 @@ In reality, load balancers can be potentially used between any two services with
 LBs not only enable services to be scalable, available, and highly performant, they offer some key services like the following:
 ```
 Health checking: LBs use the heartbeat protocol to monitor the health and, therefore, reliability of end-servers. Another advantage of health checking is the improved user experience.
+
 TLS termination: LBs reduce the burden on end-servers by handling TLS termination with the client.
+
 Predictive analytics: LBs can predict traffic patterns through analytics performed over traffic passing through them or using statistics of traffic obtained over time.
+
 Reduced human intervention: Because of LB automation, reduced system administration efforts are required in handling failures.
+
 Service discovery: An advantage of LBs is that the clients’ requests are forwarded to appropriate hosting servers by inquiring about the service registry.
+
 Security: LBs may also improve security by mitigating attacks like denial-of-service (DoS) at different layers of the OSI model (layers 3, 4, and 7).
 ```
+
 As a whole, load balancers provide flexibility, reliability, redundancy, and efficiency to the overall design of the system.
 
-```
 
 ```
 The heartbeat protocol is a way of identifying failures in distributed systems. Using this protocol, every node in a cluster periodically reports its health to a monitoring service.
