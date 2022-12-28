@@ -23,7 +23,7 @@ Top-level domain (TLD) name servers: These servers hold the IP addresses of auth
 
 Authoritative name servers: These are the organization’s DNS name servers that provide the IP addresses of the web or application servers.
 ```
-DNS hierarchy for resolution of domain/host names
+[DNS hierarchy for resolution of domain/host names](./arch.jpg)
 
 ```
 Question
@@ -44,7 +44,7 @@ Recursive: The end user requests the local server. The local server further requ
 ```
 
 In the following illustration (on the left), DNS query resolution is iterative from the perspective of the local/ISP server:
-Iterative versus recursive query
+[Iterative versus recursive query](./process.jpg)
 ```
 Note: Typically, an iterative query is preferred to reduce query load on DNS infrastructure.
 ```
@@ -58,7 +58,7 @@ Caching refers to the temporary storage of frequently requested resource records
 
 The slideshow below demonstrates the power of caching in the DNS:
 
-[Caching](../Introduction to Domain Name System (DNS)/dns_flow)
+[Caching](./dns_flow)
 
 ## DNS as a distributed system
 Although the DNS hierarchy facilitates the distributed Internet that we know today, it’s a distributed system itself. The distributed nature of DNS has the following advantages:
@@ -113,7 +113,8 @@ Let’s run a couple of commands. Click on the terminal to execute the following
 nslookup www.google.com
 dig www.google.com
 ```
-
+[nslookup](./nslookup1.jpg)
+[nslookup](./nslookup2.jpg)
 ### The nslookup output
 The Non-authoritative answer, as the name suggests, is the answer provided by a server that is not the authoritative server of Google. It isn’t in the list of authoritative nameservers that Google maintains. So, where does the answer come from? The answer is provided by second, third, and fourth-hand name servers configured to reply to our DNS query—for example, our university or office DNS resolver, our ISP nameserver, our ISP’s ISP nameserver, and so on. In short, it can be considered as a cached version of Google’s authoritative nameservers response. If we try multiple domain names, we’ll realize that we receive a cached response most of the time.
 
