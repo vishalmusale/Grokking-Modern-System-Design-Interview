@@ -70,11 +70,13 @@ The DoS is an attack where a client floods the server with traffic to exhaust th
 The open systems interconnection (OSI) model is a conceptual framework that divides the problem of connecting any two machines into seven different layers.
 ```
 
+```
 Flexibility: Add or remove machines transparently on the fly.
 Reliability: Buggy hosts can be removed through health monitoring which makes the system reliable.
 Redundancy: Multiple paths leading to the same destination or failed server’s load is rerouted to the failover machine.
 Efficiency: Divide load evenly on all machines to use them effectively from the point of view of the service provider.
 ```
+
 ```
 Question
 What if load balancers fail? Are they not a single point of failure (SPOF)?
