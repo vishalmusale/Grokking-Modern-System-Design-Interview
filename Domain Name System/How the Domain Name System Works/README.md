@@ -15,13 +15,13 @@ name servers can respond to users’ DNS queries
 
 There are mainly four types of servers in the DNS hierarchy:
 ```
-**DNS resolver**: Resolvers initiate the querying sequence and forward requests to the other DNS name servers. Typically, DNS resolvers lie within the premise of the user’s network. However, DNS resolvers can also cater to users’ DNS queries through caching techniques, as we will see shortly. These servers can also be called local or default servers.
+DNS resolver: Resolvers initiate the querying sequence and forward requests to the other DNS name servers. Typically, DNS resolvers lie within the premise of the user’s network. However, DNS resolvers can also cater to users’ DNS queries through caching techniques, as we will see shortly. These servers can also be called local or default servers.
 
-**Root-level name servers**: These servers receive requests from local servers. Root name servers maintain name servers based on top-level domain names, such as .com, .edu, .us, and so on. For instance, when a user requests the IP address of educative.io, root-level name servers will return a list of top-level domain (TLD) servers that hold the IP addresses of the .io domain.
+Root-level name servers: These servers receive requests from local servers. Root name servers maintain name servers based on top-level domain names, such as .com, .edu, .us, and so on. For instance, when a user requests the IP address of educative.io, root-level name servers will return a list of top-level domain (TLD) servers that hold the IP addresses of the .io domain.
 
-**Top-level domain (TLD) name servers**: These servers hold the IP addresses of authoritative name servers. The querying party will get a list of IP addresses that belong to the authoritative servers of the organization.
+Top-level domain (TLD) name servers: These servers hold the IP addresses of authoritative name servers. The querying party will get a list of IP addresses that belong to the authoritative servers of the organization.
 
-**Authoritative name servers**: These are the organization’s DNS name servers that provide the IP addresses of the web or application servers.
+Authoritative name servers: These are the organization’s DNS name servers that provide the IP addresses of the web or application servers.
 ```
 DNS hierarchy for resolution of domain/host names
 
@@ -125,11 +125,11 @@ The 300 value in the ANSWER SECTION represents the number of seconds the cache i
 ```
 Note: We invite you to test different services for their TTL and query times to strengthen your understanding. You may use the above terminal for this purpose.
 ```
-
+```
 Question
 If we need DNS to tell us which IP to reach a website or service, how will we know the DNS resolver’s IP address? (It seems like a chicken-and-egg problem!)
 
 Answer
 End users’ operating systems have configuration files (/etc/resolv.conf in Linux) with the DNS resolvers’ IP addresses, which in turn obtain all information for them. (Often, DHCP provides the default DNS resolver IP address along with other configurations.) The end-systems request DNS resolves for any DNS queries. DNS resolvers have special software installed to resolve queries through the DNS infrastructure. The root server’s IP addresses are within the special software. Typically, the Berkeley Internet Name Domain (BIND) software is used on DNS resolvers. The InterNIC maintains the updated list of 13 root servers.
-
+```
 So, we break the chicken-and-egg problem by seeding each resolver with a priori knowledge of root DNS servers (whose IPs rarely change).
