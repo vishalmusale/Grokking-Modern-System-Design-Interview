@@ -155,4 +155,8 @@ Various factors affect the choice of database to be used in an application. A co
 Note: When NoSQL databases first came into being, they were drastically different to program and use as compared to traditional databases. Though, due to extensive research in academia and industry over the last many years, the programmer-facing differences between NoSQL and traditional stores are blurring. We might be using the same SQL constructs to talk to a NoSQL store and get a similar level of performance and consistency as a traditional store. Google’s Cloud Spanner is one such database that’s geo-replicated with automatic horizontal sharding ability and high-speed global snapshots of data.
 ```
 
+```
+Spanner: Google’s Globally-Distributed Database, Google, Inc.
+```
+
 
