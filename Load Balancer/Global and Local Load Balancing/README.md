@@ -29,9 +29,9 @@ LBaaS is a cloud-based load balancing technique that follows a pay-per-use model
 We understand that DNS can respond with multiple IP addresses for a DNS query. In the lesson on DNS, we discussed that it’s possible to do load balancing through DNS while looking at the output of nslookup. DNS uses a simple technique of reordering the list of IP addresses in response to each DNS query. Therefore, different users get a reordered IP address list. It results in users visiting a different server to entertain their requests. In this way, DNS distributes the load of requests on different data centers. This is performing GSLB. In particular, DNS uses round-robin to perform load balancing as shown below:
 [Load balancing in DNS](./lb)
 
-```
-As shown above, round-robin in DNS forwards clients to data centers in a strict circular order. However, round-robin has the following limitations:
 
+As shown above, round-robin in DNS forwards clients to data centers in a strict circular order. However, round-robin has the following limitations:
+```
 Different ISPs have a different number of users. An ISP serving many customers will provide the same cached IP to its clients, resulting in uneven load distribution on end-servers.
 
 Because the round-robin load-balancing algorithm doesn’t consider any end-server crashes, it keeps on distributing the IP address of the crashed servers until the TTL of the cached entries expires. Availability of the service, in that case, can take a hit due to DNS-level load balancing.
@@ -76,7 +76,7 @@ DNS queries are usually responded with VIPs.
 Question
 Can DNS be considered a global server load balancer (GSLB)?
 
-Hide Answer
+Answer
 Yes, there are actually two ways of doing global traffic management (GTM):
 
 GTM through ADCs: Some ADCs implement GSLB. In that case, ADCs have a real-time view of the hosting servers and forward requests based on the health and capacity of the data center.
