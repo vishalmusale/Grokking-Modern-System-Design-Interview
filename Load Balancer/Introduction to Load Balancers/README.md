@@ -15,7 +15,7 @@ Performance: Load balancers can forward requests to servers with a lesser load s
 ```
 Here’s an abstract depiction of how load balancers work:
 
-Simplified working of a load balancer
+[Simplified working of a load balancer](./lbsymplified.jpg)
 
 ## Placing load balancers
 Generally, LBs sit between clients and servers. Requests go through to servers and back to clients via the load balancing layer. However, that isn’t the only point where load balancers are used.
@@ -28,7 +28,9 @@ Place LBs between end users of the application and web servers/application gatew
 Place LBs between the web servers and application servers that run the business/application logic.
 Place LBs between the application servers and database servers.
 ```
-Possible usage of load balancers in a three-tier architecture
+[Possible usage of load balancers in a three-tier architecture](./lb_usage.jpg)
+
+
 In reality, load balancers can be potentially used between any two services with multiple instances within the design of a system.
 
 ## Services offered by load balancers
