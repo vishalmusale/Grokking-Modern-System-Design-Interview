@@ -112,9 +112,11 @@ acl slidesApp path_end -i /presentation //define a category of applications if t
 use_backend slidesServers if slidesApp  // use a set of backend servers if the request arrives for slidesApp
 backend slidesServers                   // listing servers serving slidesApp
 server slides1 192.168.12.1:80          //using slides1 server to serve slidesApp. 
+
+                                                             HAProxy sample configuration for layer 7 load balancers
 ```
 
-                                               HAProxy sample configuration for layer 7 load balancers
+                                               
                                                
                                               
 ```                                              
