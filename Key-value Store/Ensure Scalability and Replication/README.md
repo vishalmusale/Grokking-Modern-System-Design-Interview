@@ -5,6 +5,7 @@ Let’s start with one of the core design requirements: scalability. We store ke
 For example, let’s consider that we have four nodes, and we want 25% of the requests to go to each node to balance the load equally. The traditional way to solve this is through the modulus operator. When a request comes in, we assign a request ID, calculate its hash, and find the remainder by taking the modulus with the number of nodes available. The remainder value is the node number, and we send the request to that node to process it.
 
 The following slides explain this process:
+
 [We get the hash of the requestID and take modulus with the number of nodes to find the node that should process the request](./add_scalability1.jpg)
 
 [We perform the required operations on the RequestID to get the node](./add_scalability2.jpg)
