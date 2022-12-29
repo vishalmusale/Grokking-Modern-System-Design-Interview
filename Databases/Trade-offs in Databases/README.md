@@ -39,7 +39,7 @@ The following sections explain the pros and cons of no sharding versus sharding.
 A transaction in the distributed database depends on the type of query, number of sites (shards) involved, communication speed, and other factors, such as underline hardware and the type of database used. However, as an example, let’s assume a query accessing three tables, Store, Product, and Sales, residing on different sites.
 
 The number of attributes in each table is given in the following figure:
-[Database schema consisting of three tables: Store, Product, and Sales]
+[Database schema consisting of three tables: Store, Product, and Sales](./3tables.jpg)
 
 Let’s assume the distribution of both tables on different sites is the following:
 
