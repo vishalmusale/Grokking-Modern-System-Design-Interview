@@ -6,7 +6,7 @@ Usually, it’s preferred to keep the size of value relatively smaller (KB to MB
 
 It’s challenging to scale traditional databases with strong consistency and high availability in a distributed environment. Many real-world services like Amazon, Facebook, Instagram, Netflix, and many more use primary-key access to a data store instead of traditional online transaction processing (OLTP) databases. Examples of key-value store usage include bestseller lists, shopping carts, customer preferences, session management, sales rank, and product catalogs.
 
-[Key-value store]
+[Key-value store](./kv.jpg)
 
 ```
 Note: Many applications might not require a rich programming model provided by a traditional relational database management system (RDBMS). Using RDBMS for such applications is often expensive in terms of cost and performance.
