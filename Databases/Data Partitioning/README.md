@@ -49,10 +49,10 @@ Hash based sharding
 In the key-range based sharding, each partition is assigned a continuous range of keys.
 
 In the following figure, horizontal partitioning on the Invoice table is performed using the key-range based sharding with Customer_Id as the partition key. The two different colored tables represent the partitions.
-[Horizontal partitioning]
+[Horizontal partitioning](./horizontal.jpg)
 
 Sometimes, a database consists of multiple tables bound by foreign key relationships. In such a case, the horizontal partition is performed using the same partition key on all tables in a relation. Tables (or subtables) that belong to the same partition key are distributed to one database shard. The following figure shows that several tables with the same partition key are placed in a single database shard:
-[Horizontal partitioning on a set of tables]
+[Horizontal partitioning on a set of tables](./horizontal_tables.jpg)
 
 The basic design techniques used in multi-table sharding are as follows:
 ```
