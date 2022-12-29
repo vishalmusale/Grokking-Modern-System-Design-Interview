@@ -104,7 +104,7 @@ A document database is designed to store and retrieve documents in formats like 
 Use case: Document databases are suitable for unstructured catalog data, like JSON files or other complex structured hierarchical data. For example, in e-commerce applications, a product has thousands of attributes, which is unfeasible to store in a relational database due to its impact on the reading performance. Here comes the role of a document database, which can efficiently store each attribute in a single file for easy management and faster reading speed. Moreover, it’s also a good option for content management applications, such as blogs and video platforms. An entity required for the application is stored as a single document in such applications.
 
 The following example shows data stored in a JSON document. This data is about a person. Various attributes are stored in the file, including id, name, email, and so on.
-
+```
 {  "id": 1001,
    "name": "Brown",
    "title": "Mr.",
@@ -122,7 +122,7 @@ The following example shows data stored in a JSON document. This data is about a
             "$date": "2021-12-10" } }]}
  
                A JSON file containing data of a businessman
- 
+ ```
 #### Graph database
 Graph databases use the graph data structure to store data, where nodes represent entities, and edges show relationships between entities. The organization of nodes based on relationships leads to interesting patterns between the nodes. This database allows us to store the data once and then interpret it differently based on relationships. Popular graph databases include Neo4J, OrientDB, and InfiniteGraph. Graph data is kept in store files for persistent storage. Each of the files contains data for a specific part of the graph, such as nodes, links, properties, and so on.
 
