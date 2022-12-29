@@ -6,7 +6,9 @@ For example, let’s consider that we have four nodes, and we want 25% of the re
 
 The following slides explain this process:
 [We get the hash of the requestID and take modulus with the number of nodes to find the node that should process the request](./add_scalability1.jpg)
+
 [We perform the required operations on the RequestID to get the node](./add_scalability2.jpg)
+
 [Node 2 will process the request](./add_scalability3.jpg)
 
 We want to add and remove nodes with minimal change in our infrastructure. But in this method, when we add or remove a node, we need to move a lot of keys. This is inefficient. For example, node 2 is removed, and suppose for the same request ID, the new server to process a request will be node 1 because 10 \% 3 = 1
