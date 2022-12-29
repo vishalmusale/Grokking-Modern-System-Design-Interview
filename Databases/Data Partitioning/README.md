@@ -36,7 +36,7 @@ As shown in the figure a couple paragraphs below, the Employee table is divided 
 
 Vertical sharding has its intricacies and is more amenable to manual partitioning, where stakeholders carefully decide how to partition data. In comparison, horizontal sharding is suitable to automate even under dynamic conditions.
 
-[Vertical partitioning]
+[Vertical partitioning](./vertical.jpg)
 
 ### Horizontal sharding
 At times, some tables in the databases become too big and affect read/write latency. Horizontal sharding or partitioning is used to divide a table into multiple tables by splitting data row-wise, as shown in the figure in the next section. Each partition of the original table distributed over database servers is called a shard. Usually, there are two strategies available:
@@ -86,7 +86,7 @@ If keys aren’t selected properly, some nodes may have to store more data due t
 Hash-based sharding uses a hash-like function on an attribute, and it produces different values based on which attribute the partitioning is performed. The main concept is to use a hash function on the key to get a hash value and then mod by the number of partitions. Once we’ve found an appropriate hash function for keys, we may give each partition a range of hashes (rather than a range of keys). Any key whose hash occurs inside that range will be kept in that partition.
 
 In the illustration below, we use a hash function of Value mod = n. The n is the number of nodes, which is four. We allocate keys to nodes by checking the mod for each key. Keys with a mod value of 2 are allocated to node 2. Keys with a mod value of 1 are allocated to node 1. Keys with a mod value of 3 are allocated to node 3. Because there’s no key with a mod value of 0, node 0 is left vacant.
-[Hash-based sharding]
+[Hash-based sharding](./hash.jpg)
 ##### Advantages
 Keys are uniformly distributed across the nodes.
 
@@ -155,7 +155,7 @@ We can partition with secondary indexes in the following ways.
 Each partition is fully independent in this indexing approach. Each partition has its secondary indexes covering just the documents in that partition. It’s unconcerned with the data held in other partitions. If we want to write anything to our database, we need to handle that partition only containing the document ID we’re writing. It’s also known as the local index. In the illustration below, there are three partitions, each having its own identity and data. If we want to get all the customer IDs with the name John, we have to request from all partitions.
 
 However, this type of querying on secondary indexes can be expensive. As a result of being restricted by the latency of a poor-performing partition, read query latencies may increase.
-[Partitioning secondary indexes by document]
+[Partitioning secondary indexes by document](./partition1.jpg)
 #### Partition secondary indexes by the term
 Instead of creating a secondary index for each partition (a local index), we can make a global index for secondary terms that encompasses data from all partitions.
 
