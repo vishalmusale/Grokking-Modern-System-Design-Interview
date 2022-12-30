@@ -44,8 +44,9 @@ If the proxy servers request content, the GET method retrieves the content throu
 ```
 retrieveContent(proxyserver_id, content_type, content_version, description)
 ```
+
 Let’s see the details of the parameters:
-Details of Parameters
+                            Details of Parameters
 Parameter                    Description 
 proxyserver_id               This is a unique ID of the requesting proxy server.
 
@@ -78,6 +79,7 @@ The origin servers use this API to deliver the specified content, theupdated ver
 ```
 deliverContent(origin_id, server_list, content_type, content_version, description)
 ```
+
                   Details of Parameters             
 Parameter               Description
 
