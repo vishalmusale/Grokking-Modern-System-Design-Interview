@@ -8,7 +8,7 @@ In the sloppy quorum, the first n healthy nodes from the preference list handle 
 
 Let’s consider the following configuration with n = 3. If node A is briefly unavailable or unreachable during a write operation, the request is sent to the next healthy node from the preference list, which is node D in this case. It ensures the desired availability and durability. After processing the request, the node D includes a hint as to which node was the intended receiver (in this case, A). Once node A is up and running again, node D sends the request information to A so it can update its data. Upon completion of the transfer, D removes this item from its local storage without affecting the total number of replicas in the system.
 
-[Handle temporary failures]
+[Handle temporary failures](./handle temp failures)
 
 This approach is called a hinted handoff. Using it, we can ensure that reads and writes are fulfilled if a node faces temporary failure.
 ```
@@ -29,7 +29,8 @@ In the event of permanent failures of nodes, we should keep our replicas synchro
 In a Merkle tree, the values of individual keys are hashed and used as the leaves of the tree. There are hashes of their children in the parent nodes higher up the tree. Each branch of the Merkle tree can be verified independently without the need to download the complete tree or the entire dataset. While checking for inconsistencies across copies, Merkle trees reduce the amount of data that must be exchanged. There’s no need for synchronization if, for example, the hash values of two trees’ roots are the same and their leaf nodes are also the same. Until the process reaches the tree leaves, the hosts can identify the keys that are out of sync when the nodes exchange the hash values of children. The Merkle tree is a mechanism to implement anti-entropy, which means to keep all the data consistent. It reduces data transmission for synchronization and the number of discs accessed during the anti-entropy process.
 
 The following slides explain how Merkle trees work:
-[Merkle tree]
+
+[Merkle tree](./markle tree)
 
 ### Anti-entropy with Merkle trees
 Each node keeps a distinct Merkle tree for the range of keys that it hosts for each virtual node. The nodes can determine if the keys in a given range are correct. The root of the Merkle tree corresponding to the common key ranges is exchanged between two nodes. We’ll make the following comparison:
@@ -42,7 +43,7 @@ The following slides explain more about how Merkle trees work.
 ```
 Note: We assume the ranges defined are hypothetical for illustration purposes.
 ```
-[anti-entropy]
+[anti-entropy](./ring)
 
 The advantage of using Merkle trees is that each branch of the Merkle tree can be examined independently without requiring nodes to download the tree or the complete dataset. It reduces the quantity of data that must be exchanged for synchronization and the number of disc accesses that are required during the anti-entropy procedure.
 
@@ -57,7 +58,7 @@ Planned commissioning and decommissioning of nodes results in membership changes
 Let’s learn how a gossip-based protocol works by considering the following example. Say node A starts up for the first time, and it randomly adds nodes B and E to its token set. The token set has virtual nodes in the consistent hash space and maps nodes to their respective token sets. This information is stored locally on the disk space of the node.
 
 Now, node A handles a request that results in a change, so it communicates this to B and E. Another node, D, has C and E in its token set. It makes a change and tells C and E. The other nodes do the same process. This way, every node eventually knows about every other node’s information. It’s an efficient way to share information asynchronously, and it doesn’t take up a lot of bandwidth.
-[ring]
+[ring](./promote)
 ```
 Question
 Keeping in mind our consistent hashing approach, can the gossip-based protocol fail?
