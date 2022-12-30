@@ -23,13 +23,6 @@ Answer
 A minimal churn in system membership and transient node failures are ideal for hinted handoff. However, hinted replicas may become unavailable before being restored to the originating replica node in certain circumstances.
 ```
 
-```
-Question 2
-How can we prevent logical partitioning?
-
-Answer
-We can make a few nodes play the role of seeds to avoid logical partitions. We can define a set of nodes as seeds via a configuration service. This set of nodes is known to all the working nodes since they can eventually reconcile their membership with a seed. So, logical partitions are pretty rare.
-```
 ## Handle permanent failures
 In the event of permanent failures of nodes, we should keep our replicas synchronized to make our system more durable. We need to speed up the detection of inconsistencies between replicas and reduce the quantity of transferred data. We’ll use Merkle trees for that.
 
@@ -72,6 +65,14 @@ Keeping in mind our consistent hashing approach, can the gossip-based protocol f
 
 Answer
 Yes, the gossip-based protocol can fail. For example, the virtual node, N1, of node A wants to be added to the ring. The administrator asks N2, which is also a virtual node of A. In such a case, both nodes consider themselves to be part of the ring and won’t be aware that they’re the same server. If any change is made, it will keep on updating itself, which is wrong. This is called logical partitioning.
+```
+
+```
+Question 2
+How can we prevent logical partitioning?
+
+Answer
+We can make a few nodes play the role of seeds to avoid logical partitions. We can define a set of nodes as seeds via a configuration service. This set of nodes is known to all the working nodes since they can eventually reconcile their membership with a seed. So, logical partitions are pretty rare.
 ```
 Decentralized failure detection protocols use a gossip-based protocol that allows each node to learn about the addition or removal of other nodes. The join and leave methods of the explicit node notify the nodes about the permanent node additions and removals. The individual nodes detect temporary node failures when they fail to communicate with another node. If a node fails to communicate to any of the nodes present in its token set for the authorized time, then it communicates to the administrators that the node is dead.
 
