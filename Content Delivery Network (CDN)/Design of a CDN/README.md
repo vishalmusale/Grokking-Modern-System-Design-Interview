@@ -46,7 +46,7 @@ retrieveContent(proxyserver_id, content_type, content_version, description)
 ```
 
 Let’s see the details of the parameters:
-                            Details of Parameters
+#### Details of Parameters
 Parameter                    Description 
 proxyserver_id               This is a unique ID of the requesting proxy server.
 
@@ -80,7 +80,7 @@ The origin servers use this API to deliver the specified content, theupdated ver
 deliverContent(origin_id, server_list, content_type, content_version, description)
 ```
 
-                  Details of Parameters             
+#### Details of Parameters             
 Parameter               Description
 
 origin_id               This recognizes each origin server uniquely.
@@ -97,7 +97,8 @@ The users use this API to request the content from the proxy servers. We call th
 ```
 requestContent(user_id, content_type, description)
 ```
-          Details of Parameter    
+
+#### Details of Parameter    
 Parameter          Description
 
 user_id            This is the unique ID of the user who requested the content.
@@ -149,7 +150,7 @@ The /updateContent API is shown below:
 ```
 updateContent(proxyserver_id, content_type, description)
 ```
-                Details of Parameter
+#### Details of Parameter
 Parameter          Description
 
 porxyserver_id     This recognizes the proxy server uniquely in the PoP to update the content.
