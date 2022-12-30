@@ -43,7 +43,7 @@ Let’s look at the functional and non-functional requirements that we expect fr
 - Update: In most cases, content comes from the origin server, but if we run script in CDN, the CDN should be able to update the content within peer CDN proxy servers in a PoP.
 - Delete: Depending upon the type of content (static or dynamic), it should be possible to delete cached entries from the CDN servers after a certain period.
 
-[Functional requirements of a CDN]
+[Functional requirements of a CDN](./req.jpg)
 
 ```
 A Point of Presence (PoP) is a physical place that allows two or more networks or devices to communicate with each other. Typically, each CDN PoP has a large number of cache servers.
@@ -59,12 +59,12 @@ A Point of Presence (PoP) is a physical place that allows two or more networks o
 In DDoS attacks, malicious agents overwhelm the origin or application server by sending a massive number of requests.
 ```
 
-[Non-functional requirements of CDN]
+[Non-functional requirements of CDN](./nfreq.jpg)
 
 ## Building blocks we will use
 The design of a CDN utilizes the following building blocks:
 
-[The building blocks used in CDN design]
+[The building blocks used in CDN design](./bb.jpg)
 
 - DNS is the service that maps human-friendly CDN domain names to machine-readable IP addresses. This IP address will take the users to the specified proxy server.
 - Load balancers distribute millions of requests among the operational proxy servers.
