@@ -98,6 +98,7 @@ n             r             w          Description
 Let’s say n = 3, which means we have three nodes where the data is copied to. Now, for w = 2, the operation makes sure to write in two nodes to make this request successful. For the third node, the data is updated asynchronously.
 
 [Usage](./usage)
+
 In this model, the latency of a get operation is decided by the slowest of the r replicas. The reason is that for the larger value of r, we focus more on availability and compromise consistency.
 
 The coordinator produces the vector clock for the new version and writes the new version locally upon receiving a put() request for a key. The coordinator sends n highest-ranking nodes with the updated version and a new vector clock. We consider a write successful if at least w-1 nodes respond. Remember that the coordinate writes to itself first, so we get w writes in total.
