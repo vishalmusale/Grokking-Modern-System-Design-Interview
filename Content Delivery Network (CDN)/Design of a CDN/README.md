@@ -47,6 +47,7 @@ retrieveContent(proxyserver_id, content_type, content_version, description)
 
 Let’s see the details of the parameters:
 #### Details of Parameters
+```
 Parameter                    Description 
 proxyserver_id               This is a unique ID of the requesting proxy server.
 
@@ -55,7 +56,7 @@ content_type                 This data structure will contain information about 
 content_version              This represents the version number of the content. For the /retrieveContent API, the content_version will contain the current version of the content residing in the proxy server. The content_version will be NULL if no previous version is available at the proxy server. 
 
 description                  This specifies the content detail—for example, the video's extension, resolution detail, and so on if the content_type is video.
-
+```
 The above API gives a response in a JSON file, which contains the text, content types, links to the images or videos in the content, and so on.
 
 ```
@@ -80,7 +81,8 @@ The origin servers use this API to deliver the specified content, theupdated ver
 deliverContent(origin_id, server_list, content_type, content_version, description)
 ```
 
-#### Details of Parameters             
+#### Details of Parameters      
+```
 Parameter               Description
 
 origin_id               This recognizes each origin server uniquely.
@@ -88,7 +90,7 @@ origin_id               This recognizes each origin server uniquely.
 server_list             This identifies the list of servers the content will be pushed to by the distribution system.
 
 content_version         This represents the updated version of the content at the origin server. The proxy server receiving the content will discard the previous version.
-
+```
 The rest of the parameters have been explained above already.
 
 
@@ -99,6 +101,7 @@ requestContent(user_id, content_type, description)
 ```
 
 #### Details of Parameter    
+```
 Parameter          Description
 
 user_id            This is the unique ID of the user who requested the content.
@@ -151,9 +154,11 @@ The /updateContent API is shown below:
 updateContent(proxyserver_id, content_type, description)
 ```
 #### Details of Parameter
+```
 Parameter          Description
 
 porxyserver_id     This recognizes the proxy server uniquely in the PoP to update the content.
+```
 
 The rest of the parameters have been explained above already.
 ```
