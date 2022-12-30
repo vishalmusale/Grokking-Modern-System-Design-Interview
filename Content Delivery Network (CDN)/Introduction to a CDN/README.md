@@ -1,38 +1,72 @@
-# System Design: The Content Delivery Network (CDN)
-## Problem statement
-Let’s start with a question: If millions of users worldwide use our data-intensive applications, and our service is deployed in a single data center to serve the users’ requests, what possible problems can arise?
-
-The following problems can arise:
-
-- High latency: The user-perceived latency will be high due to the physical distance from the serving data center. User-perceived latency has many components, such as transmission delays (a function of available bandwidth), propagation delays (a function of distance), queuing delays (a function of network congestion), and nodal processing delays. Therefore, data transmission over a large distance results in higher latency. Real-time applications require a latency below 200 milliseconds (ms) in general. For the Voice over Internet Protocol (VoIP), latency should not be more than 150 ms, whereas video streaming applications cannot tolerate a latency above a few seconds.
+# Introduction to a CDN
+## Proposed solution
+The solution to all the problems discussed in the previous lesson is the content delivery network (CDN). A CDN is a group of geographically distributed proxy servers. A proxy server is an intermediate server between a client and the origin server. The proxy servers are placed on the network edge. As the network edge is close to the end users, the placement of proxy servers helps quickly deliver the content to the end users by reducing latency and saving bandwidth. A CDN has added intelligence on top of being a simple proxy server.
 ```
-Note: According to one of the readings taken on December 21, 2021, the average latency from US East (N. Virginia) to US West (N. California) was 62.9 ms. Across continents—for example, from the US East (N. Virginia) to Africa (Cape Town)—was 225.63 ms. This is two-way latency, known as round-trip latency.
-```
-[Origin data center entertaining users' requests across the globe](./latency.jpg)
-
-- Data-intensive applications: Data-intensive applications require transferring large traffic. Over a longer distance, this could be a problem due to the network path stretching through different kinds of ISPs. Because of some smaller Path message transmission unit (MTU) links, the throughput of applications on the network might be reduced. Similarly, different portions of the network path might have different congestion characteristics. The problem multiplies as the number of users grows because the origin servers will have to provide the data individually to each user. That is, the primary data center will need to send out a lot of redundant data when multiple clients ask for it. However, applications that use streaming services are both data-intensive and dynamic in nature.
-
-```
-A Path MTU refers to the smallest data unit that can traverse from source to destination without the need for splitting.
+The network edge is the zone where a device or local network interfaces with the Internet.
 ```
 
+We can bring data close to the user by placing a small data center near the user and storing copies of the data there. CDN mainly stores two types of data: static and dynamic. A CDN primarily targets propagation delay by bringing the data closer to its users. CDN providers make the extra effort to have sufficient bandwidth available through the path and bring data closer to the users (possibly within their ISP). They also try to reduce transmission and queuing delays because the ISP presumably has more bandwidth available within the autonomous system.
 ```
-Note: According to a survey, 78% of the United States consumers use streaming services, which is an increase of 25% in five years.
-```
-- Scarcity of data center resources: Important data center resources like computational capacity and bandwidth become a limitation when the number of users of a service increases significantly. Services engaging millions of users simultaneously need scaling. Even if scaling is achieved in a single data center, it can still suffer from becoming a single point of failure when the data center goes offline due to natural calamity or connectivity issues with the Internet.
-[User growth over the years for Facebook and YouTube applications](./users.jpg)
-
-```
-Note: According to one study, YouTube, Netflix, and Amazon Prime collectively generated 80% of Internet traffic in 2020. Circa 2016, the CDN provider Akamai served 15% to 30% of web traffic (about 30 terabits per second). For 90% of Internet users, Akamai was just one hop away. Therefore, we have strong reasons to optimize the delivery and consumption of this data without making the Internet core a bottleneck.
+static data: This type of data doesn’t change frequently and remains on the servers for a long period.
+dynamic data: This type of data changes most frequently—for example, newsletters, ads, live videos, and so on.
 ```
 
-## How will we design a CDN?
-We’ve divided the design of CDN into six lessons:
+Let’s look at the different ways CDN solves the discussed problems:
+- High latency: CDN brings the content closer to end users. Therefore, it reduces the physical distance and latency.
+- Data-intensive applications: Since the path to the data includes only the ISP and the nearby CDN components, there’s no issue in serving a large number of users through a few CDN components in a specific area. As shown below, the origin data center will have to provide the data to local CDN components only once, whereas local CDN components can provide data to different users individually. No user will have to download their own copy of data from the origin servers.
+```
+Note: Various streaming protocols are used to deliver dynamic content by the CDN providers. For example, CDNsun uses the Real-time Messaging Protocol (RTMP), HTTP Live Streaming (HLS), Real-time Streaming Protocol (RTSP), and many more to deliver dynamic content.
+```
+- Scarcity of data center resources: A CDN is used to serve popular content. Due to this reason, most of the traffic is handled at the CDN instead of the origin servers. So, different local or distributed CDN components share the load on origin servers.
 
-- Introduction to a CDN: We’ll provide a thorough introduction to CDNs and identify the functional and non-functional requirements.
-- Design of a CDN: We’ll explain how to design the CDN. We’ll also briefly describe the API design.
-- In-depth Investigation of CDN: Part 1: This lesson explains caching strategies and CDN architecture. Also, we’ll discuss various approaches to finding the nearest proxy server.
-- In-depth Investigation of CDN: Part 2: We’ll discuss how to make content consistent in a CDN and the deployment of proxy servers. We’ll also cover the custom and specialized CDN in detail.
-- Evaluation of CDN: This lesson will provide an evaluation of our proposed design.
-- Quiz on CDN System Design: We’ll reinforce major concepts of CDN design with a quiz.
-Let’s think about the solution to the discussed issues in the next lesson.
+```
+Note: A few well-known CDN providers are Akamai, StackPath, Cloudflare, Rackspace, Amazon CloudFront, and Google Cloud CDN.
+```
+
+```
+Question
+Does a CDN cache all content from the origin server?
+
+Answer
+Not likely. A CDN caches a considerable portion of the content depending on its capabilities, and it mostly caches the static content.
+static content: The content that isn’t frequently changed is known as static content.
+```
+It also depends on the size of the content. For example, it might be possible for Netflix to store more than 90% of its movies in the CDN, while this might not be feasible for a service like YouTube due to the humongous volume of content.
+
+## Requirements
+Let’s look at the functional and non-functional requirements that we expect from a CDN.
+### Functional requirements
+- Retrieve: Depending upon the type of CDN models--push or pull, a CDN should be able to retrieve content from the origin servers. We’ll cover CDN models in the coming lesson.
+- Request: Content delivery from the proxy server is made upon the user’s request. CDN proxy servers should be able to respond to each user’s request in this regard.
+- Deliver: In the case of the push model, the origin servers should be able to send the content to the CDN proxy servers.
+- Search: The CDN should be able to execute a search against a user query for cached or otherwise stored content within the CDN infrastructure.
+- Update: In most cases, content comes from the origin server, but if we run script in CDN, the CDN should be able to update the content within peer CDN proxy servers in a PoP.
+- Delete: Depending upon the type of content (static or dynamic), it should be possible to delete cached entries from the CDN servers after a certain period.
+
+[Functional requirements of a CDN]
+
+```
+A Point of Presence (PoP) is a physical place that allows two or more networks or devices to communicate with each other. Typically, each CDN PoP has a large number of cache servers.
+```
+
+### Non-functional requirements
+- Performance: Minimizing latency is one of the core missions of a CDN. The proposed design should have minimum possible latency.
+- Availability: CDNs are expected to be available at all times because of their effectiveness. Availability includes protection against attacks like DDoS.
+- Scalability: An increasing number of users will request content from CDNs. Our proposed CDN design should be able to scale horizontally as the requirements increase.
+- Reliability and security: Our CDN design should ensure no single point of failure. Apart from failures, the designed CDN must reliably handle massive traffic loads. Furthermore, CDNs should provide protection to hosted content from various attacks.
+
+```
+In DDoS attacks, malicious agents overwhelm the origin or application server by sending a massive number of requests.
+```
+
+[Non-functional requirements of CDN]
+
+## Building blocks we will use
+The design of a CDN utilizes the following building blocks:
+
+[The building blocks used in CDN design]
+
+- DNS is the service that maps human-friendly CDN domain names to machine-readable IP addresses. This IP address will take the users to the specified proxy server.
+- Load balancers distribute millions of requests among the operational proxy servers.
+In the next lesson, we’ll discuss the design of the CDN.
+
