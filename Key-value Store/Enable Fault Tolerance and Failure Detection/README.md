@@ -8,7 +8,7 @@ In the sloppy quorum, the first n healthy nodes from the preference list handle 
 
 Let’s consider the following configuration with n = 3. If node A is briefly unavailable or unreachable during a write operation, the request is sent to the next healthy node from the preference list, which is node D in this case. It ensures the desired availability and durability. After processing the request, the node D includes a hint as to which node was the intended receiver (in this case, A). Once node A is up and running again, node D sends the request information to A so it can update its data. Upon completion of the transfer, D removes this item from its local storage without affecting the total number of replicas in the system.
 
-[Handle temporary failures](./handle temp failures)
+[Handle temporary failures](./failures)
 
 This approach is called a hinted handoff. Using it, we can ensure that reads and writes are fulfilled if a node faces temporary failure.
 ```
@@ -30,7 +30,7 @@ In a Merkle tree, the values of individual keys are hashed and used as the leave
 
 The following slides explain how Merkle trees work:
 
-[Merkle tree](./markle tree)
+[Merkle tree](./markle)
 
 ### Anti-entropy with Merkle trees
 Each node keeps a distinct Merkle tree for the range of keys that it hosts for each virtual node. The nodes can determine if the keys in a given range are correct. The root of the Merkle tree corresponding to the common key ranges is exchanged between two nodes. We’ll make the following comparison:
