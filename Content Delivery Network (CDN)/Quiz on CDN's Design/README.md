@@ -94,3 +94,57 @@ Location, bandwidth
 D)
 Caching capacity, network distance
 ```
+
+Answers
+```
+1. Which CDN approach will be the most suitable to use when most of the web content is static? (B)
+
+A)
+Pull CDN
+
+Explanation
+Use Pull CDN where web content changes frequently.
+
+Correct Answer
+B)
+Push CDN
+
+Explanation
+Use Push CDN where web content changes infrequently and caches in the edge proxy servers for a long period.
+```
+
+```
+2. (Select all that apply.) What are the limitations of using a public CDN? (A)(B)(C)(D)
+
+A)
+An additional point of failure
+
+Explanation
+The content hosted on CDN will not be available.
+
+B)
+Risk of a data breach
+
+Explanation
+There are always risks when third parties manage the data.
+
+C)
+Loss of control
+
+Explanation
+When content publishes to the proxy servers, the CDN providers control it.
+
+D)
+An additional DNS lookup
+
+Explanation
+CDN network layer increases DNS lookup.
+
+E)
+Increased latency
+
+Explanation
+CDN is used to reduce the latency between end-users and the content. Therefore, this option can not be a limitation.
+```
+
+
