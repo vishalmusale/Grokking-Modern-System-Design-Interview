@@ -147,4 +147,122 @@ Explanation
 CDN is used to reduce the latency between end-users and the content. Therefore, this option can not be a limitation.
 ```
 
+```
+3. (Select all that apply.) What are the main reasons for building a specialized CDN? (A)(B)
 
+A)
+It optimizes the content delivery.
+
+Explanation
+Specified CDN is dedicated to a particular content provider which optimizes the delivery of the requested content.
+
+B)
+It helps us avoid the increasing cost of CDN providers.
+
+Explanation
+The cost of CDN providers increases when we increase the cache size or add more components.
+
+C)
+It prevents ISP intervention.
+
+Explanation
+Each request comes through ISP using encrypted connections. So, ISPs can’t intervene.
+
+D)
+It reduces the hit ratio.
+
+Explanation
+Specialized CDN will increase the hit ratio instead of reducing it because it is dedicated to particular content.
+```
+
+```
+4. Suppose you’re asked to scale the Quora system to reduce the burden of data distribution on the origin server. Which technique will you use to do this? (B)
+
+A)
+A single-tier CDN
+
+Explanation
+Single tier does not reduce the burden because an origin server has to distribute the content to all CDN servers.
+
+Correct Answer
+B)
+A multi-tier CDN
+
+Explanation
+Using this approach, data distribution is divided into the CDN layers like an origin to parent CDN servers and parent to the following layer CDN servers.
+
+C)
+A public CDN
+
+Explanation
+The origin server will need to provide data to CDN, be it public or private.
+
+D)
+A multi CDN
+
+Explanation
+A multi-CDN combines multiple CDNs from different CDN providers into a single network. Often such a strategy is complex and expensive.
+```
+
+```
+5. (Select all that apply.) Why do most websites use a CDN? (A)(B)(D)(E)
+
+A)
+A CDN ensures improved scalability.
+
+Explanation
+Horizontal scaling is not a problem for the CDN.
+
+B)
+A CDN offers protection against DDoS attacks.
+
+Explanation
+Scrubber servers are used to prevent DDoS attacks in the CDN network.
+
+C)
+A CDN creates a backup for all the evicted content.
+
+Explanation
+Content is deleted from all storage of the specified CDN servers for consistency in the eviction process.
+
+D)
+A CDN reduces the load on the origin server.
+
+Explanation
+CDN reduces the burden from the origin servers like data distribution, handling massive traffic, etc.
+
+E)
+A CDN guarantees better performance.
+
+Explanation
+CDN is placed near the end-user, so it increases the performance by reducing latency and speeding up the request/response process.
+```
+
+```
+6. Which metric pair is the most suitable for finding the nearest proxy servers? (B)
+
+A)
+Traffic load, caching capacity
+
+Explanation
+Caching capacity is not a relevant factor, but Traffic load is.
+
+Correct Answer
+B)
+Request load, network distance
+
+Explanation
+This is the best suitable pair to find the nearest proxy server.
+
+C)
+Location, bandwidth
+
+Explanation
+Location does not describe any details, but the distance between two locations does.
+
+D)
+Caching capacity, network distance
+
+Explanation
+Caching capacity is not a relevant factor, but network distance is.
+```
