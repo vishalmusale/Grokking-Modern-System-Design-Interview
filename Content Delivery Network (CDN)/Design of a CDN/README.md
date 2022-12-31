@@ -59,6 +59,7 @@ description                  This specifies the content detail—for example, th
 ```
 The above API gives a response in a JSON file, which contains the text, content types, links to the images or videos in the content, and so on.
 
+```Javascript
 "Object_links": [
                  {
                  "name": "videos"
@@ -71,7 +72,7 @@ The above API gives a response in a JSON file, which contains the text, content 
                 ]
               
                 The JSON file from where various objects will be downloaded at the proxy servers.
-
+```
 
 
 
