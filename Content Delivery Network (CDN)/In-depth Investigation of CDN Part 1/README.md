@@ -114,6 +114,7 @@ Below is an example of an HTML snippet provided by Facebook. As is highlighted i
    <div class="_8esk">
     <div class="_8esl">
      <div class="_8ice">
+     <!––  DNS redirection -->
       <img class="fb_logo" src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg"> 
      </div>
      <h2 class="_8eso">Facebook helps you connect and share with the people in your life.</h2>
