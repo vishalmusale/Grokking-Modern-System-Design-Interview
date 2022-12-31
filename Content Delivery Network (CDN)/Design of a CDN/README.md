@@ -106,10 +106,10 @@ requestContent(user_id, content_type, description)
 Parameter          Description
 
 user_id            This is the unique ID of the user who requested the content.
-
+```
 The specified proxy server returns the particular content to the requested users in response to the above API.
 
-
+```Javascript
 "Object_links": [
                  {
                  "name": "components"
@@ -137,7 +137,7 @@ The specified proxy server returns the particular content to the requested users
                  },
                 ]
               The JSON file from where various objects will be downloaded at the user end.
-
+```
 
 ### Search (proxy server to peer proxy servers)
 Although the content is first searched locally at the proxy server, the proxy servers can also probe requested content in the peer proxy servers in the same PoP through the /searchContent API. This could flood the query to all proxy servers in a PoP. Alternatively, we can use a data store in the PoP to query the content, though proxy servers will need to maintain what content is available on which proxy server.
