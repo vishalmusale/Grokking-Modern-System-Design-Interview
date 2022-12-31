@@ -64,8 +64,8 @@ It’s vital for the user to fetch data from the nearest proxy server because th
 There are two important factors that are relevant to finding the nearest proxy server to the user:
 
 - Network distance between the user and the proxy server is crucial. This is a function of the following two things:
--- The first is the length of the network path.
--- The second is the capacity (bandwidth) limits along the network path.
+    - The first is the length of the network path.
+    - The second is the capacity (bandwidth) limits along the network path.
 
 The shortest network path with the highest capacity (bandwidth) is the nearest proxy server to the user in question. This path helps the user download content more quickly.
 
