@@ -72,7 +72,7 @@ Netflix’s OCA servers don’t store user data. Instead, they fulfill the follo
 - They report their status—health, learned routes, and details of cached content—to the Open Connect control plane that resides in AWS (Amazon Web Services).
 - They serve the cached content that’s requested by the user.
 
-[Netflix's Open Connect Appliances]
+[Netflix's Open Connect Appliances](./netflix.jpg)
 All the deployed OCAs situated in IXP or embedded in the ISP network are monitored by the Open Connect operation team.
 
 ### Why Netflix built its CDN
