@@ -14,6 +14,7 @@ CDN achieves high performance by minimizing latency. Some of the key design deci
 Long-tail
 If we monitor the access frequency of our content over some time, we can see a trend where some content is read by many clients (for example, 20% of content asked by 80% of clients), and then there is a long list of the content that very few clients ask for. Such an access distribution is called a long-tailed distribution.
 ```
+[Long-tail](./longtail.jpg)
 - As was discussed previously, proxy servers can be implemented in layers where if one layer doesn’t have the content, the request can be entertained by the next layer of proxy servers. For example, the edge proxy servers can request the parent proxy servers. Placing proxy servers at specific ISPs could be the best option when most traffic comes from those ISP regions.
 
 
