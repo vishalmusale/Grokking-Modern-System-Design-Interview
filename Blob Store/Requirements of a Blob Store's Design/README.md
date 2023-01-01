@@ -52,9 +52,9 @@ Total_{storage/day} = No. of videos per day x (Storage per video +Storage per th
 Putting the numbers from above into the formula gives us 12.51\ TB_{/ day}
 12.51 TB /day, which is the approximate storage required by YouTube per day for keeping a single copy of the uploaded video in a single resolution.
 ```                         
-                             Total Storage Required to Store Videos and Thumbnails Uploaded Per Day on YouTube
-                             No. of videos per day      	Storage per video (MB)	      Storage per thumbnail (KB)	      Total storage per day (TB)
-                             250000                                     50                            20                           12.51
+                      Total Storage Required to Store Videos and Thumbnails Uploaded Per Day on YouTube
+ No. of videos per day      	Storage per video (MB)	      Storage per thumbnail (KB)	      Total storage per day (TB)
+  250000                                     50                            20                           12.51
                              
 ```
 ### Bandwidth estimation
@@ -64,9 +64,9 @@ Incoming traffic: To estimate the bandwidth required for incoming traffic, we co
 
        Total bandwidth = Total storage per day / (24x60x60)
 ```
-                                    Bandwidth Required for Uploading Videos on YouTube
-                         Total storage per day (TB)      	Seconds in a day       	Bandwidth (Gb/s)
-                               12.51                        86400                  1.16
+                 Bandwidth Required for Uploading Videos on YouTube
+ Total storage per day (TB)      	Seconds in a day       	Bandwidth (Gb/s)
+ 12.51                        86400                  1.16
 ```
 
 Outgoing traffic: Since the blob store is a read-intensive store, most of the bandwidth is required for outgoing traffic. Considering the aforementioned assumptions, we calculate the bandwidth required for outgoing traffic using the following formula:
@@ -74,9 +74,9 @@ Outgoing traffic: Since the blob store is a read-intensive store, most of the ba
 Total bandwidth = (No. of active users per day x No. of requests per day per user x Total data size)/ seconds in a day
 
 ```
-                               Bandwidth Required for Downloading Videos on YouTube
-                         No. of active users per day      	No. of requests per user	       Data size (MB)      	Bandwidth required (Gb/s)
-                         5000000                                    50                        20                    462.96
+             Bandwidth Required for Downloading Videos on YouTube
+No. of active users per day      	No. of requests per user	       Data size (MB)      	Bandwidth required (Gb/s)
+         5000000                                    50                        20                    462.96
 ```                         
 [Summarizing the bandwidth requirements of a blob store system for YouTube videos only]
  
