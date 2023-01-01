@@ -7,7 +7,7 @@ We can also have concurrent events—that is, two events that occur independentl
 ```
 Note: The scenario described above can also be handled by assigning a unique ID and encoding the dependence of events using a social graph. We might also use a separate time data structure and a simple unique ID. However, we want a unique ID to do double duty—provide unique identification and also help with the causality of events.
 ```
-[visualization]
+[visualization](./nc)
 
 Some applications need the events to have unique identifiers and carry any relevant causality information. An example of this is giving an identifier to the concurrent writes of a key into a key-value store to implement the last-write-wins strategy.
 
@@ -62,7 +62,7 @@ UNIX time stamps are granular to the millisecond and can be used to distinguish 
 Note: Connect to the following terminal to view the UNIX time stamp in milliseconds.
 ```
 Our system works well with generating IDs, but it poses a crucial problem. The ID-generating server is a single point of failure (SPOF), and we need to handle it. To cater to SPOF, we can add more servers. Each server generates a unique ID for every millisecond. To make the overall identifier unique across the system, we attach the server ID with the UNIX time stamp. Then, we add a load balancer to distribute the traffic more efficiently. The design of a unique ID generator using a UNIX time stamps is given below:
-[Using the time stamp as an ID]
+[Using the time stamp as an ID](./timestamps.jpg)
 ### Pros
 This approach is simple, scalable, and easy to implement. It also enables multiple servers to handle concurrent requests.
 ### Cons
@@ -81,7 +81,7 @@ Using UNIX time stamps      ✖️              weak              ✔️        
 ## Twitter Snowflake
 Let’s try to use time efficiently. We can use some bits out of our targetted 64 bits for storing time and the remaining for other information. An overview of division is below:
 
-[Overview of the division of bits in Twitter Snowflake]
+[Overview of the division of bits in Twitter Snowflake](./snowflakes.jpg)
 
 The explanation of the bits division is as follows:
 
@@ -98,7 +98,7 @@ The above calculations give us 69 years before we need a new algorithm to genera
 • Sequence number: The sequence number is 12 bits. For every ID generated on the server, the sequence number is incremented by one. It gives us 2^{12} = 4,096 unique sequence numbers. We’ll reset it to zero when it reaches 4,096. This number adds a layer to avoid duplication.
 
 The following slides show the conversion of the time stamp to UTC.
-[snowflake]
+[snowflakes](./conversion)
 
 
 ### Pros
@@ -175,7 +175,7 @@ Note: In the following slides, we haven’t converted the data to bits for the s
 [vector-clock][worker-id]
 ```
 
-[vector clocks]
+[vector clocks](./vector)
 
 Our approach with vector clocks works. However, in order to completely capture causality, a vector clock must be at least n nodes in size. As a result, when the total number of participating nodes is enormous, vector clocks require a significant amount of storage. Some systems nowadays, such as web applications, treat every browser as a client of the system. Such information increases the ID length significantly, making it difficult to handle, store, use, and scale.
 ```
@@ -214,11 +214,11 @@ Google deploys a GPS receiver or atomic clock in each data center, and clocks ar
 
 The following slides explain how TrueTime’s time master servers work with GPS and atomic clocks in multiple data centers.
 
-[TrueTime]
+[TrueTime](./Google)
 
 The following slides explain how time is calculated when the client asks to give TrueTime.
 
-[TrueTime]
+[TrueTime](./TrueTime)
 
 Spanner guarantees that two confidence intervals don’t overlap (that is, A_{earliest} < A_{latest} < B_{earliest} < B_{latest), then B definitely happened after A.
 
