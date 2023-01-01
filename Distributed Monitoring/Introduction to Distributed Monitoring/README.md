@@ -23,7 +23,7 @@ Let’s consider an example to understand the types of errors we want to monitor
 
 How do the Educative developers find out that a learner is facing this error?
 
-[Types](./types.jpg)
+[Types](./types)
 
 Now, what if a learner makes a request and it never reaches the servers of Educative. How will Educative know that a learner is facing an issue?
 
