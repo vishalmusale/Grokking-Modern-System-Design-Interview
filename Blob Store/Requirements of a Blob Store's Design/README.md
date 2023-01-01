@@ -9,7 +9,7 @@ Here are the functional requirements of the design of a blob store:
 A container is like a folder in a file system used to group blobs. Don’t mix up this container with a Docker container.
 ```
 
-[Multiple containers associated with a single storage account, and multiple blobs inside a single container]
+[Multiple containers associated with a single storage account, and multiple blobs inside a single container](./blob.jpg)
 
 - Put data: The blob store should allow users to upload blobs to the created containers.
 - Get data: The system should generate a URL for the uploaded blob, so that the user can access that blob later through this URL.
@@ -18,7 +18,7 @@ A container is like a folder in a file system used to group blobs. Don’t mix u
 - Delete a container: The users should be able to delete a container and all the blobs inside it.
 - List containers: The system should allow the users to list all the containers under a specific account.
 
-[Functional requirements of a blob store]
+[Functional requirements of a blob store](./f.jpg)
 ### Non-functional requirements
 Here are the non-functional requirements of a blob store system:
 
@@ -28,7 +28,7 @@ Here are the non-functional requirements of a blob store system:
 - Throughput: For transferring gigabytes of data, we should ensure a high data throughput.
 - Reliability: Since failures are a norm in distributed systems, our design should detect and recover from failures promptly.
 - Consistency: The system should be strongly consistent. Different users should see the same view of a blob.
-[The non-functional requirements of a blob store]
+[The non-functional requirements of a blob store](./nf.jpg)
 ## Resource estimation
 Let’s estimate the total number of servers, storage, and bandwidth required by a blob storage system. Because blobs can have all sorts of data, mentioning all of those types of data in our estimation may not be practical. Therefore, we’ll use YouTube as an example, which stores videos and thumbnails on the blob store. Furthermore, we’ll make the following assumptions to complete our estimations.
 
@@ -77,12 +77,12 @@ Total bandwidth = (No. of active users per day x No. of requests per day per use
 No. of active users per day      	No. of requests per user	       Data size (MB)      	Bandwidth required (Gb/s)
          5000000                                    50                        20                    462.96
 ```                         
-[Summarizing the bandwidth requirements of a blob store system for YouTube videos only]
+[Summarizing the bandwidth requirements of a blob store system for YouTube videos only](./bandwidth.jpg)
  
 ## Building blocks we will use
 We use the following building blocks in the design of our blob store system:
 
-[Building blocks for the design of a task scheduler]
+[Building blocks for the design of a task scheduler](./bb.jpg)
 
 - Rate Limiter: A rate limiter is required to control the users’ interaction with the system.
 - Load balancer: A load balancer is needed to distribute the request load onto different servers.
