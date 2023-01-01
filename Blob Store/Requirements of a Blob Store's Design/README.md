@@ -49,8 +49,7 @@ Considering the assumptions written above, we use the formula given below to com
 
 Total_{storage/day} = No. of videos per day x (Storage per video +Storage per thumbnail)
 
-Putting the numbers from above into the formula gives us 12.51\ TB_{/ day}
-12.51 TB /day, which is the approximate storage required by YouTube per day for keeping a single copy of the uploaded video in a single resolution.
+Putting the numbers from above into the formula gives us 12.51 TB /day, which is the approximate storage required by YouTube per day for keeping a single copy of the uploaded video in a single resolution.
 ```                         
                       Total Storage Required to Store Videos and Thumbnails Uploaded Per Day on YouTube
  No. of videos per day      	Storage per video (MB)	      Storage per thumbnail (KB)	      Total storage per day (TB)
