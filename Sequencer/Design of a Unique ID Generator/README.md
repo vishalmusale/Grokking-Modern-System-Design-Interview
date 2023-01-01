@@ -23,6 +23,9 @@ Let’s dive into the possible solutions for the problem mentioned above.
 ## First solution: UUID
 A straw man solution for our design uses UUIDs (universally unique IDs). This is a 128-bit number and it looks like 123e4567e89b12d3a456426614174000
 123e4567e89b12d3a456426614174000 in hexadecimal. It gives us about 10^{38} numbers. UUIDs have different versions. We opt for version 4, which generates a pseudorandom number.
+```
+Straw man solution: Often a simple solution whose primary purpose is to facilitate discussion towards better solutions.
+```
 
 Each server can generate its own ID and assign the ID to its respective event. No coordination is needed for UUID since it’s independent of the server. Scaling up and down is easy with UUID, and this system is also highly available. Furthermore, it has a low probability of collisions. The design for this approach is given below:
 
