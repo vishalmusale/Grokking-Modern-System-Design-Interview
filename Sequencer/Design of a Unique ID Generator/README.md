@@ -26,7 +26,7 @@ A straw man solution for our design uses UUIDs (universally unique IDs). This is
 
 Each server can generate its own ID and assign the ID to its respective event. No coordination is needed for UUID since it’s independent of the server. Scaling up and down is easy with UUID, and this system is also highly available. Furthermore, it has a low probability of collisions. The design for this approach is given below:
 
-[Generating a unique ID using the UUID approach]
+[Generating a unique ID using the UUID approach](./uuid.jpg)
 
 ### Cons
 Using 128-bit numbers as primary keys makes the primary-key indexing slower, which results in slow inserts. A workaround might be to interpret an ID as a hex string instead of a number. However, non-numeric identifiers might not be suitable for many use cases. The ID isn’t of 64-bit size. Moreover, there’s a chance of duplication. Although this chance is minimal, we can’t claim UUID to be deterministically unique. Additionally, UUIDs given to clients over time might not be monotonically increasing. The following table summarizes the requirements we have fulfilled using UUID:
@@ -40,7 +40,7 @@ Using UUID        ✖️           ✔️          ✔️           ✖️
 ## Second solution: using a database
 Let’s try mimicking the auto-increment feature of a database. Consider a central database that provides a current ID and then increments the value by one. We can use the current ID as a unique identifier for our events.
 
-[Using a central database to generate unique IDs]
+[Using a central database to generate unique IDs](./db.jpg)
 
 ```
 Point to Ponder
@@ -54,9 +54,9 @@ This design has a considerable problem: a single point of failure. Reliance on o
 
 To cater to the problem of a single point of failure, we modify the conventional auto-increment feature that increments by one. Instead of incrementing by one, let’s rely on a value m, where m equals the number of database servers we have. Each server generates an ID, and the following ID adds m to the previous value. This method is scalable and prevents the duplication of IDs. The following image provides a visualization of how a unique ID is generated using a database:
 
-[Generating IDs using the value of m]
+[Generating IDs using the value of m](./1.jpg)
 
-[Generating IDs using the value of m]
+[Generating IDs using the value of m](./2.jpg)
 ### Pros
 This approach is scalable. We can add more servers, and the value of m will be updated accordingly.
 
