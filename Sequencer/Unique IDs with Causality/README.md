@@ -206,6 +206,76 @@ Since we don’t have a global clock, even if each node can assign unique time s
 However, if we have a global clock that gives us time upon request and is always accurate, then we can maintain the causality of events, as well as a unique ID. Such a clock would be significantly valuable, but time is tricky to handle in distributed systems.
 ```
 ## TrueTime API
+Google’s TrueTime API in Spanner is an interesting option. Instead of a particular time stamp, it reports an interval of time. When asking for the current time, we get back two values: the earliest and latest ones. These are the earliest possible and latest possible time stamps.
+
+Based on its uncertainty calculations, the clock knows that the actual current time is somewhere within that interval. The width of the interval depends, among other things, on how long it has been since the local quartz clock was last synchronized with a more accurate clock source.
+
+Google deploys a GPS receiver or atomic clock in each data center, and clocks are synchronized within about 7 ms. This allows Spanner to keep the clock uncertainty to a minimum. The uncertainty of the interval is represented as epsilon.
+
+The following slides explain how TrueTime’s time master servers work with GPS and atomic clocks in multiple data centers.
+
+[TrueTime]
+
+The following slides explain how time is calculated when the client asks to give TrueTime.
+
+[TrueTime]
+
+Spanner guarantees that two confidence intervals don’t overlap (that is, A_{earliest} < A_{latest} < B_{earliest} < B_{latest), then B definitely happened after A.
+
+We generate our unique ID using TrueTime intervals. Let’s say the earliest interval is T_{E}, the latest is T_{L}, and the uncertainty is ε. We use T_{E} in milliseconds as a time stamp in our unique ID.
+
+- Time stamp: The time stamp is 41 bits. We use T_{E} as a time stamp.
+
+- Uncertainty: The uncertainty is four bits. Since the maximum uncertainty is claimed to be 6–10 ms, we’ll use four bits for storing it.
+
+- Worker number: This is 10 bits. It gives us 2^{10} = 1,024 worker IDs.
+
+- Sequence number: This is eight bits. For every ID generated on the server, the sequence number is incremented by one. It gives us 2^{8} = 256 combinations. We’ll reset it to zero when it reaches 256.
+
+[Node B generating a unique ID for its event using TrueTime]
+
 ### Pros
+TrueTime satisfies all the requirements. We’re able to generate a globally unique 64-bit identifier. The causality of events is maintained. The approach is scalable and highly available.
+
 ### Cons
-Summary
+If two intervals overlap, then we’re unsure in what order A and B occurred. It’s possible that they’re concurrent events, but a 100% guarantee can’t be given. Additionally, Spanner is expensive because it ensures high database consistency. The dollar cost of a Spanner-like system is also high due to its elaborate infrastructure needs and monitoring.
+
+The updated table provides the comparison between the different system designs for generating a unique ID.
+
+```
+                                               Requirements Fulfilled by Each Approach
+                            Unique           Scalable       Available          64-bit numeric ID         Causality maintained
+   
+Using UUID                   ✖️               ✔️            ✔️                    ✖️                         ✖️
+
+Using a database             ✖️               ✖️            ✔️                    ✔️                         ✖️
+
+Using a range handler        ✔️               ✔️            ✔️                    ✔️                         ✖️
+
+Using UNIX time stamps       ✖️               weak           ✔️                    ✔️                         weak
+
+Using Twitter Snowflake      ✔️                ✔️           ✔️                     ✔️                        weak
+
+Using vector clocks          ✔️               weak           ✔️                  can exceed                   ✔️
+
+Using TrueTime               ✔️                ✔️            ✔️                    ✔️                        ✔️
+
+```
+## Summary
+We want to avoid duplicate identifiers. Consider what will happen if duplicate payment or purchase orders are generated.
+
+UUIDs provide probabilistic guarantees about the keys’ non-collision. Deterministically getting non-collision guarantees might need consensus among different distributed entities or stores and read from the replicated store.
+
+As key length becomes large, it often causes slower tuple updates in a database. Therefore, identifiers should be big enough but not too big.
+
+Often, it’s desirable that no one is able to guess the next ID. Otherwise, undesirable data leaks can happen, and the organization’s competitors may learn how many orders were processed in a day by simply looking at order IDs. Adding a few random numbers to the bits of the identifier make it hard to guess, although this comes at a performance cost.
+
+We can use simple counters for generating unique IDs if we don’t want to relate ID to time. Fetching time stamps is slower than simple counters.
+We can just use simple counters for generating unique IDs if we don’t want to relate ID to time. Fetching time stamps is slower than simple counters, though this requires that we store generated IDs persistently. The counter needs to be stored in the database. Storage comes with its own issues. These include multiple concurrent writes becoming overwhelming for the database and the database being the single point of failure.
+
+For some distributed databases, such as Spanner, it can hurt to generate monotonically increasing or decreasing IDs. Google reports the following: “In fact, using monotonically increasing (or decreasing) values as row keys does not follow best practices in Spanner because it creates hotspots in the database, leading to a reduction in performance.”
+
+Note: Globally ordering events is an expensive procedure. A feature that was fast and simple in a centralized database (auto-increment based ID) becomes slow and complicated in its distributed counterpart due to some fundamental constraints (such as consensus, which is difficult among remote entities).
+
+For example, Spanner, a geographically distributed database, reports that “if a read-update transaction on a single cell (one column in a single row) has a latency of 10 milliseconds (ms), then the maximum theoretical frequency of issuing of sequence values is 100 per second. This maximum applies to the entire database, regardless of the number of client application instances, or the number of nodes in the database. This is because a single node always manages a single row.” If we could compromise on the requirements for global orderings and gapless identifiers, we would be able to get many identifiers in a shorter time, that is, a better performance.
+
