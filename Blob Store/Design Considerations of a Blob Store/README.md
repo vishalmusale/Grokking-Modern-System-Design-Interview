@@ -110,7 +110,9 @@ We can categorize blobs as well as sort blobs using indexing. Let’s see how we
 
 ## Pagination for listing
 Listing is about returning a list of blobs to the user, depending on the user’s entered prefix. A prefix is a character or string that returns the blobs whose name begins with that particular character or string.
+
 [Pagination](./list_blobs.jpg)
+
 Users may want to list all the blobs associated with a specific account, all the blobs present inside a specific container, or they may want to list some public blobs based on a prefix. The problem is that this list could be very long. We can’t return the whole list to the user in one go. So, we have to return the list of the blobs in parts.
 
 Let’s say a user wants a list of blobs associated with their account and there are a total of 2,000 blobs associated with that account. Searching, returning, and loading too many blobs at once affects performance. This is where paging becomes important. We can return the first five results and give users a next button. On each click of the next button, it returns the next five results. This is called pagination.
