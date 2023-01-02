@@ -8,7 +8,7 @@ We need to store metrics and know which action to perform if a metric has reache
 
 Here, we have identified two more components in our design—that is, a rules and action database and a storage node (a blob store).
 
-[Adding blob storage and a rules and action database]
+[Adding blob storage and a rules and action database](./system.jpg)
 
 
 ## Data collector
@@ -34,7 +34,7 @@ The data collector is responsible for fetching metrics from the services it moni
 
 Let’s add our newly identified component to our existing design.
 
-[Adding the service discoverer]
+[Adding the service discoverer](./discoverer.jpg)
 
 ## Querying service
 We want a service to access the database and fetch the relevant query results. We need this because we want to view the errors like values of a particular node’s memory usage, or send an alert if a metric exceeds the set limit. Let’s add the two components we need along with querying.
@@ -47,7 +47,7 @@ We can set dashboards by using the collected metrics to display the required inf
 
 Let’s add the components discussed above, which completes our design of the monitoring system.
 
-[Detailed design of monitoring system]
+[Detailed design of monitoring system](./dashboard.jpg)
 
 Our all-in-one monitoring service works for actively tracking systems and services. It collects and stores data, and it supports searches, graphs, and alerts.
 
@@ -63,7 +63,7 @@ Let’s think of a way to overcome the problems with our monitoring service.
 ## Improving our design
 We want to improve our design so that our system can scale better and decide what data to keep and what to delete. Let’s see how the push-based approach works. In a push-based approach, the application pushes its data to the monitoring system.
 
-[Push-based monitoring system]
+[Push-based monitoring system](./push.jpg)
 
 We used a pull-based strategy to avoid network congestion. This also allows the applications to be free of the aspect that they have to send the relevant monitoring data of to the system. Instead, the monitoring system fetches or pulls the data itself. To cater to scaling needs, we need to apply a push-based approach too. We’ll use a hybrid approach by combining our pull-based strategy with the push-based strategy.
 
@@ -76,9 +76,9 @@ We’ll use blob storage to store our excessive data, apply elastic search, and 
 ```
 Note: Using a hierarchy of systems for scaling is a common design pattern in system design. By increasing nodes on a level or introducing additional levels in the hierarchy, we get the ability to scale according to our current needs.
 ```
-[Monitoring systems pull the data from various servers and then push the data to the data center monitoring system]
+[Monitoring systems pull the data from various servers and then push the data to the data center monitoring system](./monitor1.jpg)
 
-[The data center monitoring systems push the data to the global monitoring system]
+[The data center monitoring systems push the data to the global monitoring system](./monitor2.jpg)
 
 ```
 Question 1
