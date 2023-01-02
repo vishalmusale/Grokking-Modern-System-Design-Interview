@@ -78,18 +78,21 @@ Note: Using a hierarchy of systems for scaling is a common design pattern in sys
 ```
 [Improving our design]
 
-
+```
 Question 1
 What happens if a local or global monitoring system is down?
 
 Answer
 We can store the data locally and wait for the system to be up and running again. But there’s a limit for the local data storage. So, either we delete previous data or we don’t store new data. To make a decision, relevant policies need to be created.
+```
 
+```
 Question 2
 How can a monitoring system reliably work if it uses the same infrastructure in a data center that it was supposed to monitor? Consider this given that a failure of a network in a data center can knock out the monitoring components.
 
 Answer
 The actual deployment of a monitoring system needs special care. We might have an internal, monitoring-specific network to isolate it from the common network. We should use a separate instance of blob stores and other services.
+```
 
 It also helps to have external components to the monitoring, where external might mean an independent service provider’s infrastructure. However, designing such a system is complex and is more expensive.
 
