@@ -15,10 +15,11 @@ The createContainer operation creates a new container under the logged-in accoun
 createContainer(containerName)
 ```
 
+```
 Parameter             Description
 
 containerName         This is the name of the container. It should be unique within a storage account.
-
+```
 
 **Upload blobs**
 
@@ -27,7 +28,7 @@ The client’s data is stored in the form of Bytes in the blob store. The data c
 ```
 putBlob(containerPath, blobName, data)
 ```
-
+```
 Parameter              Description
 
 containerPath          This is the path of the container in which we upload the blob. It consists of the accountID and containerID.
@@ -35,6 +36,8 @@ containerPath          This is the path of the container in which we upload the 
 blobName               This is the name of the blob. It should be unique within a container, otherwise our system will give the blob that was uploaded later a version number.
 
 data                   This is a file that the user wants to upload to the blob store.
+```
+
 
 ```
 Note: This API is just a logical way to spell out needs. We might use a multistep streaming call for actual implementation if the data size is very large.
@@ -46,10 +49,11 @@ Blobs are identified by their unique name or ID.
 ```
 getBlob(blobPath)
 ```
-
+```
 Parameter        Description
 
 blobPath         This is the fully qualified path of the data or file, including its unique ID.
+```
 
 **Delete blob**
 
@@ -68,9 +72,12 @@ The listBlobs operation returns a list of blobs under the specified container or
 ```
 listBlobs(containerPath)
 ```
+
+```
 Parameter        Description
 
 containerPath    This is the path to the container from which the user wants to get the list of blobs.
+```
 
 **Delete container**
 
@@ -78,9 +85,12 @@ The deleteContainer operation marks the specified container for deletion. The co
 ```
 deleteContainer(containerPath)
 ```
+
+```
 Parameter        Description
 
 containerPath    This is the path to the container that the user wants to delete.
+```
 
 **List containers**
 
@@ -88,9 +98,12 @@ The listContainers operation returns a list of the containers under the specifie
 ```
 listContainers(accountID)
 ```
+
+```
 Parameter     Description
 
 accountID     This is the ID of the user who wants to list their containers.
+```
 
 ```
 Note: The APIs used to retrieve blobs provide metadata containing size, version number, access privileges, name, and so on.
