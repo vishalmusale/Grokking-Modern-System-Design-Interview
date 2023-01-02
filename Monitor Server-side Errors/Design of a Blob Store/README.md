@@ -45,7 +45,7 @@ The high-level components of our monitoring service are the following:
 
 - Querying service: This is an API that can query on the time-series database and return the relevant information.
 
-[High-level design of a monitoring system]
+[High-level design of a monitoring system](./system.jpg)
 
 Let’s dive deep into the components mentioned above in the next lesson.
 
