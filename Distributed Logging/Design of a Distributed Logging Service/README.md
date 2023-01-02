@@ -9,7 +9,7 @@ Why don’t we simply print out our statements to understand the application flo
 ```
 Mean time to repair (MTTR) is a basic measure of the maintainability of repairable items. It represents the average time required to repair a failed component or device. (Source: Wikipedia)
 ```
-[Issues with using print statements as an alternative to logging]
+[Issues with using print statements as an alternative to logging](./printf.jpg)
 
 Concurrent activity by a service running on many nodes might need causality information to stitch together a correct flow of events properly. We must be careful while dealing with causality in a distributed system. We use a logging service to appropriately manage the diagnostic and exploratory data of our distributed software.
 
