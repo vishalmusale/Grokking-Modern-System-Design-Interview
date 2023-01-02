@@ -62,7 +62,7 @@ deleteBlob(blobPath)
 Parameter       Description
 
 blobPath         This is the path of the blob that the user wants to delete.
-
+```
 **List blobs**       
 The listBlobs operation returns a list of blobs under the specified container or path.
 ```
