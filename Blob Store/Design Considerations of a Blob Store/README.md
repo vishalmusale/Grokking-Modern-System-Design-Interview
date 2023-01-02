@@ -67,6 +67,9 @@ Chunk           Datanode ID          Replica 1 ID         Replica 2 ID          
 ```
 Note: To avoid complexity, the chunk size is fixed for all the blobs in a blob store. The chunk size depends on the performance requirements of a blob store. We desire a larger chunk size to maintain small metadata at the master node because a large chunk size results in a higher disk latency, which leads to slower performance. Interestingly, disks can have almost the same latency for reading and writing a range of data. For example, a disk can have similar latency for writing MBs in the range of 4–8. Additionally, they can have similar latency for writing data in the range of 9–20 MBs. This is due to the use of contiguous sectors on the disks, and caching on the disk and on the server by its OS.
 
+```
+A chunk is the minimum unit of data for writing and reading.
+```
 We maintain three replicas for each block. When writing a blob, the master node identifies the data and the replica nodes using its free space management system. Besides handling data node failure, the replica nodes are also used to serve read/write requests, so that the primary node is not overloaded.
 
 In the example above, the blob size is a multiple of the chunk size, so the master node can determine how many Bytes to read for each chunk.
@@ -82,9 +85,9 @@ The master node also keeps the size of each blob to determine the number of Byte
 ## Partition data
 We talked about the different levels of abstraction in a blob store—the account layer, the container layer, and the blob layer. There are billions of blobs that are stored and read. There is a large number of data nodes on which we store these blobs. If we look for the data nodes that contain specific blobs out of all of the data nodes, it would be a very slow process. Instead, we can group data nodes and call each group a partition. We maintain a partition map table that contains a list of all the blobs in each partition. If we distribute the blobs on different partitions independent of their container IDs and account IDs, we encounter a problem, as shown in the following illustration:
 
-[Billions of blobs]
+[Billions of blobs](./blobpath.jpg)
 
-[Range partitioning based on blob IDs]
+[Range partitioning based on blob IDs](./range_partition.jpg)
 
 Partitioning based on the blob IDs causes certain problems. For example, the blobs under a specific container or account may reside in different partitions that add overhead while reading or listing the blobs linked to a particular account or a particular container.
 
@@ -101,13 +104,13 @@ To populate the blob index, we define key-value tag attributes on the blobs whil
 
 As shown in the following illustration, a blob indexing engine reads the new tags, indexes them, and exposes them to a searchable blob index:
 
-[Indexing and searching blobs]
+[Indexing and searching blobs](./indexing.jpg)
 
 We can categorize blobs as well as sort blobs using indexing. Let’s see how we utilize indexing in pagination.
 
 ## Pagination for listing
 Listing is about returning a list of blobs to the user, depending on the user’s entered prefix. A prefix is a character or string that returns the blobs whose name begins with that particular character or string.
-
+[Pagination](./list_blobs.jpg)
 Users may want to list all the blobs associated with a specific account, all the blobs present inside a specific container, or they may want to list some public blobs based on a prefix. The problem is that this list could be very long. We can’t return the whole list to the user in one go. So, we have to return the list of the blobs in parts.
 
 Let’s say a user wants a list of blobs associated with their account and there are a total of 2,000 blobs associated with that account. Searching, returning, and loading too many blobs at once affects performance. This is where paging becomes important. We can return the first five results and give users a next button. On each click of the next button, it returns the next five results. This is called pagination.
@@ -152,7 +155,7 @@ The blob store’s data centers are present in different regions—for example, 
 
 The number of copies of a blob is called the replication factor. Most of the time, a replication factor of three is sufficient.
 
-[These are the regions and availability zones. Dark yellow is the primary data and light yellow are the replicas]
+[These are the regions and availability zones. Dark yellow is the primary data and light yellow are the replicas](./replication.jpg)
 
 We keep four copies of a blob. One is the local copy within the data center in the primary region to protect against server rack and drive failures. The second copy of the blob is placed in the other data center within the same region to protect against fire or flooding in the data center. The third copy is placed in the data center of a different region to protect against regional disasters.
 
@@ -163,7 +166,7 @@ Since the blob chunks are placed at different data nodes, deleting from many dif
 Marking the blob as deleted, but not actually deleting it at the moment, causes internal metadata inconsistencies, meaning that things continue to take up storage space that should be free. These metadata inconsistencies have no impact on the user. For example, for a blob marked as deleted in the metadata, we still have the entries for that blob’s chunks in the metadata. The data nodes are still holding on to that blob’s chunks. Therefore, we have a service called a garbage collector that cleans up metadata inconsistencies later. The deletion of a blob causes the chunks associated with that blob to be freed. However, there could be an appreciable time delay between the time a blob is deleted by a user and the time of the corresponding increase in free space in the blob store. We can bear this appreciable time delay because, in return, we have a real-time fast response benefit for the user’s delete blob request.
 
 The whole deletion process is shown in the following illustration:
-[Garbage collection]
+[Garbage collection](./gc)
 ## Stream a file
 To stream a file, we need to define how many Bytes are allowed to be read at one time. Let’s say we read X number of Bytes each time. The first time we read the first X Bytes starting from the 0th Byte (0 to X-1) and the next time, we read the next X Bytes (X to 2X−1).
 ```
