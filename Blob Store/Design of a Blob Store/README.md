@@ -159,7 +159,7 @@ Answer
 In such cases, the client calls fail. The client then flushes the cache and fetches new metadata information from the master node.
 ```
 
-Deleting a blob Upon receiving a delete blob request, the master node marks that blob as deleted in the metadata, and frees up the space later using a garbage collector. We learn more about garbage collectors in the next lesson.
+**Deleting a blob** Upon receiving a delete blob request, the master node marks that blob as deleted in the metadata, and frees up the space later using a garbage collector. We learn more about garbage collectors in the next lesson.
 
 ```
 Question
