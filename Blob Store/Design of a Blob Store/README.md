@@ -2,7 +2,7 @@
 ## High-level design
 Let’s identify and connect the components of a blob store system. At a high level, the components are clients, front-end servers, and storage disks.
 
-[The high-level design of a blob store]
+[The high-level design of a blob store](./design.jpg)
 
 The client’s requests are received at the front-end servers that process the request. The front-end servers store the client’s blob onto the storage disks attached to them.
 ## API design
@@ -134,7 +134,7 @@ Note: Each of the data nodes in the cluster send the master node a heartbeat and
 
 The architecture of how these components interconnect is shown in the diagram below:
 
-[The detailed design of a blob store]
+[The detailed design of a blob store](./details.jpg)
 
 ### Workflow
 We describe the workflow based on the basic operations we can perform on a blob store. We assume that the user has successfully logged in and a container has already been created. A unique ID is assigned to each user and container. The user performs the following operations in a specific container.
