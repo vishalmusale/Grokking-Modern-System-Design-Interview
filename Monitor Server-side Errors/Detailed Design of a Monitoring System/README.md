@@ -76,7 +76,9 @@ We’ll use blob storage to store our excessive data, apply elastic search, and 
 ```
 Note: Using a hierarchy of systems for scaling is a common design pattern in system design. By increasing nodes on a level or introducing additional levels in the hierarchy, we get the ability to scale according to our current needs.
 ```
-[Improving our design]
+[Monitoring systems pull the data from various servers and then push the data to the data center monitoring system]
+
+[The data center monitoring systems push the data to the global monitoring system]
 
 ```
 Question 1
