@@ -14,7 +14,7 @@ Natural disasters include floods, earthquakes, wildfires, tornadoes, nuclear rea
 ## Durability
 The replication and monitoring services ensure the durability of the data. The data, once uploaded, is synchronously replicated within a storage cluster. If data loss occurs at one node, we can recover the data from the other nodes. The monitoring service monitors the storage disks. If any disk fails, the monitoring service alerts the administrators to change the disk and sends messages to the master node to copy the content on that disk on to the other available disk or the newly added disk. The master node then updates the mapping accordingly.
 
-[Guarantees provided by the blob store]
+[Guarantees provided by the blob store](./blob.jpg)
 
 ## Scalability
 The partitioning and splitting of blobs into small-sized chunks helps us scale for billions of blob requests. Blobs are partitioned into separate ranges and served by different partition servers. The partition mappings specify which partition server will serve which particular blob range requests. Partitioning also provides automatic load balancing between partition servers to fulfill the blobs’ traffic needs.
