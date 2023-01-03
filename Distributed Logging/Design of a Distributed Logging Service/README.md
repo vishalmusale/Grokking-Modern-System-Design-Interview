@@ -26,7 +26,7 @@ The design of a distributed logging system will utilize the following building b
 
 Pub-sub system: We’ll use a pub-sub- system to handle the huge size of logs.
 Distributed search: We’ll use distributed search to query the logs efficiently.
-[Building blocks we will use]
+[Building blocks we will use](./bb.jpg)
 ## API design
 The API design for this problem is given below:
 
@@ -72,7 +72,7 @@ In addition to the building blocks, let’s list the major components of our sys
 
 The design for this method looks like this:
 
-[Initial design]
+[Initial design](./initial_design.jpg)
 ## Logging at various levels
 Let’s explore how the logging system works at various levels.
 
@@ -86,7 +86,7 @@ Each service will push its data to the log accumulator service. It is responsibl
 - Storing the logs locally.
 - Pushing the logs to a pub-sub system.
 
-[In a server]
+[In a server](./in_a_server)
 
 3 of 3 We should be mindful that data can be lost in the process of logging huge amounts of messages. There is a trade-off between user-perceived latency and the guarantee that log data persists. For lower latency, log services often keep data in RAM and persist them asynchronously. Additionally, we can minimize data loss by adding redundant log accumulators to handle growing concurrent users.
 
@@ -109,7 +109,7 @@ Note: For applications like banking and financial apps, the logs must be very se
 ### At datacenter level
 All servers in a data center push the logs to a pub-sub system. Since we use a horizontally-scalable pub-sub system, it is possible to manage huge amounts of logs. We may use multiple instances of the pub-sub per data center. It makes our system scalable, and we can avoid bottlenecks. Then, the pub-sub system pushes the data to the blob storage.
 
-[Log accumulator sending data to the pub-sub system]
+[Log accumulator sending data to the pub-sub system](./datacenter.jpg)
 
 The data does not reside in pub-sub forever and gets deleted after a few days before being stored in archival storage. However, we can utilize the data while it is available in the pub-sub system. The following services will work on the pub-sub data:
 
@@ -121,7 +121,7 @@ The data does not reside in pub-sub forever and gets deleted after a few days be
 
 The updated design is given below:
 
-[Adding a filterer, error aggregator, and alert aggregator]
+[Adding a filterer, error aggregator, and alert aggregator](./updated.jpg)
 
 ```
 Question
