@@ -8,7 +8,7 @@ The following are the functional requirements:
 
 - Insert data: The user of a distributed cache system must be able to insert an entry to the cache.
 - Retrieve data: The user should be able to retrieve data corresponding to a specific key.
-[Functional and non-functional requirements of a distributed cache]
+[Functional and non-functional requirements of a distributed cache](./req.jpg)
 
 ### Non-functional requirements
 We’ll consider the following non-functional requirements:
@@ -95,7 +95,7 @@ Apart from the details in the sections above, optimizing the time-to-live (TTL) 
 ## High-level design
 The following figure depicts our high-level design:
 
-[High-level design of distributed cache]
+[High-level design of distributed cache](./design.jpg)
 
 The main components in this high-level design are the following:
 
