@@ -10,11 +10,11 @@ Before we get to the detailed design, we need to understand and overcome some ch
 ### Maintain cache servers list
 Let’s start by resolving the first problem. We’ll take incremental steps toward the best possible solution. Let’s look at the following slides to get an idea of each of the solutions described below:
 
-[[Solution 1] Maintaining a configuration file in each server that the cache client can use]
+[[Solution 1] Maintaining a configuration file in each server that the cache client can use](./solution1.jpg)
 
-[[Solution 2] Maintaining a configuration file on a centralized location]
+[[Solution 2] Maintaining a configuration file on a centralized location](./solution2.jpg)
 
-[[Solution 3] Using a configuration service to monitor cache servers and keep the cache clients updated]
+[[Solution 3] Using a configuration service to monitor cache servers and keep the cache clients updated](./solution3.jpg)
 
 - Solution 1: It’s possible to have a configuration file in each of the service hosts where the cache clients reside. The configuration file will contain the updated health and metadata required for the cache clients to utilize the cache servers efficiently. Each copy of the configuration service can be updated through a push service by any DevOps tool. The main problem with this strategy is that the configuration file will have to be manually updated and deployed through some DevOps tools.
 - Solution 2: We can store the configuration file in a centralized location that the cache clients can use to get updated information about cache servers. This solves the deployment issue, but we still need to manually update the configuration file and monitor the health of each server.
@@ -40,7 +40,7 @@ Each cache client should use three mechanisms to store and evict entries from th
 - Eviction policy: The eviction policy depends on the application requirements. Here, we assume the least recently used (LRU) eviction policy.
 A depiction of a sharded cluster along with a node’s data structure is provided below:
 
-[A shard primary and replica, each with the same internal mechanisms]
+[A shard primary and replica, each with the same internal mechanisms](./lru.jpg)
 
 ```
 It’s evident from the explanation above that we don’t provide a delete API. This is because the eviction (through eviction algorithm) and deletion (of expired entries through TTL) is done locally at cache servers. Nevertheless, situations can arise where the delete API may be required. For example, when we delete a recently added entry from the database, it should result in the removal of items from the cache for the sake of consistency.
@@ -49,7 +49,7 @@ It’s evident from the explanation above that we don’t provide a delete API. 
 
 We’re now ready to formalize the detailed design after resolving each of the three previously highlighted problems. Look at the detailed design below:
 
-[Detailed design of a distributed caching system]
+[Detailed design of a distributed caching system](./caching.jpg)
 
 Let’s summarize the proposed detailed design in a few points:
 
