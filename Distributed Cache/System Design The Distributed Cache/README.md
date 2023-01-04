@@ -28,6 +28,9 @@ We understand the need for a cache and suitable storage hardware, but what is di
 A distributed cache is a caching system where multiple cache servers coordinate to store frequently accessed data. Distributed caches are needed in environments where a single cache server isn’t enough to store all the data. At the same time, it’s scalable and guarantees a higher degree of availability.
 
 Caches are generally small, frequently accessed, short-term storage with fast read time. Caches use the locality of reference principle.
+```
+Locality of reference is the notion that a program will access a particular set of data over a short period of time. Locality can be spatial or temporal.
+```
 
 Generally, distributed caches are beneficial in the following ways:
 
