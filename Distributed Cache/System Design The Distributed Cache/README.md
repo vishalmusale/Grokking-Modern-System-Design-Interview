@@ -9,6 +9,10 @@ A typical system consists of the following components:
 Under normal circumstances, this abstraction performs fine. However, as the number of users increases, the database queries also increase. And as a result, the service providers are overburdened, resulting in slow performance.
 
 In such cases, a cache is added to the system to deal with performance deterioration. A cache is a temporary data storage that can serve data faster by keeping data entries in memory. Caches store only the most frequently accessed data. When a request reaches the serving host, it retrieves data from the cache (cache hit) and serves the user. However, if the data is unavailable in the cache (cache miss), the data will be queried from the database. Also, the cache is populated with the new value to avoid cache misses for the next time.
+```
+Cache hit: When the requested data is found in the cache, the server responds with the data immediately.
+Cache miss: When the requested data isn’t found in the cache, it’s called a cache miss.
+```
 
 [Service before using caching](./no_cache.jpg)
 
