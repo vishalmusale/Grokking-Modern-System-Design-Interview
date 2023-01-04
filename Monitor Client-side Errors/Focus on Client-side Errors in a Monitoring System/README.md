@@ -10,14 +10,14 @@ There are many factors that can cause failures that can result in clients being 
 - Any failure in routing along the path from the client to the service provider.
 - Any failures with third-party infrastructure, such as middleboxes and content delivery networks (CDNs).
 
-[Server-side errors versus client-side errors]
+[Server-side errors versus client-side errors](./server_client.jpg)
 
 ## Failures due to a routing bug
 Let’s look at a real-world example of an error that impacted a large number of service customers, but the service wasn’t readily aware of it.
 
 One of Google’s peer ISPs accidentally announced Internet routes that it wasn’t supposed to. As a result, the traffic of many of Google’s customers started routing through unintended ISPs and wasn’t reaching Google. Clients were frustrated because they weren’t able to reach Google, while Google might have been unaware of such problems right away because these issues didn’t happen on its infrastructure.
 
-[BGP leak]
+[BGP leak](./bgp_leak.jpg)
 
 The above leak isn’t unique. Similar issues keep arising. Another such leakage happened on April 16, 2021, when an AS mistakenly announced over 30,000 BGP prefixes. This resulted in a 13 times spike in the inbound traffic to their network. However, an increase in influx was observed, and the problem was solved.
 
