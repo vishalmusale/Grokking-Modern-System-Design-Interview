@@ -44,6 +44,8 @@ Data can be classified into three temperature regions depending on the access fr
 - Cold: This is rarely accessed data.
 Cold data frequently gets evicted from the cache and gets replaced with hot or warm data. The following image shows the spectrum of data temperatures:
 
+[Data temperature](./temperature.jpg)
+
 ## Cache invalidation
 Apart from the eviction of less frequently accessed data, some data residing in the cache may become stale or outdated over time. Such cache entries are invalid and must be marked for deletion.
 
@@ -93,7 +95,7 @@ The advantages of using dedicated cache servers are the following:
 
 Apart from the advantages above, working as a standalone caching service enables other microservices to benefit from them—for example, Cache as a Service. In that case, the caching system will have to be aware of different applications so that their data doesn’t collide.
 
-[A depiction of service hosts coordinating with dedicated cache servers]
+[A depiction of service hosts coordinating with dedicated cache servers](./cache_server1.jpg)
 
 #### Co-located cache
 The co-located cache embeds cache and service functionality within the same host.
@@ -104,6 +106,8 @@ The main advantage of this strategy is the reduction in CAPEX and OPEX of extra 
 CAPEX: Capital expenditures are major investments over assets that are held for a long time.
 OPEX: Operational Expenditures are day-to-day expenses that keep the company running.
 ```
+[Hosting cache and application logic in the same machine](./cache_server2.jpg)
+
 ## Cache client
 We discussed that the hash functions should be used for the selection of cache servers. But what entity performs these hash calculations?
 
