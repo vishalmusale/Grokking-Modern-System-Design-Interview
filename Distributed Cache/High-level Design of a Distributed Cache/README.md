@@ -8,6 +8,7 @@ The following are the functional requirements:
 
 - Insert data: The user of a distributed cache system must be able to insert an entry to the cache.
 - Retrieve data: The user should be able to retrieve data corresponding to a specific key.
+
 [Functional and non-functional requirements of a distributed cache](./req.jpg)
 
 ### Non-functional requirements
