@@ -41,7 +41,7 @@ Another solution can be to use a client-side application that the service contro
 
 The client can fill in the request header if the client has already consented to that. The service can then reply with appropriate values for the policy and collection endpoints.
 
-[Activate and deactivate reports]
+[Activate and deactivate reports](./activate_deactivate.jpg)
 
 ## Reach collectors under faulty conditions
 The collectors need to be in a different failure domain from the web service endpoint that we’re trying to monitor. The client side can try various collectors in different failure domains until one works. We can see a similar pattern in the following examples. At times, we refer to such a phenomenon as being outside the blast radius of a fault.
