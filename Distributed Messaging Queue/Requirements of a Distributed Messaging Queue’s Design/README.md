@@ -48,11 +48,11 @@ However, several aspects restrain us from using the single-server messaging queu
 Such a queue is also called a bounded queue, due to its fixed size within the system.
 ```
 
-[Multiple producers and consumers interact via a single messaging queue]
+[Multiple producers and consumers interact via a single messaging queue](./queue.jpg)
 
 ## Building blocks we will use
 The design of a distributed messaging queue utilizes the following building blocks:
-[The building blocks used to design a distributed messaging queue]
+[The building blocks used to design a distributed messaging queue](./bb.jpg)
 
 - Database(s) will be required to store the metadata of queues and users.
 - Caches are important to keep frequently accessed data, whether it be data pertaining to users or queues metadata.
