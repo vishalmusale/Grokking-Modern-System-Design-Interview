@@ -58,6 +58,10 @@ Since Redis uses a client-server model, each request blocks the client until the
 
 Redis uses pipelining to speed up the process. Pipelining is the process of combining multiple requests from the client side without waiting for a response from the server. As a result, it reduces the number of RTT spans for multiple requests.
 
+```
+The round-trip-time (RTT) is the latency for a request to travel from the client to the server and back.
+```
+
 [Redis client-server communication without pipelining versus Redis client-server communication with pipelining](./redis_communication.jpg)
 
 The process of pipelining reduces the latency through RTT and the time to do socket level I/O. Also, mode switching through system calls in the operating system is an expensive operation that’s reduced significantly via pipelining. Pipelining the commands from the client side has no impact on how the server processes these requests.
