@@ -4,6 +4,9 @@ This lesson will discuss some of the widely adopted real-world implementations o
 
 ## Memcached
 Memcached was introduced in 2003. It’s a key-value store distributed cache designed to store objects very fast. Memcached stores data in the form of a key-value pair. Both the key and the value are strings. This means that any data that has been stored will have to be serialized. So, Memcached doesn’t support and can’t manipulate different data structures.
+```
+Serialization is the process of translating data into a format that can be transmitted or stored elsewhere. Later, reconstruction or deserialization of the data should be possible.
+```
 
 Memcached has a client and server component, each of which is necessary to run the system. The system is designed in a way that half the logic is encompassed in the server, whereas the other half is in the client. However, each server follows the shared-nothing architecture. In this architecture, servers are unaware of each other, and there’s no synchronization, data sharing, and communication between the servers.
 
