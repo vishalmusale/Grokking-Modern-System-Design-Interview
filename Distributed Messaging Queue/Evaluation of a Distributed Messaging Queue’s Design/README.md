@@ -24,9 +24,9 @@ When a message is received from a producer for a specific queue, the frontend id
 
 - Message deletion: Primarily, two options are used to delete a message from a queue.
 
-1。The first option is to not delete a message after it’s consumed. However, in this case, the consumer is responsible for keeping track of what’s consumed. For this, we need to maintain the order of messages in the queue and keep track of a message within a queue. A job can then delete the message when the expiration conditions are met. Apache Kafka mostly uses this idea where multiple processes can consume a message.
+  - The first option is to not delete a message after it’s consumed. However, in this case, the consumer is responsible for keeping track of what’s consumed. For this, we need to maintain the order of messages in the queue and keep track of a message within a queue. A job can then delete the message when the expiration conditions are met. Apache Kafka mostly uses this idea where multiple processes can consume a message.
 
-2。The second approach also doesn’t delete a message after it’s consumed. However, it’s made invisible for some time via an attribute—for example, visibility_timeout. This way, the other consumers are unable to get messages that have already been consumed. The message is then deleted by the consumer via an API call.
+  - The second approach also doesn’t delete a message after it’s consumed. However, it’s made invisible for some time via an attribute—for example, visibility_timeout. This way, the other consumers are unable to get messages that have already been consumed. The message is then deleted by the consumer via an API call.
 
 
 In both cases, the message being retrieved by the consumer is only deleted by the consumer. The reason behind this is to provide high durability if a consumer can’t process a message due to some failure. In such a case, in the absence of a delete call, the consumer can retrieve the message again when it comes back.
