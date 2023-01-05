@@ -25,6 +25,10 @@ A messaging queue has many use cases, both in single-server and distributed envi
 
 1. Sending many emails: Emails are used for numerous purposes, such as sharing information, account verification, resetting passwords, marketing campaigns, and more. All of these emails written for different purposes don’t need immediate processing and, therefore, they don’t disturb the system’s core functionality. A messaging queue can help coordinate a large number of emails between different senders and receivers in such cases.
 
+```
+The core functionality includes writing, formatting, adding relevant objects in emails, and sending and receiving emails.
+```
+
 2. Data post-processing: Many multimedia applications need to process content for different viewer needs, such as for consumption on a mobile phone and a smart television. Oftentimes, applications upload the content into a store and use a messaging queue for post-processing of content offline. Doing this substantially reduces client-perceived latency and enables the service to schedule the offline work at some appropriate time—probably late at night when the compute capacity is less busy.
 
 3. Recommender systems: Some platforms use recommender systems to provide preferred content or information to a user. The recommender system takes the user’s historical data, processes it, and predicts relevant content or information. Since this is a time-consuming task, a messaging queue can be incorporated between the recommender system and requesting processes to increase and quicken performance.
