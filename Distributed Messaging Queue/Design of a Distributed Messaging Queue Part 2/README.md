@@ -61,8 +61,8 @@ What kind of anomalies can arise while replicating messages on other hosts?
 Answer
 There are two ways to replicate messages in a queue residing on multiple hosts.
 
-Synchrounous replication
-Asynchrounous replication
+1. Synchrounous replication
+2. Asynchrounous replication
 In synchronous replication, the primary host is responsible for replicating the message in all the relevant queues on other hosts. After acknowledgment from secondary hosts, the primary host then notifies the client regarding the reception of messages. In this approach, messages remain consistent in all queues replicas; however, it costs extra delay in communication and causes partial to no availability while an election is in progress to promote a secondary as a primary.
 
 In asynchronous replication, once the primary host receives the messages, it acknowledges the client, and in the next step, it starts replicating the message in other hosts. This approach comes with other problems such as replication lag and consistency issues.
