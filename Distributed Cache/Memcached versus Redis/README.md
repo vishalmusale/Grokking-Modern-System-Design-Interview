@@ -9,7 +9,7 @@ Memcached has a client and server component, each of which is necessary to run t
 
 Due to the disconnected design, Memcached is able to achieve almost a deterministic query speed (O(1)) serving millions of keys per second using a high-end system. Therefore, Memcached offers a high throughput and low latency.
  
-[Design of a typical Memcached cluster]
+[Design of a typical Memcached cluster](./memcached.jpg)
  
 As evident from the design of a typical Memcached cluster, Memcached scales well horizontally. The client process is usually maintained with the service host that also interacts with the authoritative storage (back-end database).
 
@@ -30,7 +30,7 @@ At Facebook, Memcached sits between the MySQL database and the web layer that us
 
 The following illustration shows the high-level design of caching architecture at Facebook. As we can see, out of a total of 50 million requests made by the web layer, only 2.5 million requests reach the persistence layer.
 
-[Facebook using a layer of Memcached sitting between persistence and web layer]
+[Facebook using a layer of Memcached sitting between persistence and web layer](./fb.jpg)
 
 
 ## Redis
@@ -41,21 +41,21 @@ Redis is a data structure store that can be used as a cache, database, and messa
 - Message broker: Asynchronous communication is a vital requirement in distributed systems. Redis can translate millions of messages per second from one component to another in a system.
 Redis provides a built-in replication mechanism, automatic failover, and different levels of persistence. Apart from that, Redis understands Memcached protocols, and therefore, solutions using Memcached can translate to Redis. A particularly good aspect of Redis is that it separates data access from cluster management. It decouples data and controls the plane. This results in increased reliability and performance. Finally, Redis doesn’t provide strong consistency due to the use of asynchronous replication.
 
-[Redis structure supporting automatic failover using redundant secondary replicas]
+[Redis structure supporting automatic failover using redundant secondary replicas](./redis_replicas.jpg)
 
 ### Redis cluster
 Redis has built-in cluster support that provides high availability. This is called Redis Sentinel. A cluster has one or more Redis databases that are queried using multithreaded proxies. Redis clusters perform automatic sharding where each shard has primary and secondary nodes. However, the number of shards in a database or node is configurable to meet the expectations and requirements of an application.
 
 Each Redis cluster is maintained by a cluster manager whose job is to detect failures and perform automatic failovers. The management layer consists of monitoring and configuration software components.
 
-[Architecture of Redis clusters]
+[Architecture of Redis clusters](./redis_clusters.jpg)
 
 ### Pipelining in Redis
 Since Redis uses a client-server model, each request blocks the client until the server receives the result. A Redis client looking to send subsequent requests will have to wait for the server to respond to the first request. So, the overall latency will be higher.
 
 Redis uses pipelining to speed up the process. Pipelining is the process of combining multiple requests from the client side without waiting for a response from the server. As a result, it reduces the number of RTT spans for multiple requests.
 
-[Redis client-server communication without pipelining versus Redis client-server communication with pipelining]
+[Redis client-server communication without pipelining versus Redis client-server communication with pipelining](./redis_communication.jpg)
 
 The process of pipelining reduces the latency through RTT and the time to do socket level I/O. Also, mode switching through system calls in the operating system is an expensive operation that’s reduced significantly via pipelining. Pipelining the commands from the client side has no impact on how the server processes these requests.
 
