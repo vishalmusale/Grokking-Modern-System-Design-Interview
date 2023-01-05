@@ -4,7 +4,7 @@ A messaging queue is an intermediate component between the interacting entities 
 
 Here is an illustration of two applications interacting via a single messaging queue:
 
-[An example of two applications interacting via a single messaging queue]
+[An example of two applications interacting via a single messaging queue](./mq.jpg)
 
 ### Motivation
 A messaging queue has several advantages and use cases.
