@@ -20,7 +20,7 @@ With the best-effort ordering approach, the system puts the messages in a specif
 
 For example, as shown in the following figure, the producer sends four messages, A, B, C, and D, in the same order as illustrated. Due to network congestion or some other issue, message B is received after message D. Hence, the order of messages is A, C, D, and B at the receiving end. Therefore, in this approach, the messages will be put in the queue in the same order they were received instead of the order in which they were produced on the client side.
 
-[Best-effort ordering: Messages are placed in a queue in the same order that they’re received and not in the order they were sent]
+[Best-effort ordering: Messages are placed in a queue in the same order that they’re received and not in the order they were sent](./ordering.jpg)
 
 ### Strict ordering
 The strict ordering technique preserves the ordering of messages more rigorously. Through this approach, messages are placed in a queue in the order that they’re produced.
@@ -90,7 +90,7 @@ Another solution is to serialize the requests using the system’s buffer at bot
 
 Applications might use multiple queues with dedicated producers and consumers to keep the ordering cost per queue under check, although this comes at the cost of more complicated application logic.
 
-[Avoiding race conditions: Producers and consumers are serialized at both ends of the queue]
+[Avoiding race conditions: Producers and consumers are serialized at both ends of the queue](./serialization.jpg)
 
 In this lesson, we discussed some key considerations and challenges in the design process of a messaging queue and answered the following questions:
 
