@@ -79,9 +79,8 @@ D)
 One of the secondary nodes
 ```
 
-Answers
 
-# Quiz on the Distributed Messaging Queue’s Design
+# Answers on the Distributed Messaging Queue’s Design
 ```
 1. What kind of messages do dead-letter queues contain? (B)
 
