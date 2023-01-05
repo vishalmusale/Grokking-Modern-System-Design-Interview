@@ -29,7 +29,7 @@ For example, suppose we have two queues with the identities 101 and 102 residing
 
 As shown in the following illustration, the internal cluster manager is a component that’s responsible for mapping between the primary host, secondary hosts, and queues. Moreover, it also helps in the primary host selection. Therefore, it needs to be reliable, scalable, and performant.
 
-[Primary-secondary model of distributed queue: A request is received for a queue with ID 101, which is served accordingly]
+[Primary-secondary model of distributed queue: A request is received for a queue with ID 101, which is served accordingly](./primary-secondary.jpg)
 
 
 ### A cluster of independent hosts
@@ -45,7 +45,7 @@ Each host consists of mapping between the queues and the hosts within a cluster,
 
 Assume that we have a cluster, say Y, having hosts A, B, and C. This cluster has two queues with IDs 101 and 103 stored on different hosts, as shown in the following table. This table is stored on each host within the cluster Y. When a random host receives a message, say host C, for a queue having ID 103, host C replicates this message on the other hosts where the queue 103 is stored, i.e., Node A and Node B.
 
-[Mapping]
+[Mapping](./mapping.jpg)
 
 The same process is applied to receive message requests from the consumer. Similar to the first approach, the randomly selected host is responsible for message delivery and cleanup upon a successful processing of the message.
 
@@ -53,7 +53,7 @@ Furthermore, another component called an external cluster manager is introduced,
 
 The following figure illustrates the cluster of independent hosts. There are two clusters, A and B, which consist of several nodes. The external cluster manager has the mapping table between queues and their corresponding cluster. Whenever a frontend receives a request for a queue, it determines the corresponding cluster for the queue and forwards the request to the cluster where the queue resides. The nodes within that cluster are responsible for storing and sending messages accordingly.
 
-[A cluster of independent hosts that consist of distributed queues]
+[A cluster of independent hosts that consist of distributed queues](./cluster.jpg)
 ```
 Question
 What kind of anomalies can arise while replicating messages on other hosts?
