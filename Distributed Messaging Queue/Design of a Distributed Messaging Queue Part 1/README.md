@@ -43,6 +43,11 @@ A question might arise here: how to identify that two (or more) requests are dup
 #### Metadata service
 This component is responsible for storing, retrieving, and updating the metadata of queues in the metadata store and cache. Whenever a queue is created or deleted, the metadata store and cache are updated accordingly. The metadata service acts as a middleware between the front-end servers and the data layer. Since the metadata of the queues is kept in the cache, the cache is checked first by the front-end servers for any relevant information related to the receipt of the request. If a cache miss occurs, the information is retrieved from the metadata store and the cache is updated accordingly.
 
+```
+store: A cluster of persistent data storage responsible for storing metadata related to all the queues available in the system.
+cache: A cluster of metadata, frequently accessed whenever clients’ requests arrive.
+```
+
 There are two different approaches to organizing the metadata cache clusters:
 
 1. If the metadata that needs to be stored is small and can reside on a single machine, then it’s replicated on each cluster server. Subsequently, the request can be served from any random server. In this approach, a load balancer can also be introduced between the front-end servers and metadata services.
