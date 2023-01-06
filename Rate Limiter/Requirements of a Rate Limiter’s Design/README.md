@@ -42,11 +42,11 @@ There are three different ways to place the rate limiter.
 
 2. On the server side: As shown in the following figure, the rate limiter is placed on the server-side. In this approach, a server receives a request that is passed through the rate limiter that resides on the server.
 
-[Rate limiter placed at the server side]
+[Rate limiter placed at the server side](./rate_limiter_server.jpg)
 
 3. As middleware: In this strategy, the rate limiter acts as middleware, throttling requests to API servers as shown in the following figure.
 
-[Rate limiter as middleware]
+[Rate limiter as middleware](./rate_limiter_middleware.jpg)
 
 Placing a rate limiter is dependent on a number of factors and is a subjective decision, based on the organization’s technology stack, engineering resources, priorities, plan, goals, and so on.
 
@@ -86,7 +86,7 @@ A shared rate limiter across data centers: Another approach is to use a shared r
 ## Building blocks we will use
 The design of the rate limiter utilizes the following building blocks that we discussed in the initial chapters.
 
-[Building blocks in the design of a rate limiter]
+[Building blocks in the design of a rate limiter](./bb.jpg)
 
 - Databases are used to store rules defined by a service provider and metadata of users using the service.
 - Caches are used to cache the rules and users’ data for frequent access.
