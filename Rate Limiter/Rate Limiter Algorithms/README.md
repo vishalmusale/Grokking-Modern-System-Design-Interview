@@ -149,13 +149,13 @@ The two main factors that are common among all the rate-limiting algorithms are:
 The following table shows the space efficiency and burst of traffic for all algorithms that have been described in this lesson.
 ```
 A Comparison of Rate-limiting Algorithms
-Algorithm                Space efficient                                                                     Allows burst?
+Algorithm                Space efficient                                                                      Allows burst?
 
-Token bucket             Yes                                                                                 Yes, it allows a burst of traffic within defined limit.
+Token bucket             Yes                                                                                  Yes, it allows a burst of traffic within defined limit.
 
-Leaking bucket           Yes                                                                                 No
+Leaking bucket           Yes                                                                                  No
 
-Fixed window counter     Yes                                                                                 Yes, it allows bursts at the edge of the time window and can exceed the defined limit.
+Fixed window counter     Yes                                                                                  Yes, it allows bursts at the edge of the time window and can exceed the defined limit.
 
 Sliding window log       No, maintaining the log requires extra storage.                                      No
 
