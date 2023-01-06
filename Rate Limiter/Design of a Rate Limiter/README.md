@@ -14,7 +14,7 @@ descriptors:
                             Rate-limiting rules from Lyft
 ```
 
-[High-level design]
+[High-level design](./design.jpg)
 
 In the above rate-limiting rule, the unit is set to day and the request_per_unit is set to 5. These parameters define that the system can allow five marketing messages per day.
 
@@ -25,7 +25,7 @@ Where are the rules stored?
 How do we handle requests that are rate limited?
 In this section, we’ll first expand the high-level architecture into several other essential components. We’ll also explain each component in detail, as shown in the following figure.
 
-[The rate limiter accepts or rejects requests based on throttle rules]
+[The rate limiter accepts or rejects requests based on throttle rules](./detailed_design.jpg)
 
 Let’s discuss each component that is present in the detailed design of a rate limiter.
 
@@ -84,7 +84,7 @@ Request ID     Maximum Limit    Count
 
 If the condition is true, the rate limiter will first respond back to the front-end server with an Allowed signal. The corresponding count and other relevant information are updated offline in the next steps. The rate limiter writes back the updated data in the cache. Following this approach reduces latency and avoids the contention that incoming requests could have caused.
 
-[Rate limiter]
+[Rate limiter](./critical_path.jpg)
 
 ```
 Note: We’ve seen a form of rate limiting in TCP network protocol, where the recipient can throttle the sender by advertising the size of the window (the outstanding data a recipient is willing to receive). The sender sends the minimum value of either the congestion window or the advertised window. Many network traffic shapers use similar mechanisms to provide preferential treatment to different network flows.
