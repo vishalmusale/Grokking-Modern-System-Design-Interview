@@ -19,7 +19,7 @@ The consumer will subscribe to a topic, and the system will add the subscriber�
 Note: We’ll use fail-over services for the message director and subscriber to guard against failures.
 ```
 
-[Using the distributed messaging queue]
+[Using the distributed messaging queue](./using.jpg)
 
 Using the distributed messaging queues makes our design simple. However, the huge number of queues needed is a significant concern. If we have millions of subscribers for thousands of topics, defining and maintaining millions of queues is expensive. Moreover, we’ll copy the same message for a topic in all subscriber queues, which is unnecessary duplication and takes up space.
 
@@ -59,7 +59,7 @@ Besides these components, we also have the following design considerations:
 
 - Retention time: The consumers can specify the retention period time of their messages. The default will be seven days, but it is configurable. Some applications like banking applications require the data to be stored for a few weeks as a business requirement, while an analytical application might not need the data after consumption.
 
-[High-level design of a pub-sub system]
+[High-level design of a pub-sub system](./high_level_design.jpg)
 
 Let’s understand the role of each component in detail.
 
@@ -67,11 +67,11 @@ Let’s understand the role of each component in detail.
 ## Broker
 The broker server is the core component of our pub-sub system. It will handle write and read requests. A broker will have multiple topics where each topic can have multiple partitions associated with it. We use partitions to store messages in the local storage for persistence. Consequently, this improves availability. Partitions contain messages encapsulated in segments. Segments help identify the start and end of a message using an offset address. Using segments, consumers consume the message of their choice from a partition by reading from a specific offset address. The illustration below depicts the concept that has been described above.
 
-[A depiction of how messages are stored within segments inside a partition]
+[A depiction of how messages are stored within segments inside a partition](./how_messages_are_stored.jpg)
 
 As we know, a topic is a persistent sequence of messages stored in the local storage of the broker. Once the data has been added to the topic, it cannot be modified. Reading and writing a message from or to a topic is an I/O task for computers, and scaling such tasks is challenging. This is the reason we split the topics into multiple partitions. The data belonging to a single topic can be present in numerous partitions. For example, let’s assume have Topic A and we allocate three partitions for it. The producers will send their messages to the relevant topic. The messages received will be sent to various partitions on basis of the round-robin algorithm. We’ll use a variation of round-robin: weighted round-robin. The following slides show how the messages are stored in various partitions belonging to a single topic.
 
-[Broker]
+[Broker](./how_broker_works)
 
 ```
 Question 1
@@ -115,13 +115,13 @@ Our system will need to keep appropriate metadata persistently. This metadata wi
 We’ll discuss consumer manager later in the lesson, which will keep the required information.
 ```
 
-[Multiple topics]
+[Multiple topics](./multiple_topics)
 
 We discussed that a message will be stored in a segment. We’ll identify each segment using an offset. Since these are immutable records, the readers are independent and they can read messages anywhere from this file using the necessary API functions. The following slides show the segment level detail.
 
-[A new entry will be added at the end of the file]
+[A new entry will be added at the end of the file](./1.jpg)
 
-[The consumers can read anywhere from the file. Producers add to the end of file]
+[The consumers can read anywhere from the file. Producers add to the end of file](./2.jpg)
 
 The broker solved the problems that our first design had. We avoided a large number of queues by partitioning the topic. We introduced parallelism using partitions that avoided bottlenecks while consuming the message.
 
@@ -132,6 +132,7 @@ We’ll have multiple brokers in our cluster. The cluster manager will perform t
 
 - Manage replication: The cluster manager manages replication by using the leader-follower approach. One of the brokers is the leader. If it fails, the manager decides who the next leader is. In case the follower fails, it adds a new broker and makes sure to turn it into an updated follower. It updates the metadata accordingly. We’ll keep three replicas of each partition on different brokers.
 
+[Replication at the partitioning level](./replication.jpg)
 
 ## Consumer manager
 The consumer manager will manage the consumers. It has the following responsibilities:
@@ -149,7 +150,7 @@ Therefore, we’ll support both techniques. Each consumer will inform the broker
 ## Finalized design
 The finalized design of our pub-sub system is shown below.
 
-[Finalized design]
+[Finalized design](./final.jpg)
 ## Conclusion
 We saw two designs of pub-sub, using queues and using our custom storage optimized for writing and reading small-sized data.
 
