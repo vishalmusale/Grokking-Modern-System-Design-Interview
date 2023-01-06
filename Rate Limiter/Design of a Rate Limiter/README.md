@@ -14,7 +14,7 @@ descriptors:
                             Rate-limiting rules from Lyft
 ```
 
-[High-level design](./design.jpg)
+[High-level design](./design)
 
 In the above rate-limiting rule, the unit is set to day and the request_per_unit is set to 5. These parameters define that the system can allow five marketing messages per day.
 
