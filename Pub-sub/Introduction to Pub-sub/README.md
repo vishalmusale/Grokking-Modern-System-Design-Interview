@@ -16,7 +16,7 @@ A few use cases of pub-sub are listed below:
 Log ingestion refers to importing logs into a database for immediate use, such as monitoring. Huge applications like Facebook produce massive amounts of data and logs. Real-time fetching and processing of logs allow us to run analysis and take quick actions in case of failures.
 ```
 
-[Motivation and use cases of the pub-sub system]
+[Motivation and use cases of the pub-sub system](./real-time.jpg)
 
 ```
 Question 1
@@ -143,7 +143,7 @@ topic_ID    The ID of the topic which is to be deleted.
 
 The design of pub-sub utilizes many building blocks that have been discussed in the initial chapters. We’ll consider the following lessons on building blocks.
 
-[The building blocks we’ll use]
+[The building blocks we’ll use](./bb.jpg)
 
 - Database: We’ll use databases to store information like subscription details.
 - Distributed messaging queue: We’ll use use a messaging queue to store messages sent by the producer.
