@@ -15,7 +15,7 @@ Below, we have a list of scenarios where rate limiters can be used to make the s
 
 - Avoiding excess costs: Rate limiting can also be used to control the cost of operations. For example, organizations can use rate limiting to prevent experiments from running out of control and avoid large bills. Some cloud service providers also use this concept by providing freemium services to certain limits, which can be increased on request by charging from users.
 
-[Throttling the number of requests to API servers via a rate limiter]
+[Throttling the number of requests to API servers via a rate limiter](./sys.jpg)
 
 ## How will we design a rate limiter?
 In the following lessons, we will learn about the following:
