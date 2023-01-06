@@ -20,11 +20,11 @@ Assume that we have a predefined rate limit of R and the total capacity of the b
 4. If there are N incoming requests and the bucket has a lower number of tokens, then the number of requests accepted equals the number of available tokens in the bucket.
 The following illustration represents the working of the token bucket algorithm.
 
-[How the token bucket algorithm works]
+[How the token bucket algorithm works](./token_bucket.jpg)
 
 The following illustration demonstrates how token consumption and rate-limiting logic work. In this example, the capacity of the bucket is three, and it is refilled at a rate of three tokens per minute.
 
-[Token bucket]
+[Token bucket](./token_bucket)
 
 #### Essential parameters
 We require the following essential parameters to implement the token bucket algorithm:
@@ -64,11 +64,11 @@ This algorithm divides the time into fixed intervals called windows and assigns 
 
 As shown in the below figure, a dotted line represents the limit in each window. If the counter is lower than the limit, forward the request; otherwise, discard the request.
 
-[Fixed window counter algorithm: Discard the request exceeding the limit]
+[Fixed window counter algorithm: Discard the request exceeding the limit](./fixed_window.jpg)
 
 There is a significant problem with this algorithm. A burst of traffic greater than the allowed requests can occur at the edges of the window. In the below figure, the system allows a maximum of ten requests per minute. However, the number of requests in the one-minute window from 01:30 to 02:30 is 20, which is greater than the allowed number of requests.
 
-[Edge case problem in the fixed window counter algorithm. The number of requests in one minute from 01:30 to 02:30 exceeds the predefined limit of 10 requests per minute]
+[Edge case problem in the fixed window counter algorithm. The number of requests in one minute from 01:30 to 02:30 exceeds the predefined limit of 10 requests per minute](./edge_cases.jpg)
 
 #### Essential parameters
 The fixed window counter algorithm requires the following parameters:
@@ -90,7 +90,7 @@ The main advantage of this algorithm is that it doesn’t suffer from the edge c
 
 Let’s understand how the sliding window log algorithm works in the illustration below. Assume that we have a maximum rate limit of two requests in a minute.
 
-[Sliding window log algorithm]
+[Sliding window log algorithm](./sliding_window)
 
 
 #### Essential parameters
@@ -110,7 +110,7 @@ The following parameters are required to implement the sliding window log algori
 ### Sliding window counter algorithm
 Unlike the previously fixed window algorithm, the sliding window counter algorithm doesn’t limit the requests based on fixed time units. This algorithm takes into account both the fixed window counter and sliding window log algorithms to make the flow of requests more smooth. Let’s look at the flow of the algorithm in the below figure.
 
-[A sliding window counter algorithm, where the green shaded area shows the rolling window of 1 minute].
+[A sliding window counter algorithm, where the green shaded area shows the rolling window of 1 minute](./sliding_window_counter.jpg)
 
 In the above figure, we’ve 88 requests in the previous window while 12 in the current window. We’ve set the rate limit to 100 requests per minute. Further, the rolling window overlaps 15 seconds with the current window. Now assume that a new request arrives at 02:15. We’ll decide which request to accept or reject using the mathematical formulation:
 
