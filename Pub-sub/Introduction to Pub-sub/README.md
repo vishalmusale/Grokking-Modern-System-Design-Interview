@@ -50,6 +50,10 @@ Let’s specify the functional requirements of a pub-sub system:
 
 - Specify retention time: The consumers should be able to specify the retention time after which the message should be deleted from the system.
 
+```
+A topic is a collection of related events or messages. The producers can create a topic and write the message into a topic. Consumers can subscribe to a topic and read from that topic.
+```
+
 - Delete messages: A message should be deleted from the topic or system after a certain retention period as defined by the user of the system.
 ### Non-functional requirements
 We consider the following non-functional requirements when designing a pub-sub system:
