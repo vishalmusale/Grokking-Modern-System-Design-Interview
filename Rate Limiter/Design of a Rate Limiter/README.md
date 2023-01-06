@@ -84,7 +84,7 @@ Request ID     Maximum Limit    Count
 
 If the condition is true, the rate limiter will first respond back to the front-end server with an Allowed signal. The corresponding count and other relevant information are updated offline in the next steps. The rate limiter writes back the updated data in the cache. Following this approach reduces latency and avoids the contention that incoming requests could have caused.
 
-[Rate limiter](./critical_path.jpg)
+[Rate limiter](./critical_path)
 
 ```
 Note: We’ve seen a form of rate limiting in TCP network protocol, where the recipient can throttle the sender by advertising the size of the window (the outstanding data a recipient is willing to receive). The sender sends the minimum value of either the congestion window or the advertised window. Many network traffic shapers use similar mechanisms to provide preferential treatment to different network flows.
