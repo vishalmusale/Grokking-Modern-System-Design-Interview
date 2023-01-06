@@ -4,7 +4,7 @@ Publish-subscribe messaging, often known as pub-sub messaging, is an asynchronou
 
 For example, when Cristiano Ronaldo, a famous athlete, posts on Instagram or shares a tweet, all of his followers are updated. Here, Cristiano Ronaldo is the publisher, his post or tweet is the message, and all of his followers are subscribers.
 
-[The pub-sub system]
+[The pub-sub system](./Pub-sub-sys.jpg)
 
 ## Motivation
 The hardware infrastructure of distributed systems consists of millions of machines. Using a pub-sub system to communicate asynchronously increases scalability. Producers and consumers are disconnected and operate independently, thereby allowing us to scale and develop them separately. The decoupling between components, producers and consumers, allows greater scalability because adding or removing any component doesn’t affect the other components.
