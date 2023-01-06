@@ -12,6 +12,10 @@ A few use cases of pub-sub are listed below:
 
 - Replicating data: The pub-sub system can be used to distribute changes. For example, in a leader-follower protocol, the leader sends the changes to its followers via a pub-sub system. It allows followers to update their data asynchronously. The distributed caches can also refresh themselves by receiving the modifications asynchronously. Along the same lines, applications like WhatsApp that allow multiple views of the same conversation—for example, on a mobile phone and a computer’s browser—can elegantly work using a pub-sub, where multiple views can act either as a publisher or a subscriber.
 
+```
+Log ingestion refers to importing logs into a database for immediate use, such as monitoring. Huge applications like Facebook produce massive amounts of data and logs. Real-time fetching and processing of logs allow us to run analysis and take quick actions in case of failures.
+```
+
 [Motivation and use cases of the pub-sub system]
 
 ```
