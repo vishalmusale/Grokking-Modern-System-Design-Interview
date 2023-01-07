@@ -158,7 +158,7 @@ Invalid data: The data that makes no sense or doesn’t exist can affect the per
 ## Indexing on a centralized system
 In a centralized search system, all the search system components run on a single node, which is computationally quite capable. The architecture of a centralized search system is shown in the following illustration:
 
-[The architecture of a centralized search system]
+[The architecture of a centralized search system](./arch.jpg)
 
 - The indexing process takes the documents as input and converts them into an inverted index, which is stored in the form of a binary file.
 - The query processing or search process interprets the binary file that contains the inverted index. It also computes the intersection of the inverted lists for a given query to return the search results against the query.
