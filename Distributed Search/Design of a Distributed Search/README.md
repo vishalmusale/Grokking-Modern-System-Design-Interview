@@ -2,7 +2,7 @@
 ## High-level design
 Let’s shape the overall design of a distributed search system before getting into a detailed discussion. There are two phases of such a system, as shown in the illustration below. The offline phase involves data crawling and indexing in which the user has to do nothing. The online phase consists of searching for results against the search query by the user.
 
-[High-level design of a distributed search system]
+[High-level design of a distributed search system](./design.jpg)
 
 - The crawler collects content from the intended resource. For example, if we build a search for a YouTube application, the crawler will crawl through all of the videos on YouTube and extract textual content for each video. The content could be the title of the video, its description, the channel name, or maybe even the video’s annotation to enable an intelligent search based not only on the title and description but also on the content of that video. The crawler formats the extracted content for each video in a JSON document and stores these JSON documents in a distributed storage.
 - The indexer fetches the documents from a distributed storage and indexes these documents using MapReduce, which runs on a distributed cluster of commodity machines. The indexer uses a distributed data processing system like MapReduce for parallel and distributed index construction. The constructed index table is stored in the distributed storage.
@@ -49,7 +49,7 @@ The two most common techniques used for data partitioning in distributed indexin
 - Document partitioning: In document partitioning, all the documents collected by the web crawler are partitioned into subsets of documents. Each node then performs indexing on a subset of documents that are assigned to it.
 - Term partitioning: The dictionary of all terms is partitioned into subsets, with each subset residing at a single node. For example, a subset of documents is processed and indexed by a node containing the term “search.”
 
-[Types of data partitioning in a distributed search]
+[Types of data partitioning in a distributed search](./types.jpg)
 
 In term partitioning, a search query is sent to the nodes that correspond to the query terms. This provides more concurrency because a stream of search queries with different query terms will be served by different nodes. However, term partitioning turns out to be a difficult task in practice. Multiword queries necessitate sending long mapping lists between groups of nodes for merging, which can be more expensive than the benefits from the increased concurrency.
 
@@ -57,7 +57,7 @@ In document partitioning, each query is distributed across all nodes, and the re
 
 Following document partitioning, let’s look into a distributed design for index construction and querying, which is shown in the illustration below. We use a cluster that consists of a number of low-cost nodes and a cluster manager. The cluster manager uses a MapReduce programming model to parallelize the index’s computation on each partition. MapReduce can work on significantly larger datasets that are difficult to be handled by a single large server.
 
-[Distributed indexing and searching in a parallel fashion on multiple nodes in a cluster of commodity machines]
+[Distributed indexing and searching in a parallel fashion on multiple nodes in a cluster of commodity machines](./search_and_index.jpg)
 
 The system described above works as follows:
 
@@ -110,7 +110,7 @@ AZ instances so that two copies are in one zone and the third copy is in another
 
 Each group in the illustration below consists of one replica from all of the four partitions (P1, P2, P3, P4)
 
-[The replica distribution: Each node contains one primary partition and two replicas]
+[The replica distribution: Each node contains one primary partition and two replicas](./replica_distribution.jpg)
 
 In the above illustration, the primary replica for P_1 is indicated by the dark purple color, the primary replica for P_2 is represented by the dark blue color, and the primary replica for P_3 and P_4 is represented by the dark pink color.
 
