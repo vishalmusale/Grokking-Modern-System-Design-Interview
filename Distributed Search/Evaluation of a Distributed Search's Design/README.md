@@ -14,7 +14,7 @@ The indexing is performed offline, not on the user’s critical path. We don’t
 Note: Once we replicate the latest data in all groups of indexing nodes and the search nodes have downloaded it, then the search queries are performed on the latest data.
 ```
 
-[Guarantees provided by the distributed search]
+[Guarantees provided by the distributed search](./evaluation.jpg)
 
 
 ## Scalability
