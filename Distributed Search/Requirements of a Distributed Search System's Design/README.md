@@ -8,7 +8,7 @@ The following is a functional requirement of a distributed search system:
 
 - Search: Users should get relevant content based on their search queries.
 
-[The functional requirement of a distributed search system]
+[The functional requirement of a distributed search system](./fr.jpg)
 
 ### Non-functional requirements
 Here are the non-functional requirements of a distributed search system:
@@ -18,7 +18,7 @@ Here are the non-functional requirements of a distributed search system:
 - Fast search on big data: The user should get the results quickly, no matter how much content they are searching.
 - Reduced cost: The overall cost of building a search system should be less.
 
-[The non-functional requirement of a distributed search system]
+[The non-functional requirement of a distributed search system](./nfr.jpg)
 
 ## Resource estimation
 Let’s estimate the total number of servers, storage, and bandwidth that is required by the distributed search system. We’ll calculate these numbers using an example of a YouTube search.
@@ -34,7 +34,7 @@ Number of active users/queries handled per server =3K servers
 
 If three million users are searching concurrently, three million search requests are being generated at one time. A single server handles 1,000 requests at a time. Dividing three million by 1,000 gives us 3,000 servers.
 
-[The number of servers required for the YouTube search service]
+[The number of servers required for the YouTube search service](./number_of_servers.jpg)
 
 ### Storage estimation
 Each video’s metadata is stored in a separate JSON document. Each document is uniquely identified by the video ID. This metadata contains the title of the video, its description, the channel name, and a transcript. We assume the following numbers for estimating the storage required to index one video:
@@ -62,7 +62,7 @@ No. of videos per day        Total storage per video (KB)              	Total st
 ```
 The total storage required to index 6,000 videos uploaded per day on YouTube is 1.8 GB. This storage requirement is just an estimation for YouTube. The storage need will increase if we provide a distributed search system as a service to multiple tenants.
 
-[Summarizing the storage requirement of a distributed search system for videos uploaded to YouTube per day]
+[Summarizing the storage requirement of a distributed search system for videos uploaded to YouTube per day](./daily_storage.jpg)
 
 
 
@@ -102,7 +102,7 @@ No. of requests per second	     Query size (Bytes)              	Bandwidth (Mb/s
 1736.11	                              4000	                              55.56
 ```               
 
-[Summarizing the bandwidth requirements of a video search]
+[Summarizing the bandwidth requirements of a video search](./bandwidth.jpg)
 
 ```
 Note: The bandwidth requirements are relatively modest because we are assuming text results. Many search services can return small thumbnails and other media to enhance the search page. The bandwidth needs per page are intentionally low so that the service can provide near real-time results to the client.
@@ -114,4 +114,4 @@ We need a distributed storage in our design. Therefore, we can use the blob stor
 
 To conclude, we explained what the search system’s requirements are. We made resource estimations. And lastly, we mentioned the building block that we’ll use in our design of a distributed search system.
 
-[Distributed storage: Blob store]
+[Distributed storage: Blob store](./bb.jpg)
