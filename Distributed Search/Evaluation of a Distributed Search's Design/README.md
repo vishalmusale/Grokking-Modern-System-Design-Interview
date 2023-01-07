@@ -13,7 +13,20 @@ The indexing is performed offline, not on the user’s critical path. We don’t
 ```
 Note: Once we replicate the latest data in all groups of indexing nodes and the search nodes have downloaded it, then the search queries are performed on the latest data.
 ```
+
+[Guarantees provided by the distributed search]
+
+
 ## Scalability
+Partitioning is an essential component of search systems to scale. When we increase the number of partitions and add more nodes to the indexing and search clusters, we can scale in terms of data indexing and querying.
+
+The strong isolation of indexing and search processes help indexing and search scale independently and dynamically.
+
 ## Fast search on big data
+We utilized a number of nodes, each of which performs search queries in parallel on smaller inverted indices. The result from each search node is then merged and returned to the user.
+
 ## Reduced cost
+We used cheaper machines to compute indexes and perform searches. If one node fails, we don’t have to recompute the complete index. Instead, some of the documents need to be indexed again.
+
 ## Conclusion
+A search system is required for almost every application. We have seen that it isn’t possible to develop a search system that can run on a single node. We utilized a parallel computation framework and low-cost machines to build a search system that is available, scalable, and highly performant.
