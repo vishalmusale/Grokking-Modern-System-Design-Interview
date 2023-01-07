@@ -37,5 +37,6 @@ We’ll utilize the following building blocks in the design of our task scheduli
 - Database(s) are used to store task information.
 - A distributed queue is required to arrange tasks in the order of execution.
 - Monitoring is essential to check the health of the resources and to detect failed tasks to provide reliable service to the users.
+
 We’ve identified the requirements of the task scheduler. In the next lesson, we’ll design our task scheduling system according to these requirements.
 
