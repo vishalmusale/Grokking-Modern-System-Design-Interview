@@ -47,7 +47,7 @@ The following formula is used to compute the storage required to index one video
 Total storage/video  = Storage /doc +(Terms /doc ×Storage /term
 ```
                              Total Storage Required to Index One Video on YouTube
-Storage per JSON doc (KB)	              No. of terms per doc	             Storage per term (Bytes)	             Total storage per video (KB)   
+Storage per JSON doc (KB)	          No. of terms per doc	             Storage per term (Bytes)	             Total storage per video (KB)   
 200                                      1000                                100                                     300
 ```                             
 
@@ -57,7 +57,7 @@ Total storage/day =No. of videos /day ×Total storage/video
 
 ```
                                 Total Storage Required to Index Videos per Day on YouTube
-No. of videos per day             	Total storage per video (KB)              	Total storage per day(GB)     
+No. of videos per day           Total storage per video (KB)              	Total storage per day(GB)     
 6000                                   300                                      1.8
 ```
 The total storage required to index 6,000 videos uploaded per day on YouTube is 1.8 GB. This storage requirement is just an estimation for YouTube. The storage need will increase if we provide a distributed search system as a service to multiple tenants.
