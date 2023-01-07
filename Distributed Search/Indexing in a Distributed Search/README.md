@@ -67,11 +67,11 @@ elastic                  ( [1], [1], [[15]] )
 
 stack                    ( [1], [1], [[16]] )
 
-lucene                  ( [2, 3], [1, 1], [[9], [12]] )
+lucene                   ( [2, 3], [1, 1], [[9], [12]] )
 
-library                 ( [2], [1], [[10]] )
+library                  ( [2], [1], [[10]] )
 
-Apache                  ( [3], [1], [[11]] )
+Apache                   ( [3], [1], [[11]] )
 ```
 In the table above, the “Term” column contains all the unique terms that are extracted from all of the documents. Each entry in the “Mapping” column consists of three lists:
 
