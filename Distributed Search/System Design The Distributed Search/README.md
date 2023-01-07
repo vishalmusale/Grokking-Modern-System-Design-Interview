@@ -4,7 +4,7 @@ Nowadays, we see a search bar on almost every website. We use that search bar to
 
 Let’s take another example. There are billions of videos uploaded and stored on YouTube. Imagine if YouTube didn’t provide us with a search bar. How would we find a specific video among the millions of videos that have been posted on YouTube over the years? It would take months to navigate through all of those videos and find the one we need. Users find it challenging to find what they’re looking for simply by scrolling around.
 
-[Search bar]
+[Search bar](./searchBar.jpg)
 
 Search engines are an even bigger example. We have billions of websites on the Internet. Each website has many web pages and there is plenty of content on each of these web pages. With so much content, the Internet would practically be useless without search engines, and users would end up lost in a sea of irrelevant data. Search engines are, essentially, filters for the massive amount of data available. They let users quickly obtain information that is of true interest without having to sift through too many unnecessary web pages.
 
@@ -21,7 +21,7 @@ A search system is a system that takes some text input, a search query, from the
 For a search engine, a document consists of the text extracted from a web page. In a movie store’s web page, a document could be a JSON object containing titles, descriptions, and other metadata of the videos upon which we want to perform search queries. The documents could be JSON or any other suitable format. Documents are stored on a distributed storage like S3 or HDFS.
 ```
 
-[The three phases of a search system]
+[The three phases of a search system](./3phases.jpg)
 
 Note: We have a separate chapter dedicated to the explanation of the crawler component. In this chapter, we’ll focus on indexing.
 
