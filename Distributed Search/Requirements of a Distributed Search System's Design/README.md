@@ -57,7 +57,7 @@ Total storage/day =No. of videos /day ×Total storage/video
 
 ```
                                 Total Storage Required to Index Videos per Day on YouTube
-No. of videos per day           Total storage per video (KB)              	Total storage per day(GB)     
+No. of videos per day        Total storage per video (KB)              	Total storage per day(GB)     
 6000                                   300                                      1.8
 ```
 The total storage required to index 6,000 videos uploaded per day on YouTube is 1.8 GB. This storage requirement is just an estimation for YouTube. The storage need will increase if we provide a distributed search system as a service to multiple tenants.
@@ -98,7 +98,7 @@ To estimate the outgoing traffic bandwidth, we assume the following numbers:
 We can use the same formula to calculate the bandwidth required for the outgoing traffic.
 ```
                Bandwidth Required for Outgoing Traffic per Second
-No. of requests per second	          Query size (Bytes)            	Bandwidth (Mb/s)       
+No. of requests per second	     Query size (Bytes)              	Bandwidth (Mb/s)       
 1736.11	                              4000	                              55.56
 ```               
 
