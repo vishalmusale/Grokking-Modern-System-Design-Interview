@@ -8,7 +8,7 @@ This scheduling mechanism can affect the reliability of the system, availability
 - Tasks that can be delayed.
 - Tasks that need to be executed periodically (for example, every 5 minutes, or every hour, or every day).
 
-[Multiple queues based on the task categories]
+[Multiple queues based on the task categories](./multiqueues.jpg)
 
 Our system ensures that tasks in non-urgent queues are not starved. As soon as some task’s delay limit is about to be reached, it is moved to the urgent tasks queue so that it gets service. We’ll see how the task scheduler implements priorities later in this lesson.
 
@@ -55,14 +55,14 @@ There are tasks that don’t need urgent execution. For example, in a social app
 ## Task idempotency
 If the task executes successfully, but for some reason the machine fails to send an acknowledgement, the scheduler will schedule the task again. The task is executed again, and we end up with the wrong result, which means the task was non-idempotent. An example of non-idempotence is shown in the following illustration:
 
-[non-idempotent]
+[non-idempotent](./nonidempotency)
 
 We don’t want the final result to change when executing the task again. This is critical in financial applications while transferring money. We require that tasks are idempotent. An idempotent task produces the same result, no matter how many times we execute it. The execution of an idempotent task is shown in the following illustration:
 ```
 Idempotence is a characteristic of certain operations in mathematics and computer science that allows them to be applied several times without influencing the outcome.
 ```
 
-[idempotent]
+[idempotent](./idempotent)
 
 Let’s make the task of uploading a video to the database an idempotent operation. We don’t want the video to be duplicated in the database in case the uploader didn’t receive the acknowledgment. Idempotency ensures that the video is not duplicated. This property is added in the implementation by the developers where they identify the video by something (for example, its name) and overwrite the old one. This way, no matter how many times someone uploads it, the final result is the same. Idempotency enables us to simply re-execute a failed task.
 
