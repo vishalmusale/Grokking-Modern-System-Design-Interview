@@ -10,6 +10,8 @@ So, in general, the big components of our system are:
 - Resources: The task is executed on these components.
 - Scheduler: A scheduler performs processes between clients and resources and decides which task should get resources first.
 
+[Scheduler putting tasks into a queue for resource allocation]
+
 As shown in the above illustration, it is necessary to put the incoming tasks into a queue. It is because of the following reasons:
 
 - We might not have sufficient resources available right now.
@@ -30,17 +32,8 @@ When a task comes for scheduling, it should contain the following information wi
   - Independent tasks don’t depend on the execution of any other task. Independent tasks can run in parallel. We should know whether a task is dependent or independent. The dependency information helps to execute both dependent tasks in order and independent tasks in parallel for efficient utilization of resources.
 The design of the task scheduler is shown in the following illustration:
 
-Let’s identify the components used in this design:
+[The design of task scheduler]
 
-We can consider scheduling at many levels. We could be asked to design scheduling that is done internally by an organization to run tasks on their own cluster of machines. There, they have to find ample resources and need to decide which task to run first.
-
-On the other hand, we could also be asked to design scheduling that a cloud provider uses to schedule tasks coming from multiple clients. Cloud providers need to decide which task to run first and which clients to handle first to provide appropriate isolation between different tenants.
-
-So, in general, the big components of our system are:
-
-- Clients: They initiate the task execution.
-- Resources: The task is executed on these components.
-- Scheduler: A scheduler performs processes between clients and resources and decides which task should get resources first.
 - Clients: The clients of the cloud providers are individuals or organizations from small to large businesses who want to execute their tasks.
 - Rate limiter: The resources available for a client depend on the cost they pay. It is important to limit the number of tasks for the reliability of our service. For instance, X number of tasks per hour are allowed to enter the system. Others will get a message like “Limit exceeded” instead of accepting the task and responding late. A rate limiter limits the number of tasks the client schedules based on its subscription. If the limit is exceeded, it returns an error message to the client that the rate limit has been exceeded.
 - Task submitter: The task submitter admits the task if it successfully passes through the rate limiter. There isn’t a single task submitter. Instead, we have a cluster of nodes that admit the increasing number of tasks.
