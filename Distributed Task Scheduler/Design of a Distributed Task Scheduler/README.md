@@ -10,7 +10,7 @@ So, in general, the big components of our system are:
 - Resources: The task is executed on these components.
 - Scheduler: A scheduler performs processes between clients and resources and decides which task should get resources first.
 
-[Scheduler putting tasks into a queue for resource allocation]
+[Scheduler putting tasks into a queue for resource allocation](./sys.jpg)
 
 As shown in the above illustration, it is necessary to put the incoming tasks into a queue. It is because of the following reasons:
 
@@ -32,7 +32,7 @@ When a task comes for scheduling, it should contain the following information wi
   - Independent tasks don’t depend on the execution of any other task. Independent tasks can run in parallel. We should know whether a task is dependent or independent. The dependency information helps to execute both dependent tasks in order and independent tasks in parallel for efficient utilization of resources.
 The design of the task scheduler is shown in the following illustration:
 
-[The design of task scheduler]
+[The design of task scheduler](./details.jpg)
 
 - Clients: The clients of the cloud providers are individuals or organizations from small to large businesses who want to execute their tasks.
 - Rate limiter: The resources available for a client depend on the cost they pay. It is important to limit the number of tasks for the reliability of our service. For instance, X number of tasks per hour are allowed to enter the system. Others will get a message like “Limit exceeded” instead of accepting the task and responding late. A rate limiter limits the number of tasks the client schedules based on its subscription. If the limit is exceeded, it returns an error message to the client that the rate limit has been exceeded.
