@@ -71,7 +71,7 @@ Twitter shows trends primarily based on the popularity of the specific hashtag i
 - Region-wise hashtag count indicates the number of tweets with the same hashtag used within a specific geographical region. For example, thousands of tweets with the same tags from New York City suggest that users in the New York area may see this hashtag in their trends timeline.
 - A time window indicates the amount of time during which tweets with specific tags are posted.
 
-[Top k]
+[The system calculates the 24-hour count of the specified hashtag]
 
 Below is more detail on the above illustration:
 
