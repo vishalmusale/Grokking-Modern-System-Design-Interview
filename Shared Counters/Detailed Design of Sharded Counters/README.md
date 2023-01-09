@@ -38,7 +38,7 @@ One way to solve the above problem is to use a round-robin selection of shards. 
 
 In the following illustrations, we assume that user requests are first handed out to an appropriate server by the load balancer. Then, each such server uses its own round-robin scheduling to use a shard:
 
-[Round-robin technique]
+[Round-robin technique](./rr)
 
 #### Random selection
 Another simple approach can be to uniformly and randomly select a shard for writing. The challenge with both round-robin selection and random selection is with variable load changes on the nodes (where shards are hosted). It is hard to appropriately distribute the load on available shards. Load variability on nodes is common because a physical node is often being used for multiple purposes.
@@ -46,7 +46,7 @@ Another simple approach can be to uniformly and randomly select a shard for writ
 #### Metrics-based selection
 The third approach is shard selection based on specific metrics. For example, a dedicated node (load balancer) manages the selection of the shards by reading the shards’ status. The below slides go over how sharded counters are created:
 
-[Metrics]
+[Metrics](./metrics)
 
 ### Manage read requests
 When the user sends the read request, the system will aggregate the value of all shards of the specified counter to return the total count of the feature (such as like or reply). Accumulating values from all the shards on each read request will result in low read throughput and high read latency.
@@ -71,7 +71,7 @@ Twitter shows trends primarily based on the popularity of the specific hashtag i
 - Region-wise hashtag count indicates the number of tweets with the same hashtag used within a specific geographical region. For example, thousands of tweets with the same tags from New York City suggest that users in the New York area may see this hashtag in their trends timeline.
 - A time window indicates the amount of time during which tweets with specific tags are posted.
 
-[The system calculates the 24-hour count of the specified hashtag]
+[The system calculates the 24-hour count of the specified hashtag](./topk.jpg)
 
 Below is more detail on the above illustration:
 
@@ -103,7 +103,7 @@ We also need storage for the sharded counters, which store all information about
 
 The job of identifying the relevant counter and mapping all write requests to the appropriate counter in sharded counters can be done in parallel. We map the all-write request to the appropriate counter, and then each counter chooses a shard randomly based on some metrics to do increments and decrements. In contrast, we reduce periodically to aggregate the value of all shards of the particular counter. Then, these counter values can be stored in the Cassandra store. The slides below help illustrate these points:
 
-[Placement]
+[Placement](./placement)
 
 ## Evaluation of the sharded counters
 This section will evaluate the sharded counters and explain how sharded counters will increase performance by providing high availability and scalability.
