@@ -4,11 +4,11 @@ Real-time applications like Facebook, Twitter, and YouTube have high user traffi
 
 The above scenario shows how a simple counting operation becomes challenging to manage with precision and performance. The following figure shows YouTube’s videos that were viewed by millions of users in a 24-hour span in August 2021:
 
-[YouTube videos' views in 24 hours]
+[YouTube videos' views in 24 hours](./views.jpg)
 
 On average, six thousand tweets are sent on Twitter within one second, which equals 360,000 tweets per minute and about 500 million tweets per day. A challenging task is to handle billions of likes on these 500 million tweets per day. The following table shows the most liked tweets in one day as of 2022:
 
-[Most liked tweets in a single day]
+[Most liked tweets in a single day](./likes.jpg)
 
 How will we handle millions of write requests coming against the likes on thousands of tweets per minute? The challenge is that writing takes more time than reading, and concurrent activity makes this problem harder. As the number of concurrent writes increases for some counter (which might be a variable residing in a node’s memory), the lock contention increases non-linearly. After some point, we might spend most of the time acquiring the lock so that we could safely update the counter.
 
