@@ -87,8 +87,76 @@ Since we need 6 MBs per minute and we need to store files in five different form
 Next, we’ll calculate the below value: 
 
 Number of hours uploaded to Youtube/min x Number of minutes per hour x storage requirement per minute= 500 hours/ minute x 60 minutes/hour x 30 MB/minute = 900 GB/minute
-
+```
 
 ### Bandwidth estimation
+A lot of data transfer will be performed for streaming and uploading videos to YouTube. This is why we need to calculate our bandwidth estimation too. Assume the upload:view ratio is 1:300—that is, for each uploaded video, we have 300 video views per second. We’ll also have to keep in mind that when a video is uploaded, it is not in compressed format, while viewed videos can be of different qualities. Let’s estimate the bandwidth required for uploading the videos.
+
+We assume:
+
+Total_{bandwidth}: Total bandwidth required.
+
+Total_{content}: Total content (in minutes) uploaded per minute.
+
+Size_{minute}: Transmission required (in MBs) for each minute of content.
+
+Then, the following formula is used to do the computation below:
+
+Total bandwidth =Total content_transferred × Size minute
+
+```
+                    The Bandwidth Required for Uploading Videos to YouTube
+No. of video hours per minute             	Minutes per hour                	MB per minute	Bandwidth required (Gbps)
+500	                                               60	                           50	
+```
+
+```
+We calculate bandwidth in bits per second (bps), as shown above. Therefore, the detailed calculation of the above number (200 Gbps) is given below.
+
+500  hours/minute × 60 minutes/hour × 50 MB/minute x 8 bits/60 seconds =200 Gbps
+```
+
+```
+Question
+If 200 Gbps of bandwidth is required for satisfying uploading needs, how much bandwidth would be required to stream videos? Assume each minute of video requires 10 MB of bandwidth on average.
+
+Hint: The upload:view ratio is provided.
+
+Hide Answer
+For every video uploaded, 300 videos are watched. Therefore, the equation becomes this:
+
+total number of viewing hours per minutes ×size in MB of each minute ×view ratio=500 hours/minute x 60 minutes/hour x 10 MB/minute x 300 = 90 TB/minute x 8 bits= 720 Tb/minute = 12 Tbps
+```
+ 
+ [Total bandwidth required by YouTube]
+ 
+ 
 ### Number of servers estimation
+We need to handle concurrent requests coming from 500 million daily active users. Let’s assume that a typical YouTube server handles 8,000 requests per second.
+
+Number of Active Users/Queries handled per server=62,500 servers
+
+[Number of servers required for YouTube]
+
+```
+Note: In a real-world scenario, YouTube’s design requires storage for thumbnails, users’ data, video metadata, users’ channel information, and so on. Since the storage requirement for these data sets will not be significant compared to video files, we ignore it for simplicity’s sake.
+```
+
+
 ## Building blocks we will use
+Now that we have completed the resource estimations, let’s identify the building blocks that will be an integral part of our design for the YouTube system. The key building blocks are given below:
+
+[Building blocks in a high-level design]
+
+
+- Databases are required to store the metadata of videos, thumbnails, comments, and user-related information.
+- Blob storage is important for storing all videos on the platform.
+- A CDN is used to effectively deliver content to end users, reducing delay and burden on end-servers.
+- Load balancers are a necessity to distribute millions of incoming clients requests among the pool of available servers.
+Other than our building blocks, we anticipate the use of the following components in our high-level design:
+
+- Servers are a basic requirement to run application logic and entertain user requests.
+
+- Encoders and transcoders compress videos and transform them into different formats and qualities to support varying numbers of devices according to their screen resolution and bandwidth.
+
+[Components in YouTube's high-level design]
