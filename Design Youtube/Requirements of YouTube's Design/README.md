@@ -12,7 +12,7 @@ We require that our system is able to perform the following functions:
 5. Add comments to videos
 6. View thumbnails
 
-[Representation of the functional and non-functional requirements]
+[Representation of the functional and non-functional requirements](./youtube.jpg)
 
 ### Non-functional requirements
 It’s important that our system also meets the following requirements:
@@ -75,7 +75,7 @@ Try changing the values of Hours and MB per minute to see their impact on storag
 
 The numbers mentioned above correspond to the compressed version of videos. However, we need to transcode videos into various formats for reasons that we will see in the coming lessons. Therefore, we’ll require more storage space than the one estimated above.
 
-[Total storage required by YouTube in a year]
+[Total storage required by YouTube in a year](./storage.jpg)
 
 ```
 Question
@@ -128,7 +128,7 @@ For every video uploaded, 300 videos are watched. Therefore, the equation become
 total number of viewing hours per minutes ×size in MB of each minute ×view ratio=500 hours/minute x 60 minutes/hour x 10 MB/minute x 300 = 90 TB/minute x 8 bits= 720 Tb/minute = 12 Tbps
 ```
  
- [Total bandwidth required by YouTube]
+ [Total bandwidth required by YouTube](./bandwidth.jpg)
  
  
 ### Number of servers estimation
@@ -136,7 +136,7 @@ We need to handle concurrent requests coming from 500 million daily active users
 
 Number of Active Users/Queries handled per server=62,500 servers
 
-[Number of servers required for YouTube]
+[Number of servers required for YouTube](./servers.jpg)
 
 ```
 Note: In a real-world scenario, YouTube’s design requires storage for thumbnails, users’ data, video metadata, users’ channel information, and so on. Since the storage requirement for these data sets will not be significant compared to video files, we ignore it for simplicity’s sake.
@@ -146,7 +146,7 @@ Note: In a real-world scenario, YouTube’s design requires storage for thumbnai
 ## Building blocks we will use
 Now that we have completed the resource estimations, let’s identify the building blocks that will be an integral part of our design for the YouTube system. The key building blocks are given below:
 
-[Building blocks in a high-level design]
+[Building blocks in a high-level design](./bb.jpg)
 
 
 - Databases are required to store the metadata of videos, thumbnails, comments, and user-related information.
@@ -159,4 +159,4 @@ Other than our building blocks, we anticipate the use of the following component
 
 - Encoders and transcoders compress videos and transform them into different formats and qualities to support varying numbers of devices according to their screen resolution and bandwidth.
 
-[Components in YouTube's high-level design]
+[Components in YouTube's high-level design](./c.jpg)
