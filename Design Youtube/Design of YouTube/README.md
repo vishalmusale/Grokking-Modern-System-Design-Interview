@@ -2,7 +2,7 @@
 ## High-level design
 The high-level design shows how we’ll interconnect the various components we identified in the previous lesson. We have started developing a solution to support the functional and non-functional requirements with this design.
 
-[The high-level design of YouTube]
+[The high-level design of YouTube](./sys.jpg)
 
 The workflow for the abstract design is provided below:
 
@@ -34,7 +34,7 @@ Let’s understand the design of APIs in terms of the functionalities we’re pr
 - Like or dislike videos
 - Comment on videos
 
-[API design overview]
+[API design overview](./api.jpg)
 
 ### Upload video
 The POST method can upload a video to the /uploadVideo API:
@@ -160,7 +160,7 @@ comment_text     This refers to the text that is typed by the user on the partic
 ## Storage schema
 Each of the above features in the API design requires support from the database—we’ll need to store the details above in our storage schema to provide services to the API gateway.
 
-[Storage schema]
+[Storage schema](./db.jpg)
 
 ```
 Note: Much of the underlying details regarding database tables that can be mapped to services provided by YouTube have been omitted for simplicity. For example, one video can have different qualities and that is not mentioned in the “Video” table.
@@ -191,7 +191,7 @@ Bigtable: Chang, Fay, et al. “Bigtable: A distributed storage system for struc
 ```
 
 
-[Detailed design of YouTube’s components]
+[Detailed design of YouTube’s components](./c.jpg)
 
 ### Design flow and technology usage
 Now that we understand the purpose of every component, let’s discuss the flow and technology used in different components in the following steps:
@@ -222,6 +222,6 @@ Each new video uploaded to YouTube will be processed for data extraction. We can
 - Categories.
 Each of the JSON files can be referred to as a document. Next, keywords will be extracted from the documents and stored in a key-value store. The key in the key-value store will hold all the keywords searched by the users, while the value in the key-value store will contain the occurrence of each key, its frequency, and the location of the occurrence in the different documents. When a user searches for a keyword, the videos with the most relevant keywords will be returned.
 
-[An abstraction of how YouTube search works]
+[An abstraction of how YouTube search works](./search.jpg)
 
 The approach above is simplistic, and the relevance of keywords is not the only factor affecting search in YouTube. In reality, a number of other factors will matter. The processing engine will improve the search results by filtering and ranking videos. It will make use of other factors like view count, the watch time of videos, and the context, along with the history of the user, to improve search results.
