@@ -92,6 +92,7 @@ D.[D](./6D.jpg)
 1 Which pair of requirements among the following cannot be compromised if we’re asked to design Netflix?
 
 Correct Answer
+
 A)
 Low latency and high availability
 
