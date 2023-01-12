@@ -19,7 +19,7 @@ Until now, we’ve considered encoding one video with different encoding schemes
 
 Let’s understand how the per-segment encoding will work. For any video with dynamic colors and high depth, we’ll encode it differently from a video with fewer colors. This means that a not-so-dynamic segment will be encoded such that it’s compressed more to save additional storage space. Eventually, we’ll have to transfer smaller file sizes and save bandwidth during the deployment and streaming phases.
 
-[Higher quality requiring higher bitrate from left to right]
+[Higher quality requiring higher bitrate from left to right](./bitrate.jpg)
 
 Using the strategy above, we’ll have to encode individual shots of a video in various formats. However, the alternative to this would be storing an entire video (using no segmenting) after encoding it in various formats. If we encode on a per-shot basis, we would be able to optimally reduce the size of the entire video by doing the encoding on a granular level. We can also encode audio in various formats to optimally allow streaming for various clients like TVs, mobile phones, and desktop machines. Specifically, for services like Netflix, audio encoding is more useful because audios are offered in various languages.
 
@@ -37,7 +37,7 @@ So, instead of streaming from our data centers directly, we can deploy chunks of
 PoP is a point where two or more large networks combine to enable communication between their clients
 ```
 
-[Streaming from data center to users through IXP and ISPs]
+[Streaming from data center to users through IXP and ISPs](./encoding.jpg)
 
 We should keep in mind that the caching at the ISP or IXP is performed only for the popular content or moderately popular content because of limited storage capacity. Since our per-shot encoding scheme saves storage space, we’ll be able to serve out more content using the cache infrastructure closer to end users.
 
@@ -68,7 +68,7 @@ YouTube employs machine learning technology in both phases to provide recommenda
 Covington, Paul, Jay Adams, and Emre Sargin. “Deep neural networks for youtube recommendations.” Proceedings of the 10th ACM conference on recommender systems. 2016.
 ```
 
-[YouTube's recommendation engine using two neural networks to filter videos from millions to dozens]
+[YouTube's recommendation engine using two neural networks to filter videos from millions to dozens](./ml.jpg)
 
 ```
 Question 1
@@ -118,12 +118,14 @@ Let’s see how the end user gets the content on their device. Since we have the
 
 However, in the case of non-popular content, the user is served from colocation sites or YouTube’s data center where the content is stored initially. We have already learned how YouTube can reduce latency times by having distributed caches at different design layers.
 
-[Deliver]
+[Deliver](./deliver)
 
 ### Adaptive streaming
 While the content is being served, the bandwidth of the user is also being monitored at all times. Since the video is divided into chunks of different qualities, each of the same time frame, the chunks are provided to clients based on changing network conditions.
 
 As shown below, when the bandwidth is high, a higher quality chunk is sent to the client and vice versa.
+
+[Chunk size in each time frame provided to the client changes according to the bandwidth](./adaptive_streaming.jpg)
 
 The adaptive bitrate algorithm depends on the following four parameters:
 
@@ -132,7 +134,7 @@ The device capabilities of the user.
 Encoding techniques used.
 The buffer space at the client [source: The Networking Channel: Netflix adaptive streaming and more by Renata and TY].
 
-[Parameters affecting adaptive bitrate algorithm]
+[Parameters affecting adaptive bitrate algorithm](./adaptive_streaming2.jpg)
 
 ## Potential follow-up questions
 
