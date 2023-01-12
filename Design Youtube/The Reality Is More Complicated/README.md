@@ -2,6 +2,10 @@
 ## Introduction
 Now that we’ve understood the design well, let’s see how YouTube can optimize the usage of storage and network demands while maintaining good quality of experience (QoE) for the end user.
 
+```
+QoE is the measure of a customer’s satisfaction with the experience of a particular service.
+```
+
 When talking about providing effective service to end users, the following three steps are important:
 
 - Encode: The raw videos uploaded to YouTube have significant storage requirements. It’s possible to use various encoding schemes to reduce the size of these raw video files. Apart from compression, the choice of encoding scheme will also depend on the types of end devices used to stream the video content. Since multiple devices could be used to stream the same video, we may have to encode the same video using different encoding schemes resulting in one raw video file being converted into multiple files each encoded differently. This strategy will result in a good user-perceived experience because of two reasons: users will save bandwidth because the video file will be encoded and compressed to some limit, and the encoded video file will be appropriate for the client for a smooth playback experience.
@@ -29,6 +33,10 @@ As discussed in our design and evaluation sections, we have to bring the content
 3. Internet service providers (ISPs) will have spare bandwidth.
 So, instead of streaming from our data centers directly, we can deploy chunks of popular videos in CDNs and point of presence (PoPs) of ISPs. In places where there is no collaboration possible with the ISPs, our content can be placed in internet exchange point (IXPs). We can put content in IXPs that will not only be closer to users, but can also be helpful in filling the cache of ISP PoPs.
 
+```
+PoP is a point where two or more large networks combine to enable communication between their clients
+```
+
 [Streaming from data center to users through IXP and ISPs]
 
 We should keep in mind that the caching at the ISP or IXP is performed only for the popular content or moderately popular content because of limited storage capacity. Since our per-shot encoding scheme saves storage space, we’ll be able to serve out more content using the cache infrastructure closer to end users.
@@ -37,6 +45,10 @@ Additionally, we can have two types of storage at the origin servers:
 
 1. Flash servers: These servers hold popular and moderately popular content. They are optimized for low-latency delivery.
 2. Storage servers: This type holds a large portion of videos that are not popular. These servers are optimized to hold large storage.
+
+```
+Origin servers: The servers responsible for listening and responding to clients’ requests
+```
 
 ```
 Note: When we transfer streaming content, it can result in the congestion of networks. That is why we have to transfer the content to ISPs in off-peak hours.
@@ -136,7 +148,7 @@ A possible answer could be that the above number will likely change over time. O
 
 3. Question: Why didn’t we discuss and estimate resources for video comments and likes?
 
-Concurrent users’ comments on videos are roughly at the same complexity as designing a messaging system. We’ll discuss that problem elsewhere in the course.
+Concurrent users’ comments on videos are roughly at the same complexity as designing a messaging system. We’ll discuss that problem in System Design: WhatsApp.
 
 4. Question: How to manage unexpected spikes in system load?
 
@@ -153,6 +165,11 @@ There are many audio/video encoding choices, many publicly known and some propri
 7. Question: Cant we use specialized hardware (or accelerators like GPUs) to speed up some aspects of the YouTube computation?
 
 When we estimated the number of servers, we assumed that any server could fulfill any required functionality. In reality, with the slowing of Moore’s law, we have special-purpose hardware available (for example, hardware encoders/decoders, machine-learning accelerators like Tensor Processing Units, and many more). All such platforms need their own courses to do justice to the content. So, we avoided that discussion in this design problem.
+
+```
+Moore’s law was presented by Gordon Moore in 1965, who stated that the number of transistors in an integrated circuit (IC) doubles every year.
+```
+
 
 8. Question: Should compression be performed at the client-side or the server-side during the content uploading stage?
 
