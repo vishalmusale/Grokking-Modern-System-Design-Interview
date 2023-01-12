@@ -106,5 +106,58 @@ Let’s see how the end user gets the content on their device. Since we have the
 
 However, in the case of non-popular content, the user is served from colocation sites or YouTube’s data center where the content is stored initially. We have already learned how YouTube can reduce latency times by having distributed caches at different design layers.
 
+[Deliver]
+
 ### Adaptive streaming
+While the content is being served, the bandwidth of the user is also being monitored at all times. Since the video is divided into chunks of different qualities, each of the same time frame, the chunks are provided to clients based on changing network conditions.
+
+As shown below, when the bandwidth is high, a higher quality chunk is sent to the client and vice versa.
+
+The adaptive bitrate algorithm depends on the following four parameters:
+
+End-to-end available bandwidth (from a CDN/servers to a specific client).
+The device capabilities of the user.
+Encoding techniques used.
+The buffer space at the client [source: The Networking Channel: Netflix adaptive streaming and more by Renata and TY].
+
+[Parameters affecting adaptive bitrate algorithm]
+
 ## Potential follow-up questions
+
+There can be many different aspects of the system design of YouTube as there is more depth in the subject area. Therefore, many questions can arise. Some questions and directions toward their answers are as follows:
+
+1. Question: It is possible to quantify availability by adding numbers like 99.99% availability or 99.999% availability. In that case, what design changes will be required?
+
+This is a hard question. In reality, such numbers are part of a service’s SLA, and they are generated from models or long-term empirical studies. While it is good to know how the above numbers are obtained and how organizations use monitoring to keep availability high, it might be a better strategy to discuss the fault tolerance of the system—what will happen if there are software faults, server failures, full data center failures, and so on. If the system is resilient against faults, that implies the system will have good availability.
+
+2. Question: We assumed some reasonable numbers to come up with broad resource requirements. For example, we said the average length of a video is five minutes. In this case, are we designing for average behavior? What will happen to users who don’t follow the average profile?
+
+A possible answer could be that the above number will likely change over time. Our system design should be horizontally scalable so that with increasing users, the system keeps functioning adequately. Practically, systems might not scale when some aspect of the system increases by an order of magnitude. When some aspects of a system increase by an order of magnitude (for example, 10x), we usually need a new, different design. Cost points of designing 10x and 100x scales are very different.
+
+3. Question: Why didn’t we discuss and estimate resources for video comments and likes?
+
+Concurrent users’ comments on videos are roughly at the same complexity as designing a messaging system. We’ll discuss that problem elsewhere in the course.
+
+4. Question: How to manage unexpected spikes in system load?
+
+A possible answer is that because our design is horizontally scalable, we can shed some load on the public cloud due to its elasticity features. However, public clouds are not infinitely scalable. They often need a priori business contracts that might put a limit on maximum, concurrently allowed resource use at different data centers.
+
+5. Question: How will we deploy a global network to connect data centers and CDN sites?
+
+In practice, YouTube uses Google’s network, which is built for that purpose and peers with many ISPs of the world. It is a fascinating field of study that we have left outside this course for further review.
+
+6. Question: Why isn’t there more detail on audio/video encoding?
+
+There are many audio/video encoding choices, many publicly known and some proprietary. Due to excessive redundancy in multimedia content, encoding is often able to reduce a huge raw format content to a much smaller size (for example, from 600 MB to 30 MB). We have left the details of such encoding algorithms to you if you’re interested in further exploration.
+
+7. Question: Cant we use specialized hardware (or accelerators like GPUs) to speed up some aspects of the YouTube computation?
+
+When we estimated the number of servers, we assumed that any server could fulfill any required functionality. In reality, with the slowing of Moore’s law, we have special-purpose hardware available (for example, hardware encoders/decoders, machine-learning accelerators like Tensor Processing Units, and many more). All such platforms need their own courses to do justice to the content. So, we avoided that discussion in this design problem.
+
+8. Question: Should compression be performed at the client-side or the server-side during the content uploading stage?
+
+We might use some lossless but fast compression (for example, Google Snappy) on the client end to reduce data that needs to be uploaded. This might mean that we’ll need a rich client, or we would have to fall back to plain data if the compressor was unavailable. Both of those options add complexity to the system.
+
+9. Question: Are there any other benefits to making file chunks other than in adaptive bitrates?
+
+We discussed video file chunks in the context of adaptive bit rates only. Such chunks also help to parallelize any preprocessing, which is important to meet real-time requirements, especially for live streams. Parallel processing is again a full-fledged topic in itself, and we’ve left it to you for further exploration.
