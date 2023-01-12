@@ -18,7 +18,9 @@ Consistency and HD video
 
 
 2。Consider the following design to upload content to the Netflix service:
+
 [design](./design.jpg)
+
 A.[A](./2A.jpg)
 
 B.[B](./2B.jpg)
@@ -72,6 +74,7 @@ Uploading to CDN, encoders, and bitrate conversion
 
 
 6. Assume that 100,000 users try to watch a football stream at 1080p in a densely populated city. If the CDN point of presence (PoP) in that area can provide a bandwidth of 300 Gbps for end users, which design best serves the clients without any buffering issues?
+
 A.[A](./6A.jpg)
 
 B.[B](./6B.jpg)
