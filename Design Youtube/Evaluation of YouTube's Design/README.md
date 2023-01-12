@@ -21,7 +21,7 @@ Answer
 Just like with servers, we can use multiple load balancers. Users can be randomly forwarded to different load balancers from the Domain Name System (DNS).
 ```
 
-[How YouTube achieves scalability, availability, and good performance]
+[How YouTube achieves scalability, availability, and good performance](./req.jpg)
 ## Trade-offs
 How YouTube achieves scalability, availability, and good performance
 
@@ -82,11 +82,11 @@ Any infrastructure mentioned above requires some modifications and adaptation to
 
 To resolve the problems above, YouTube has developed a solution called Vitess.
 
-[Vitess system for scalability]
+[Vitess system for scalability](./vitess.jpg)
 
 The key idea in Vitess is to put an abstraction on top of all the database layers, giving the database client the illusion that it is talking to a single database server. The single database in this case is the Vitess system. Therefore, all the database-client complexity is migrated to and handled by Vitess. This maintains the ACID properties because the internal database in use is MySQL. However, we can enable scaling through partitioning. Consequently, we’ll get a MySQL structured database that gives the performance of a NoSQL storage system. At the same time, we won’t have to live with a rich database client (application logic). The following illustration highlights how Vitess is able to achieve both scalability and structure.
 
-[Vitess on the scalability versus structure spectrum]
+[Vitess on the scalability versus structure spectrum](./spectrum.jpg)
 
 One could imagine using techniques like data denormalization instead of the Vitess system. However, data denormalization won’t work because it comes at the cost of reduced writing performance. Even if our work is read-intensive, as the system scales, writing performance will degrade to an unbearable limit.
 ## Web server
