@@ -23,7 +23,7 @@ Let’s understand how the per-segment encoding will work. For any video with dy
 
 Using the strategy above, we’ll have to encode individual shots of a video in various formats. However, the alternative to this would be storing an entire video (using no segmenting) after encoding it in various formats. If we encode on a per-shot basis, we would be able to optimally reduce the size of the entire video by doing the encoding on a granular level. We can also encode audio in various formats to optimally allow streaming for various clients like TVs, mobile phones, and desktop machines. Specifically, for services like Netflix, audio encoding is more useful because audios are offered in various languages.
 
-[A raw video file being encoded into different formats including its audio and subtitles]
+[A raw video file being encoded into different formats including its audio and subtitles](./encoding.jpg)
 
 ## Deploy
 As discussed in our design and evaluation sections, we have to bring the content closer to the user. This has three main advantages:
@@ -37,7 +37,7 @@ So, instead of streaming from our data centers directly, we can deploy chunks of
 PoP is a point where two or more large networks combine to enable communication between their clients
 ```
 
-[Streaming from data center to users through IXP and ISPs](./encoding.jpg)
+[Streaming from data center to users through IXP and ISPs](./streaming.jpg)
 
 We should keep in mind that the caching at the ISP or IXP is performed only for the popular content or moderately popular content because of limited storage capacity. Since our per-shot encoding scheme saves storage space, we’ll be able to serve out more content using the cache infrastructure closer to end users.
 
