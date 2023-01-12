@@ -89,7 +89,7 @@ D.[D](./6D.jpg)
 
 # Answers
 
-1 Which pair of requirements among the following cannot be compromised if we’re asked to design Netflix?
+1. Which pair of requirements among the following cannot be compromised if we’re asked to design Netflix?
 
 Correct Answer
 
@@ -120,7 +120,7 @@ Consistency isn’t the most challenging or desired metric when it comes to stre
 
 
 
-2 Consider the following design to upload content to the Netflix service:
+2. Consider the following design to upload content to the Netflix service:
 
 
 
@@ -152,7 +152,7 @@ Web servers require load balancers before them in practical designs. Moreover, u
 
 
 
-3 Which encoding technique is the most effective in terms of streaming to end users?
+3. Which encoding technique is the most effective in terms of streaming to end users?
 
 A)
 Use a single encoding technique for all types of content to achieve simplicity in design.
@@ -182,7 +182,7 @@ This isn’t true. Encoding helps in the overall optimization.
 
 
 
-4 Adaptive bitrate streaming is a common technique used to provide a good streaming experience to the user. It works by detecting a user’s bandwidth and the CPU capacity of the user’s device in real time, and adjusts the quality of the media stream accordingly.
+4. Adaptive bitrate streaming is a common technique used to provide a good streaming experience to the user. It works by detecting a user’s bandwidth and the CPU capacity of the user’s device in real time, and adjusts the quality of the media stream accordingly.
 
 Considering the above explanation, which diagram explains adaptive bitrate the best?
 
@@ -211,7 +211,7 @@ The encoder converts videos into multiple formats and the streaming server sends
 
 
 
-5 What is the most appropriate sequence from development to end user delivery to stream content?
+5. What is the most appropriate sequence from development to end user delivery to stream content?
 
 Correct Answer
 A)
@@ -238,7 +238,7 @@ First, videos must be encoded and then deployed to CDNs.
 
 
 
-6 Assume that 100,000 users try to watch a football stream at 1080p in a densely populated city. If the CDN point of presence (PoP) in that area can provide a bandwidth of 300 Gbps for end users, which design best serves the clients without any buffering issues?
+6. Assume that 100,000 users try to watch a football stream at 1080p in a densely populated city. If the CDN point of presence (PoP) in that area can provide a bandwidth of 300 Gbps for end users, which design best serves the clients without any buffering issues?
 
 A)
 
