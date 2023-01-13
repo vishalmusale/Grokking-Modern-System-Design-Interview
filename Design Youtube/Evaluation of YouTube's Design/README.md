@@ -100,6 +100,7 @@ One could imagine using techniques like data denormalization instead of the Vite
 A web server is an extremely important component and, with scale, a custom web server can be a viable solution. This is because most commercial or open-source solutions are general purpose and are developed with a wide range of users in mind. Therefore, a custom solution for such a successful service is desirable.
 
 Let’s try an interesting exercise to see which server YouTube currently uses. Click on the terminal below and execute the following command:
+
 ```
 lynx -head -dump http://www.youtube.com | grep ^Server
 ```
