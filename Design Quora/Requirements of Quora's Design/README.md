@@ -126,11 +126,11 @@ Outgoing traffic bandwidth	              160.3	Gbps
 
 ```
 300M×20 questions=6 billion questions are viewed per day.
-Questions viewed per second: 6 x 10^9/86400 ~= 69.4 x 10^3 questions are viewed per second.
-Bandwidth for the textual content of all questions and their answers: 69.4 x 10^3 x 1 x 10^3 x 8 bits = 0.56\ Gbps
-Bandwidth of the 15% of content which contain images per second: 69.4 x 10^3 x 15/100 x 250 x 10^3 x 8 bits = 20.82Gbps
-Bandwidth for the 5% of content that contains video per second: 69.4 x 10^3 x 5/100 x 5 x 10^6 x 8 bits = 138.9Gbps
-Total outgoing traffic bandwidth: 0.56Gbps + 20.82Gbps + 138.9Gbps = 160.3Gbps
+- Questions viewed per second: 6 x 10^9/86400 ~= 69.4 x 10^3 questions are viewed per second.
+- Bandwidth for the textual content of all questions and their answers: 69.4 x 10^3 x 1 x 10^3 x 8 bits = 0.56 Gbps
+- Bandwidth of the 15% of content which contain images per second: 69.4 x 10^3 x 15/100 x 250 x 10^3 x 8 bits = 20.82Gbps
+- Bandwidth for the 5% of content that contains video per second: 69.4 x 10^3 x 5/100 x 5 x 10^6 x 8 bits = 138.9Gbps
+- Total outgoing traffic bandwidth: 0.56Gbps + 20.82Gbps + 138.9Gbps = 160.3Gbps
 We use rounding at each step in this explanation. The answers in the calculator above are slightly different due to rounding.
 ```
 
