@@ -11,7 +11,7 @@ A user should be able to perform the following functionalities:
 - Recommendation system: A user can view their feed, which includes topics they’re interested in. The feed can also include questions that need answers or answers that interest the reader. The system should facilitate user discovery with a recommender system.
 - Ranking answers: We enhance user experience by ranking answers according to their usefulness. The most helpful answer will be ranked highest and listed at the top.
 
-[Functional and non-functional requirements of Quora]
+[Functional and non-functional requirements of Quora](./quora.jpg)
 
 ### Non-functional requirements
 - Scalability: The system should scale well as the number of features and users grow with time. It means that the performance and usability should not be impacted by an increasing number of users.
@@ -48,7 +48,7 @@ We already established in the back-of-the-envelope calculations chapter that we�
 
 Number of daily active users/ RPS of a server= 300 x 10^6/8000=37500
 
-[The estimated number of servers required for Quora]
+[The estimated number of servers required for Quora](./servers.jpg)
 
 ```
 Therefore, the total number of servers required to facilitate 300 million users generating an average of 69,500 requests per second will be 37,500.
@@ -95,6 +95,8 @@ The following are the default calculations:
 ```
 Total storage required for one day = 0.3TB + 11.25TB + 75TB ~= 86.55TB per day
 
+[Summarizing storage requirements of Quora](./storage.jpg)
+
 The daily storage requirements of Quora seem very high. But for service with 300 million DAU, a yearly requirement of 86.55TB \times 365 = 31.6PB
 86.55TB×365=31.6PB is feasible. The practical requirement will be much higher because we have disregarded the storage required for a number of things. For example, non-active (out of 1B) users’ data will require storage.
 
@@ -134,7 +136,7 @@ Outgoing traffic bandwidth	              160.3	Gbps
 We use rounding at each step in this explanation. The answers in the calculator above are slightly different due to rounding.
 ```
 
-[Summarizing the bandwidth requirements of Quora]
+[Summarizing the bandwidth requirements of Quora](./bandwidth.jpg)
 
 Total bandwidth requirement of Quora is equal to:
 
