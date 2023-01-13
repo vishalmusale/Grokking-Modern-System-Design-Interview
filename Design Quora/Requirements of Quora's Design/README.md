@@ -61,16 +61,26 @@ Let’s keep in mind our assumption that 15% of questions have images and 5% hav
 - The collective storage required for the textual content of one question equals 1 KB.
 
 ```
-             Storage Requirements Estimation Calculator
+    Storage Requirements Estimation Calculator
+             
 Questions per user                    	1	per day
+
 Total questions per day	                300	millions
+
 Size of textual content per question  	1	KB
+
 Image size                            	250	KB
+
 Video size	                            5 	MB
+
 Questions containing images	            15	percent
+
 Questions containing videos           	5	percent
+
 Storage for textual content	            0.3	TB
+
 Storage for image content	              11.25	TB
+
 Storage for video content	              75	TB                           
 
 ```
@@ -95,7 +105,7 @@ The bandwidth estimate requires the calculation of incoming and outgoing data th
 - Outgoing traffic: We have assumed that 300 million active users views 20 questions per day, so the total bandwidth requirements can be found in the below calculator:
 
 ```
-              Bandwidth Requirements Estimation Calculator
+    Bandwidth Requirements Estimation Calculator
 Total storage required per day	          86.55	TB
 
 Incoming traffic bandwidth	              8	Gbps
@@ -103,9 +113,13 @@ Incoming traffic bandwidth	              8	Gbps
 Questions viewed per user	                20	per day
 
 Total questions viewed	                  69444	per second
+
 Bandwidth for text of all questions	      0.56	Gbps
+
 Bandwidth for 15% of image content	      20.83	Gbps
+
 Bandwidth for 5% of video content	        138.89	Gbps
+
 Outgoing traffic bandwidth	              160.3	Gbps                     
 
 ```
