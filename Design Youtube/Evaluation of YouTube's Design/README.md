@@ -16,6 +16,7 @@ Our proposed design needs to fulfill the requirements we mentioned in the previo
 
 ```
 The heartbeat protocol is a way of identifying failures in distributed systems. Using this protocol, every node in a cluster periodically reports its health to a monitoring service.
+```
 
 ```
 Variant consistent hashing: Mirrokni, Vahab, Mikkel Thorup, and Morteza Zadimoghaddam. “Consistent hashing with bounded loads.” Proceedings of the Twenty-Ninth Annual ACM-SIAM Symposium on Discrete Algorithms. Society for Industrial and Applied Mathematics, 2018.
@@ -100,5 +101,6 @@ One could imagine using techniques like data denormalization instead of the Vite
 A web server is an extremely important component and, with scale, a custom web server can be a viable solution. This is because most commercial or open-source solutions are general purpose and are developed with a wide range of users in mind. Therefore, a custom solution for such a successful service is desirable.
 
 Let’s try an interesting exercise to see which server YouTube currently uses. Click on the terminal below and execute the following command:
-
+```
 lynx -head -dump http://www.youtube.com | grep ^Server
+```
