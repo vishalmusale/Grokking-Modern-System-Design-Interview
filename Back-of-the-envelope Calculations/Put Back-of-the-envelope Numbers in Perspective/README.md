@@ -58,7 +58,22 @@ Note: The servers described above are not the only types of servers in a data ce
 ```
 The numbers open-sourced by Facebook are outdated as of now. In the table below, we depict the capabilities of a server that can be used in the data centers of today:
 
-[server spec](./server_spec.jpg)
+```
+          Typical Server Specifications
+Component                    Count
+
+Number of sockets             2
+
+Processor                  Intel Xeon X2686
+
+Number of cores            36 cores (72 threads)
+
+RAM                        256 GB
+
+Cache (L3)                 45 MB
+
+Storage capacity           15 TB
+```
 
 The numbers above are inspired by the Amazon bare-metal server, but there can be more or less powerful machines supporting much higher RAM (up to 8 TB), disk storage (up to 24 disks with up to 20 TB each, circa 2021), and cache memory (up to 120 MB).
 
@@ -66,11 +81,46 @@ The numbers above are inspired by the Amazon bare-metal server, but there can be
 ## Standard numbers to remember
 A lot of effort goes into the planning and implementation of a service. But without any basic knowledge of the kind of workloads machines can handle, this planning isn’t possible. Latencies play an important role in deciding the amount of workload a machine can handle. The table below depicts some of the important numbers system designers should know in order to perform resource estimation.
 
-[important latencies](./important_latencies.jpg)
+```
+                             Important Latencies
+Component                                                   Time (nanoseconds)
+
+L1 cache reference                                           0.9 
+
+L2 cache reference                                           2.8 
+
+L3 cache reference                                           12.9 
+
+Main memory reference                                        100 
+
+Compress 1KB with Snzip                                      3,000 (3 microseconds)
+
+Read 1 MB sequentially from memory                           9,000 (9 microseconds)
+
+Read 1 MB sequentially from SSD                              200,000 (200 microseconds)
+
+Round trip within same datacenter                            500,000 (500 microseconds)
+
+Read 1 MB sequentially from SSD with speed ~1GB/sec SSD      1,000,000 (1 milliseconds)
+
+Disk seek                                                    4,000,000 (4 milliseconds)
+
+Read 1 MB sequentially from disk                             2,000,000 (2 milliseconds)
+
+Send packet SF->NYC                                          71,000,000 (71 milliseconds)
+```
 
 Apart from the latencies listed above, there are also throughput numbers measured as queries per second (QPS) that a typical single-server datastore can handle.
 
-[important rates](./important_rates.jpg)
+```
+            Important Rates
+
+QPS handled by MySQL                1000
+
+QPS handled by key-value store      10,000
+
+QPS handled by cache server         100,000–1 M
+```
 
 The numbers above are approximations and vary greatly depending on a number of reasons like the type of query (point and range), the specification of the machine, the design of the database, the indexing, and so on.
 ```
