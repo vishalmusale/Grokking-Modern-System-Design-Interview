@@ -2,7 +2,7 @@
 ## Introduction
 With so much information available online, finding answers to questions can be daunting. That’s why information sharing online has become so widespread.. Search engines help us dig for information across the web. For example, Google’s search engine is intelligent enough to answer questions by extracting information from web pages. While search engines have their advantages, sometimes finding the information we want isn’t a straightforward process. Let’s look at the illustration below to understand how seeking information through search engines is different in comparison to people.
 
-[Comparing information seeking through search engines vs. humans]
+[Comparing information seeking through search engines vs. humans](./infoseeking.jpg)
 
 The illustration above depicts that information-seeking through other people can be more instructive, even if it comes at the cost of additional time. Seeking information through search engines can lead to dead ends because of content unavailability on a topic. Instead, we can ask questions of others.
 
@@ -11,7 +11,7 @@ Quora is a social question-and-answer service that allows users to ask questions
 
 The following plot shows global user search trends for the term “Quora” using Google:
 
-[Popularity of Quora according to Google by year]
+[Popularity of Quora according to Google by year](./popularity.jpg)
 
 More than 300 million monthly active users post thousands of questions daily related to more than 400,000 topics on Quora.
 
