@@ -101,6 +101,4 @@ A web server is an extremely important component and, with scale, a custom web s
 
 Let’s try an interesting exercise to see which server YouTube currently uses. Click on the terminal below and execute the following command:
 
-```
 lynx -head -dump http://www.youtube.com | grep ^Server
-```
