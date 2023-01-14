@@ -111,7 +111,7 @@ The following are important questions for designing a disaster recovery plan:
 - How can we deal with potential loss of data that we couldn’t replicate before the disaster hit?
 The illustration below shows a simple architecture of how a disaster recovery scheme works:
 
-[Disaster recovery management]
+[Disaster recovery management](./recovery.jpg)
 
 The approach is fairly straightforward. The data, application servers, and configurations are backed up in the Amazon S3 storage service in the same zone. Zonal replication between S3 storage facilitates transfer to another zone. Later, the application and database servers can be restored from the S3 storage in another zone.
 
