@@ -16,6 +16,11 @@ Quora was founded in 2009, whereas HBase was developed in 2008 by Apache. Becaus
 
 - Compute servers: A set of compute servers are required to facilitate features like recommendations and ranking based on a set of attributes. These features can be computed in online or offline mode. The compute servers use machine learning (ML) technology to provide effective recommendations. Naturally, these compute servers have a substantially high amount of RAM and processing power.
 
+```
+online mode: Recommendations are computed as soon as they are requested.
+offline mode: Recommendations are computed beforehand and served when requested.
+```
+
 Of course, other basic building blocks like load balancers, monitoring services, and rate limiters will also be part of the design. A high-level design is provided below:
 
 [The high-level design of Quora]
