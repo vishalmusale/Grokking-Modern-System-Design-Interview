@@ -10,6 +10,10 @@ The proposed design serves all the functional requirements. However, it has a nu
 
 - Latency of HBase: Even though HBase allows high real-time throughput, its P99 latency is not among the best. A number of Quora features require the ML engine that has a latency of its own. Due to the addition of the higher latency of HBase, the overall performance of the system degrades over time.
 
+```
+P99 stands for 99th percentile. It means that 99 percent of the queries are entertained below a specific number. For example, P99 of 20 ms means that 99 percent of the queries will be replied to within 20 ms by a server.
+```
+
 The issues highlighted above require changes to the earlier proposed design. Therefore, we’ll make the following adjustments and update our design:
 
 [Detailed design of Quora]
@@ -58,6 +62,10 @@ Note: Quora serves the ML compute engine by extracting features from questions a
 
 ### Kafka
 Our updated design reduces the request load on service hosts by separating not-so-urgent tasks from the regular API calls. For this purpose, we use Kafka, which can disseminate jobs among various queues for tasks such as the view counter (see Sharded Counters), notification system, analytics, and highlight topics to the user. Each of these jobs is executed through cron jobs.
+
+```
+cron jobs: It is also called “cron,” and is a command-line utility that is used to schedule tasks on UNIX-like operating systems.
+```
 
 ### Technology usage
 Services that scale quickly have little time to develop new features and handle an increasing number of requests from users. Such services employ cloud infrastructure to handle spikes in traffic. Also, the choice of programming language is important. Just like we mentioned that YouTube chose Python for faster programming, we can apply the same logic to Quora. In fact, Quora uses the Python Paste web framework.
