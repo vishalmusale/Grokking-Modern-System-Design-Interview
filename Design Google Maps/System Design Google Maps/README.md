@@ -7,7 +7,7 @@ Let’s introduce the problem by assuming that we want to travel from one place 
 - How much time does each path take to get us to our destination?
 A maps application (like Google Maps or Apple Maps) enables users to answer all of the above questions easily. The following illustration shows the paths calculated by Google maps from “Los Angeles, USA” to “New York City, USA.”
 
-[Three paths suggested by Google maps for traveling from Los Angeles to New York]
+[Three paths suggested by Google maps for traveling from Los Angeles to New York](./map.jpg)
 
 ## When do we use a maps service?
 Individuals and organizations rely on location data to navigate around the world. Maps help in these cases:
