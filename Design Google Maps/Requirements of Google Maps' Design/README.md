@@ -11,7 +11,7 @@ The functional requirements of our system are as follows.
 - Recommend the fastest route: Given the source and destination (place names in text), the system should recommend the optimal route by distance and time, depending on the type of transportation.
 - Give directions: Once the user has chosen the route, the system should list directions in text format, where each item in the list guides the user to turn or continue in a specific direction to reach the destination.
 
-[Google Maps functional requirements]
+[Google Maps functional requirements](./fq.jpg)
 
 ### Non-functional requirements
 The non-functional requirements of our system are as follows.
@@ -21,7 +21,7 @@ The non-functional requirements of our system are as follows.
 - Less response time: It shouldn’t take more than two or three seconds to calculate the ETA and the route, given the source and the destination points.
 - Accuracy: The ETA we predict should not deviate too much from the actual travel time.
 
-[Non-functional requirements of Google maps]
+[Non-functional requirements of Google maps](./nfq.jpg)
 
 Note: We’re not getting into the details of how we get the data on roads and layout. Government agencies provide maps, and in some places, Google itself drives mapping vehicles to find roads and their intersection points. Road networks are modeled with a graph data structure, where intersection points are the vertices, and the roads between intersections are the weighted edges.
 
@@ -32,7 +32,7 @@ Some of the challenges that we need to focus on while designing a system like Go
 
 - ETA computation: In an ideal situation with empty roads, it’s straightforward to compute ETA using the distance and the speed of the vehicle we want to ride on. However, we cannot ignore factors like the amount of traffic on the roads and road conditions, which affect the ETA directly. For example, a road under construction, collisions, and rush hours all might slow down traffic. Quantifying the factors above to design our system is not trivial. Therefore, we’ll, categorize the factors above in terms of traffic load to complete our design.
 
-[Factors affecting the ETA computation]
+[Factors affecting the ETA computation](./factors.jpg)
 
 ## Resource estimation
 Let’s estimate the total number of servers, storage, and bandwidth required by the system.
@@ -47,7 +47,7 @@ The number of servers required has been calculated using the below formula:
 
 Number of active users/requests handled per server = 4K servers
 
-[Number of servers required for Google Maps]
+[Number of servers required for Google Maps](./servers.jpg)
 
 ### Storage estimation
 Google Maps is essentially a system with a one-time storage requirement. The road data from many countries has already been added, which is over 20 petabytes as of 2022. Since there are minimal changes on the road networks, the daily storage requirement is going to be negligible for Google Maps. Also, short-term changes in the road network is a small amount of data as compared to the full network data. Therefore, our storage needs don’t change rapidly.
@@ -96,12 +96,12 @@ No. of requests per second      	Response size (KB)	        Bandwidth (Gb/s)
 Total bandwidth =Total requests_second ×Total query_size =18518×2005KB×8 bits=297.03Gbps
 ```
 
-[Summarizing the bandwidth requirements for Google Maps]
+[Summarizing the bandwidth requirements for Google Maps](./bandwidth.jpg)
 
 ## Building blocks we will use
 Now that we’ve completed our estimates of resources required, let’s identify the building blocks that will be an integral part of our design for the Google Maps system. Below, we have the key building blocks:
 
-[Building blocks used in the high-level and detailed design]
+[Building blocks used in the high-level and detailed design](./bb.jpg)
 
 - Load balancers are necessary to distribute user requests among different servers and services.
 - Databases are required to store data in the form of a graph along with metadata information.
