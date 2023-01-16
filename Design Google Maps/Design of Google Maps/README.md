@@ -36,7 +36,7 @@ We’ll use the following components in our design:
 
 The illustration belowshows how the above components are connected.
 
-[A high-level design of a map system]
+[A high-level design of a map system](./design.jpg)
 
 
 ### Workflow
