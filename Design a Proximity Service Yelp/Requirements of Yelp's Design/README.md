@@ -78,8 +78,8 @@ The following calculater computes the total storage we need:
 Type of information	Size     Required by an Entity (in Bytes)	     Count (in Millions)	Total Size (in GBs)
 Place	                               1296	                             500	                       648
 Photo	                                280	                             500	                       140
-Review	                                537	                             1	                       0.54
-User	                                264	                             178	                      46.99
+Review	                                537	                             1                            0.54
+User	                                264	                             178                         46.99
 Total Storage Required                                                                                   835.53            
                             
 ```
