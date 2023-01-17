@@ -44,8 +44,8 @@ Number of daily active users/RPS of a server= 60 million / 8000=7500 servers
        Estimating the Number of Servers
 
 Number of Daily Active Users (in Millions)	  60
-RPS of a Server	                            8000
-Number of Servers Required	                     7500
+RPS of a Server                                  8000
+Number of Servers Required                       7500
 ```
 
 [The number of servers required for Yelp]
@@ -78,9 +78,9 @@ The following calculater computes the total storage we need:
 Type of information	Size     Required by an Entity (in Bytes)	     Count (in Millions)	Total Size (in GBs)
 Place	                               1296	                             500	                       648
 Photo	                                280	                             500	                       140
-Review	                              537	                               1	                             0.54
+Review	                                537	                             1	                       0.54
 User	                                264	                             178	                      46.99
-Total Storage Required		                                                                       835.53            
+Total Storage Required                                                                                   835.53            
                             
 ```
 
