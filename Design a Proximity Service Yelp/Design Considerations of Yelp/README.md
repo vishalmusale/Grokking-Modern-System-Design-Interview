@@ -3,7 +3,7 @@
 We discussed the design, building blocks, components, and the entire workflow of our system in the previous lesson, which brought up a number of interesting questions that now need answering. For example, what approach do we use to find the places, or how do we rank places based on their popularity? This lesson addresses important design concerns like the ones we just mentioned. The table given below summarizes the goals of this lesson.
 
 ```
-Summary of the Lesson
+                                Summary of the Lesson
 Section/Sub-section                     Purpose
 
 Searching                               This process divides the world into segments to optimize the search, so that all nearby sites in a given location and radius can be identified.
