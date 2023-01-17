@@ -140,6 +140,8 @@ Size = 8 + 256 = 264 bytes
 ```
 Note: The INT in the following schema contains an 8-Byte ID that we generate using the unique ID generator.
 ```
+[Storage schema]
+
 ## Design
 Now we’ll discuss the individual building blocks and components used in the design of Yelp and how they work together to complete various functional requirements.
 ### Components
