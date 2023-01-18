@@ -140,7 +140,7 @@ Size = 8 + 256 = 264 bytes
 ```
 Note: The INT in the following schema contains an 8-Byte ID that we generate using the unique ID generator.
 ```
-[Storage schema]
+[Storage schema](./schema.jpg)
 
 ## Design
 Now we’ll discuss the individual building blocks and components used in the design of Yelp and how they work together to complete various functional requirements.
@@ -165,7 +165,7 @@ These are the components of our system:
 
 - Load balancer: A load balancer distributes users’ incoming requests to all the servers uniformly.
 
-[Yelp design]
+[Yelp design](./design.jpg)
 
 ### Workflow
 The user puts in a search request. We find all the relevant places in the given radius, while considering the user’s location (latitude, longitude).
