@@ -87,6 +87,35 @@ Answer
 The data we store for each trip is highly relational, it’s spread over multiple tables, and it must be identical among all tables. MySQL helps to store this relational data and keep it consistent across tables.
 ```
 #### Storage schema
+On a basic level in the Uber application, we need the following tables:
+
+- Riders: We store the rider’s related information, such as ID, name, email, photo, phone number, and so on.
+
+- Drivers: We store the driver’s related information, such as ID, name, email, photo, phone number, vehicle name, vehicle type, and so on.
+
+- Driver_location: We store the driver’s last known location.
+
+- Trips: We store the trip’s related information, such as trip ID, rider ID, driver ID, status, ETA, location of the vehicle, and so on.
+
+The following illustration visualizes the data model:
+
+[The storage schema]
+
 ### Fault tolerance
+For availability, we need to have replicas of our database. We use the primary-secondary replication model. We have one primary database and a few secondary databases. We synchronously replicate data from primary to secondary databases. Whenever our primary database is down, we can use a secondary database as a primary one.
+
+```
+Question
+How will we handle a driver’s slow and disconnecting network?
+
+Answer
+We can use the driver’s phone as local storage and save the state of a trip every few seconds there. All requests and the last recorded state are stored on a local disk, which ensures that they’re preserved even if the application is restarted. Suppose the driver exits the application while there are a few requests waiting to be synchronized with the server. The requests and last known state are loaded from the local disk upon relaunch. When the driver relaunches the application, they remain in the same situation as before. The requests are queued in order to keep the server up to date.
+```
+
 ### Load balancers
+We use load balancers between clients (drivers and riders) and the application servers to uniformly distribute the load among the servers. The requests are routed to the specified server that provides the requested service.
+
 ### Cache
+A million drivers need to send the updated location every four seconds. A million requests to the quadtree service affects how well it works. For this, we first store the updated location in the hash table stored in Redis. Eventually, these values are copied into the persistent storage every 10–15 seconds.
+
+We’ve discussed the detailed design of Uber and how different components work together to fulfill the requirements. In the next lesson, we’ll learn how the payment service works to move the money from riders to drivers and detect frauds.
