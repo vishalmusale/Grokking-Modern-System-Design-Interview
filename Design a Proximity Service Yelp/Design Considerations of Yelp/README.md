@@ -102,9 +102,11 @@ A quadtree is a tree data structure in which each internal node has exactly four
 We start searching from the root node and continue to visit the nodes to find our desired segment. We check every node to see if it has more child nodes. If a node has no more children, then we stop our search because that node is the required one. We also connect each child node with its neighboring nodes with a doubly-linked list. All the child nodes of all the parents nodes are connected through the doubly-linked list. This list allows us to find the neighboring segments when we can move forward and backward as per our requirement. After identifying the segments, we have the required PlaceID values of the places and we can search our database to find more details on them.
 
 Question
+
 Is there an alternative approach to find the neighboring segments?
 
 Answer
+
 We can use the pointers of parent nodes to find the neighboring segments. In each node, we can keep a pointer that points towards the parent node. Every parent node has pointers to its children nodes, so we can use those to find the adjacent leaf nodes. We can extend our search by going up through the parent pointers.
 
 In the following illustration, node F can find its neighboring node, G, by first going to the parent node, B, and then to G.
