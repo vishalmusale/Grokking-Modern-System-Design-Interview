@@ -15,7 +15,7 @@ Note: There can be two types of users: business owners who can add their places 
 
 - Feedback: The users should be able to add a review about a place. The review can consist of images, text, and a rating.
 
-[Functional requirements]
+[Functional requirements](./fr.jpg)
 
 ### Non-functional requirements
 The non-functional requirements of our systems are:
@@ -48,7 +48,7 @@ RPS of a Server                                  8000
 Number of Servers Required                       7500
 ```
 
-[The number of servers required for Yelp]
+[The number of servers required for Yelp](./servers.jpg)
 
 ### Storage estimation
 Let’s calculate the storage we need for our data. Let’s make the following assumptions:
@@ -83,6 +83,9 @@ User	                                264	                             178       
 Total Storage Required                                                                                   835.53            
                             
 ```
+
+[The total amount of storage required by Yelp](./storage.jpg)
+
 
 ### Bandwidth estimation
 To estimate the bandwidth requirements for Yelp, we categorize the bandwidth calculation of incoming and outgoing traffic.
@@ -132,10 +135,12 @@ We need a total of approximately 51 Kbps of incoming traffic and approximately 3
 
 Total bandwidth requirements = 51 Kbps+331 Gbps≈331 Gbps.
 
+[The total bandwidth required by Yelp](./bandwidth.jpg)
+
 ## Building blocks we will use
 The design process of Yelp utilizes many building blocks that have already been discussed in the initial chapters of the course. We’ll consider the following concepts while designing Yelp:
 
-[Building blocks in the high-level design of Yelp]
+[Building blocks in the high-level design of Yelp](./bb.jpg)
 
 - Caching: We’ll use the cache to store information about popular places.
 - Load balancer: We’ll use the load balancer to manage the large amount of requests.
