@@ -34,7 +34,7 @@ From Google Maps, we were able to connect segments and meet the scalability chal
 
 Each segment will be of the size 5×5 miles and will contain a list of places that exist within it. We only search a few segments to locate destinations that are close by. We can use a given location and defined radius to find all the nearby segments and identify sites that are close.
 
-[Partitioning the globe into small segments, where each segment has four coordinates (lat, long) and all segments hold the coordinates of different places]
+[Partitioning the globe into small segments, where each segment has four coordinates (lat, long) and all segments hold the coordinates of different places](./segment.jpg)
 
 ```
 Question 1
@@ -78,7 +78,7 @@ A user may select a radius for searching places that aren’t present in a singl
 
 First, we constrain the number of segments. This reduces the graph size and makes the searching process optimizable. Then, we identify all the relevant locations, compute the distance from the searching point, and show it to the user.
 
-[Searching for locations using segments]
+[Searching for locations using segments](./searching.jpg)
 
 ```
 Question
@@ -104,18 +104,18 @@ We start searching from the root node and continue to visit the nodes to find ou
 Question
 Is there an alternative approach to find the neighboring segments?
 
-Hide Answer
+Answer
 We can use the pointers of parent nodes to find the neighboring segments. In each node, we can keep a pointer that points towards the parent node. Every parent node has pointers to its children nodes, so we can use those to find the adjacent leaf nodes. We can extend our search by going up through the parent pointers.
 
 In the following illustration, node F can find its neighboring node, G, by first going to the parent node, B, and then to G.
 
-[Tree]
+[Tree](./traverse.jpg)
 
 The following slides show how the process of searching for a place works. If a node has the places we need, we stop there. Otherwise, we explore more nodes until we reach our search radius. After finding the node, we query the database for information related to the places and return the desired ones.
 
 The following slides show how the process of searching for a place works. If a node has the places we need, we stop there. Otherwise, we explore more nodes until we reach our search radius. After finding the node, we query the database for information related to the places and return the desired ones.
 
-[steps]
+[steps](./quadtree)
 
 
 ### Storage space estimation for QuadTrees
@@ -182,7 +182,7 @@ We added a few new components to our design. We introduced caches to store popul
 
 The updated design of our system is shown below:
 
-[Updated Yelp design]
+[Updated Yelp design](./updated_design.jpg)
 
 ## Evaluation
 Let’s see how our system design fulfills our requirements.
