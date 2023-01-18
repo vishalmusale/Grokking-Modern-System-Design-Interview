@@ -6,7 +6,7 @@ Uber is an application that provides ride-hailing services to its users. Anyone 
 
 The illustration below shows the number of active users of Uber from the start of 2017 to 2020 (source: Statista):
 
-[statstics]
+[Monthly number of Uber's active users worldwide from 2017 to 2020(by quarter)]
 
 ## How will we design Uber?
 There are many unanswered questions regarding Uber. How does it work? How do drivers connect with riders? These are only two of many. This chapter will design a system like Uber and find the answer to such questions.
