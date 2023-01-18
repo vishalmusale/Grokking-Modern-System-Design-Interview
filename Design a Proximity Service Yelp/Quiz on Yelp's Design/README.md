@@ -116,8 +116,7 @@ The leader will not ask the followers to update the data at once so there won’
 ```
 
 ```
-4
-(Select all that apply.) What will happen if the leader and followers both die simultaneously?
+4 (Select all that apply.) What will happen if the leader and followers both die simultaneously?
 
 Selected Option
 A)
