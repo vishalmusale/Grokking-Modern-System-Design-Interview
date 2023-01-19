@@ -110,7 +110,7 @@ Random aperture                              ✔️                          ✖
 
 Deterministic aperture (discrete ring)       ✔️                          weak                     ✔️
 
-Deterministic aperture (continuous ring)     ✔️                          ✔️                      ✔️
+Deterministic aperture (continuous ring)     ✔️                          ✔️                       ✔️
 ```
 
 
