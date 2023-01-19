@@ -33,14 +33,14 @@ The following are the functional requirements of Twitter:
 
 - Consistency: There’s a possibility that a user on the east coast of the US does not get an immediate status (like, reply, and so on.) update on the Tweet, which is liked or Retweeted by a user on the west coast of the US. However, the user on the west coast of the US needs an immediate status update on his like or reply. An effective technique is needed to offer rapid feedback to the user (who liked someone’s post), then to other specified users in the same region, and finally to all worldwide users linked to the Tweet.
 
-[Non-functional requirements of Twitter]
+[Non-functional requirements of Twitter](./nfr.jpg)
 
 Furthermore, we must identify which essential resources must be estimated in the Twitter design. We used Twitter as an example in our Back-of-the-Envelope chapter, so we won’t repeat that exercise here.
 
 ## Building blocks we will use
 Twitter’s design utilizes the following building blocks that we discussed in the initial chapters.
 
-[Building blocks used in Twitter design]
+[Building blocks used in Twitter design](./bb.jpg)
 
 - DNS is the service that maps human-friendly Twitter domain names to machine-readable IP addresses.
 - Load balancers distribute the read/write requests among the respective services.
