@@ -14,7 +14,7 @@ With the way Twitter has evolved, the only way out was many microservices where 
 ### Client-side load balancing
 In a client-side load balancing technique, there’s no dedicated intermediate load-balancing infrastructure between any two services with a large number of instances. A node requesting a set of nodes for a service has a built-in load balancer. We refer to the requesting node or service as a client. The client can use a variety of techniques to select a suitable instance to request the service. The illustration below depicts the concept of client-side load balancing. Every new arriving service or instance will register itself with a service registry so that other services are aware of its existence
 
-[How client-side load balancing works]
+[How client-side load balancing works](./clients.jpg)
 
 In the diagram above, Service A has to choose a relatively less-burdened instance of Service B. Therefore, it will make use of the load balancer component inside it to choose the most suitable instance of Service B. Using the same client-side load balancing method, Service B will talk to other services. It’s clear that Service A is the client when it is calling Service B, whereas Service B is the client when it is talking to Service C and D. As a result, there will be no central entity doing load balancing. Instead, every node will do load balancing of its own.
 
@@ -49,7 +49,7 @@ Although requests are the key metric, sessions are an important attribute for ac
 ### Request distribution using P2C
 The P2C technique for request distribution gives uniform request distribution as long as sessions are uniformly distributed. In P2C, the system randomly picks two unique instances (servers) against each request, and selects the one with the least amount of load. Let’s look at the illustration below to understand P2C.
 
-[Power of two random choices]
+[Power of two random choices](./power.jpg)
 
 P2C is based on the simple idea that comparison between two randomly selected nodes provides load distribution that is exponentially better than random selection
 
@@ -66,7 +66,7 @@ Obviously, this method is fair because the sessions are evenly distributed. Howe
 
 Solution 2: To solve the problem of scalability with solution 1, Twitter devised another solution called random aperture. This technique randomly chooses a subset of servers for session establishment.
 
-[Random aperture]
+[Random aperture](./random_aperture.jpg)
 
 Of course, random selection will reduce the number of established sessions as we can see in the diagram above. However, the question is, how many servers will be chosen randomly? This is not an easy question to answer and the answer varies, depending on the request concurrency of a client.
 
@@ -80,23 +80,23 @@ Solution 3: We learned from solution 2 that we can scale by subsetting the numbe
 - Minimal disruption occurs if there are any changes in the number of clients or server instances for whatever reason.
 For this solution, we represent clients and servers in a ring with equally distanced intervals, where each object on the ring represents the node or server labeled with a number. The illustration below shows what Twitter refers to as the discrete ring coordinates (that is, a specific point on the ring).
 
-[Ring coordinates]
+[Ring coordinates](./ring.jpg)
 
 Now, we compose client and server rings to derive a relationship between them. We’ve also defined an aperture size of 3. Each client will create a session with three servers in the ring. Clients select a server by circulating clockwise in the ring. This approach is similar to consistent hashing, except that here we guarantee equal distribution of servers across the ring. Let’s see the illustration below where clients have sessions with servers chosen from the given list of servers, respectively.
 
-[Merge client and server ring coordinates]
+[Merge client and server ring coordinates](./merge.jpg)
 
 In the diagram above, client 0 establishes sessions with servers 4, 5, and 0. Client 1 establishes sessions with servers 0, 1, and 2, whereas Client 2 establishes sessions with servers 2, 3, and 4. When the aperture rotates or moves in the given subset of arrays of the same size, each client’s service has new servers available to create sessions. The number of sessions established per server is shown in the figure below.
 
-[Number of sessions established per server]
+[Number of sessions established per server](./sessions.jpg)
 
 We can see that there’s no idle server or server with a high load in the histogram graph above. Thus, we achieved a fair distribution for the clients belonging to the same service. It’s clear that we’ve half resolved the problem by improving the session distribution among servers as compared to the random aperture (solution 02). However, the problem of unfair distribution can escalate as the number of clients grows. In that case, some servers will get crowded when more than one client (service) talks to the back-end servers. Let’s see the illustration below to understand the problem.
 
-[Two different clients creating session with backend servers]
+[Two different clients creating session with backend servers](./2clients.jpg)
 
 The illustration above depicts that the problem compounded as we increased the number of clients (services). The solution is continuous ring coordinates where we derive relationships between clients and servers using overlapping ring slices, rather than specific points on the rings. The important thing here is that the overlapping of rings can be partial since servers on the ring may not have enough instances to divide among the clients equally. Let’s look at the illustration below.
 
-[Overlapping among clients' services and servers]
+[Overlapping among clients' services and servers](./overlapping.jpg)
 
 The illustration above shows that clients 0 and 1 (symmetrically) share the same server (server 1). It means that there is fractional overlapping concerning the ring coordinates. However, this overlapping can lead to asymmetric sharing as well. Symmetric or asymmetric, the load balancing can be done through P2C. For instance, in the diagram above, servers 1 and 3 will receive half the load that server 2 gets. This means that a server can receive more or less load, depending on its overlapped slice size with a client.
 
