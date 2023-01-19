@@ -29,7 +29,7 @@ Double-entry bookkeeping, also known as, double-entry accounting, is a method of
 ## Design
 Let’s look at the design of the payment platform in Uber and learn how different components work together to complete the transactions:
 
-[The payment platform in Uber]
+[The payment platform in Uber](./payment_platform.jpg)
 
 The key components used in the payment service are as follows:
 
@@ -61,7 +61,7 @@ Kafka is an open-source stream-processing software platform. It’s the primary 
 Stream processing is a computer programming paradigm that simplifies parallel software and hardware by restricting the parallel computation that can be performed. Given a sequence of data (a stream), a series of operations (kernel functions) is applied to each element in the stream. Source: Wikipedia
 ```
 
-[Payment service with Kafka]
+[Payment service with Kafka](./payment_service.jpg)
 
 The order creator gets a business event—for example, the trip is finished. The order creator creates the money movement information and the metadata. This order creator publishes that information to Kafka. Kafka processes that order and sends it to the order processor. The order processor then takes that information from Kafka, processes it, and sends it as intent to Kafka. From that, the order processor again processes and contacts the PSP. The order processor then takes the answer from PSP and transmits it to Kafka as a result. The result is then saved by the order writer.
 
@@ -103,7 +103,7 @@ The following list of eight fraudulent activities is taken from: https://www.ube
 ### RADAR
 Uber introduced RADAR, a human-assisted AI fraud detection and mitigation solution to handle the discussed scenarios of fraud. The RADAR system detects fraud by analyzing the activity time series of the payment system. It then generates a rule for it and stops it from further processing. This proactive approach can help to detect unseen fraud in real time. This detection model also uses human knowledge for continuous improvements. Here, we’ll briefly discuss how RADAR works:
 
-[The RADAR fraud detection solution]
+[The RADAR fraud detection solution](./radar.jpg)
 
 RADAR recognizes the beginning of a fraud attempt and creates a rule to prevent it. The fraud analyst is involved in the next step. They review the rule and approve or reject it if required. They then send feedback (approved or not approved) to the protection system. The feedback is also sent to the fraud detection system by the fraud analysts to improve detection.
 
