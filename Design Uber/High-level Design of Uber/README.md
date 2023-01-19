@@ -18,12 +18,12 @@ Before diving deep into the design, let’s understand how our application works
 
   - The driver refuses the ride request. The rider restarts from step 2 and rematches to another driver.
   
-[Rides]  
+[Rides](./uber)
 
 ## High-level design of Uber
 At a high level, our system should be able to take requests for a ride from the rider and return the matched driver information and trip information to the rider. It also regularly takes the driver’s location. Additionally, it returns the trip and rider information to the driver when the driver is matched to a rider.
 
-[High-level design]
+[High-level design](./hld.jpg)
 
 ## API design
 Let’s discuss the design of APIs according to the functionalities we provide. We’ll design APIs to translate our feature set into technical specifications.
