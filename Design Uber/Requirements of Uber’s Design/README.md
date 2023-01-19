@@ -149,7 +149,7 @@ Note: We can adjust the values in the table to see how the estimations change.
 ## Building blocks we will use
 The design of Uber utilizes the following building blocks:
 
-[Building blocks in high-level design of Uber]
+[Building blocks in high-level design of Uber](./bb.jpg)
 
 - Databases store the metadata of riders, drivers, and trips.
 - A cache stores the most requested data for quick responses.
