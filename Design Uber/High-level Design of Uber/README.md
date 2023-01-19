@@ -109,10 +109,8 @@ confirmPickup(driverID, riderID, timestamp)
 ```
 Parameter      Description
 
-timestamp
-
-The time at which the driver picked up the rider
-
+timestamp      The time at which the driver picked up the rider
+```
 The confirmPickup API is used to determine when the driver has picked up the rider.
 
 ### Show trip updates
