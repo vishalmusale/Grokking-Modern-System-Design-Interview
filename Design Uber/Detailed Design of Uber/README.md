@@ -1,7 +1,7 @@
 # Detailed Design of Uber
 Let’s look at the detailed design of our Uber system and learn how the various components work together to offer a functioning service:
 
-[The detailed design of Uber]
+[The detailed design of Uber](./dd.jpg)
 
 ## Components
 Let’s discuss the components of our Uber system design in detail.
@@ -24,6 +24,8 @@ To overcome the above problem, we can use a hash table to store the latest posit
 A quadtree is a tree data structure in which each internal node has exactly four children. Quadtrees are the two-dimensional analog of octrees and are most often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions. The data associated with a leaf cell varies by application, but the leaf cell represents a “unit of interesting spatial information”. Source: Wikipedia
 ```
 
+[Updating driver's location](./driver's_location.jpg)
+
 ### Request vehicle
 The rider contacts the request vehicle service to request a ride. The rider adds the drop-off location here. The request vehicle service then communicates with the find driver service to book a vehicle and get the details of the vehicle using the location manager service.
 
@@ -40,7 +42,7 @@ The ETA service deals with the estimated time of arrival. It shows riders the pi
 - Compute the time required to travel the route.
 The whole road network is represented as a graph. Intersections are represented by nodes, while edges represent road segments. The graph also depicts one-way streets, turn limitations, and speed limits.
 
-[Graph representation]
+[Graph representation](./presentation.jpg)
 
 To identify the shortest path between source and destination, we can utilize routing algorithms such as Dijkstra’s algorithm. However, Dijkstra, or any other algorithm that operates on top of an unprocessed graph, is quite slow for such a system. Therefore, this method is impractical at the scale at which these ride-hailing platforms operate.
 
@@ -50,7 +52,7 @@ To resolve these issues, we can split the whole graph into partitions. We prepro
 Contraction hierarchies is a speed-up method optimized to exploit the properties of graphs representing road networks. The speed-up is achieved by creating shortcuts in a preprocessing phase, which are then used during a shortest-path query to skip over unimportant vertices. Source: Wikipedia
 ```
 
-[Partitioning the graph]
+[Partitioning the graph](./partitions.jpg)
 
 Once we determine the best route, we calculate the expected time to travel the road segment while accounting for traffic. The traffic data will be the edge weights between the nodes.
 
@@ -59,7 +61,7 @@ We use a machine learning component named DeepETA to deliver an immediate improv
 
 We also use a routing engine that uses real-time traffic information and map data to predict an ETA to traverse the best path between the source and the destination. We use a post-processing ML model that considers spatial and temporal parameters, such as the source, destination, time of the request, and knowledge about real-time traffic, to forecast the ETA residual.
 
-[DeepETA]
+[DeepETA](./deepeta.jpg)
 
 ### Database
 Let’s select the database according to our requirements:
@@ -102,7 +104,7 @@ On a basic level in the Uber application, we need the following tables:
 
 The following illustration visualizes the data model:
 
-[The storage schema]
+[The storage schema](./schema.jpg)
 
 ### Fault tolerance
 For availability, we need to have replicas of our database. We use the primary-secondary replication model. We have one primary database and a few secondary databases. We synchronously replicate data from primary to secondary databases. Whenever our primary database is down, we can use a secondary database as a primary one.
