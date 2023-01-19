@@ -72,6 +72,11 @@ Our system should never be down.
 We’ve already discussed the various database types and their specifications in the Database chapter. So, according to our understanding and requirements (high availability, high scalability, and fault tolerance), we can use Cassandra to store the driver’s last known location and the trip information after the trip has been completed, and there will be no updates to it.
 
 We can use a MySQL database to store trip information while it’s in progress. We use MySQL for in-progress trips for frequent updates since the trip information is relational, and it needs to be consistent across tables. We use Cassandra because the data we store is enormous and it increases continuously.
+
+```
+Cassandra is a columnar database, which is a type of NoSQL database designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure. Source: Wikipedia
+```
+
 ```
 Note: Recently, Uber migrated their data storage to Google Cloud Spanner. It provides global transactions, strongly consistent reads, and automatic multisite replication and failover features.
 ```
