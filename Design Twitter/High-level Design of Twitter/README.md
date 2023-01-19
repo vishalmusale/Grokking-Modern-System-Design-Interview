@@ -2,7 +2,7 @@
 ## User-system interaction
 Let’s begin with the high-level design of our Twitter system. We’ll initially highlight and discuss the building blocks, as well as other components, in the context of the Twitter problem briefly. Later on, we’ll dive deep into a few components in this chapter.
 
-[Twitter components]
+[Twitter components](./components.jpg)
 
 - Users post Tweets delivered to the server through the load balancer. Then, the system stores it in persistent storage.
 
