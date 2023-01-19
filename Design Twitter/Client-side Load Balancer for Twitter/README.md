@@ -30,6 +30,14 @@ Many real-world applications like Twitter, Yelp, Netflix, and others use client-
 ## Client-side load balancing in Twitter
 Twitter uses a client-side load balancer referred to as deterministic aperture that is part of a larger RPC framework called Finagle. Finagle is a protocol-agnostic, open-source, and asynchronous RPC library.
 ```
+Aperture specifies the number of sessions to be made with the calling service.
+```
+
+```
+Protocol-agnostic systems are protocol-independent such that it enables the communication between a variety of protocols.
+```
+
+```
 Note: Consider the following question. What does the client-side load balancer of Twitter balance on? That is, what parameters are used to fairly balance the load across different servers?
 ```
 Twitter primarily uses two distributions to measure the effectiveness of a load balancer:
@@ -44,6 +52,10 @@ The P2C technique for request distribution gives uniform request distribution as
 [Power of two random choices]
 
 P2C is based on the simple idea that comparison between two randomly selected nodes provides load distribution that is exponentially better than random selection
+
+```
+See “The power of two choices in randomized load balancing” by M. Mitzenmacher.
+```
 
 Now that we’ve established how to distribute requests fairly, let’s explore different techniques of session distribution.
 
