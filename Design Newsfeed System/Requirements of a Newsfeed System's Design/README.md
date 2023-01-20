@@ -36,8 +36,8 @@ We can tweak the estimated numbers and calculate the storage for our desired num
 ```
            Storage Estimation for the Users' Metadata
 Number of users (in billion)	                     1
-Required storage for one users' metadata (in KBs)	50
-Total storage required for all users (in TBs)	    50
+Required storage for one users' metadata (in KBs)    50
+Total storage required for all users (in TBs)        50
 ```
 
 2. Textual post’s storage estimation: All posts could contain some text, we assume it’s 50KB on average. The storage estimation for the top 200 posts for 500 million users would be:
@@ -71,9 +71,9 @@ DAU/ServerRPS = 500M/8000 = 62500 servers.
 
 ```
            Servers Estimation
-Number of active users (in million)	  500
+Number of active users (in million)        500
 RPS of a server	                     8000
-Number of servers required	        62500
+Number of servers required                62500
 ```
 
 ## Building blocks we will use
