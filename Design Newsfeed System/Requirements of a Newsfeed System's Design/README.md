@@ -24,7 +24,7 @@ Let’s assume that each daily active user opens the application (or social medi
 
 500M×10=5 billions request per day ≈58K requests per second.
 
-[Traffic estimation for the newsfeed system]
+[Traffic estimation for the newsfeed system](./traffic.jpg)
 
 ### Storage estimation
 Let’s assume that the feed will be generated offline and rendered upon a request. Also, we’ll precompute the top 200 posts for each user. Let’s calculate storage estimates for users’ metadata, posts containing text, and media content.
@@ -52,7 +52,7 @@ Total storage required for 500 million users’ posts: 112MB×500M=56PB
 
 So we’ll need at least 56PB of blob storage to store the media content.
 
-[Storage required for 500 million active users per day (each with approx. 200 posts) by newsfeed system]
+[Storage required for 500 million active users per day (each with approx. 200 posts) by newsfeed system](./storage.jpg)
 
 ```
                   Storage Estimation of Posts Containing Text and Media Content
@@ -67,7 +67,7 @@ Total required media content storage for active users (in PBs)     56
 Considering the above traffic and storage estimation, let’s estimate the required number of servers for smooth operations. Recall that a single typical server can serve 8000 requests per second (RPS). Since our system will have approximately 500 million daily active users (DAU). Therefore, according to estimation in Back-of-the-Envelope Calculations chapter, the number of servers we would require is:
 DAU/ServerRPS = 500M/8000 = 62500 servers.
 
-[Number of servers required for the newsfeed system]
+[Number of servers required for the newsfeed system](./servers.jpg)
 
 ```
            Servers Estimation
@@ -78,6 +78,8 @@ Number of servers required                62500
 
 ## Building blocks we will use
 The design of newsfeed system utilizes the following building blocks:
+
+[The building blocks to design a newsfeed system](./bb.jpg)
 
 - Database(s) is required to store the posts from different entities and the generated personalized newsfeed. It is also used to store users’ metadata and their relationships with other entities, such as friends and followers.
 - Cache is an important building block to keep the frequently accessed data, whether posts and newsfeeds or users’ metadata.
