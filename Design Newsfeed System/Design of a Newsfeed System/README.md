@@ -82,6 +82,10 @@ We use a graph database to store relationships between users, friends, and follo
 2. For edges that denotes relationships among them
 Therefore, we follow a relational schema for the graph store, as shown in the following figure. The schema uses the PostgreSQL JSON datatype to store the properties of each vertex (user) or edge (relationship).
 
+```
+In the property graph model, connections (edges) carry a name and some properties that represent the relationship between two entities.
+```
+
 An alternative representation of a User can be shown in the graph database below. Where the Users_ID remains the same and attributes are stored in a JSON file format.
 
 [Schema of the graph database to hold relationships between users](./user_relationship.jpg)
