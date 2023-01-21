@@ -16,6 +16,10 @@ To limit the scope of the problem, we’ll focus on the following functional and
 
 - Low latency: The system should provide newsfeeds in real-time. Hence, the maximum latency should not be greater than 2 seconds.
 
+```
+The PACELC theorem is an extension of the CAP theorem that states, in the event of network Partition, one should choose between Availability or Consistency; else, choose between Latency and Consistency.
+```
+
 ## Resource estimation
 Let’s assume the platform for which the newsfeed system is designed has 1 billion users per day, out of which, on average, 500 million are daily active users. Also, each user has 300 friends and follows 250 pages on average. Based on the assumed statistics, let’s look at the traffic, storage, and servers estimation.
 
