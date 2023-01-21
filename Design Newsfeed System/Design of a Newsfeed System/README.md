@@ -10,7 +10,7 @@ Primarily, the newsfeed system is responsible for the following two tasks:
 
 Let’s move to the high-level design of our newsfeed system. It consists of the above two essential parts, shown in the following figure:
 
-[High-level design of the Newsfeed system]
+[High-level design of the Newsfeed system](./hld.jpg)
 
 Let’s discuss the main components shown in the high-level design:
 
@@ -74,7 +74,7 @@ The database relations for the newsfeed system are as follows:
 
 - Media: The information about the media content is stored in this relation.
 
-[The database schema for the newsfeed system]
+[The database schema for the newsfeed system](./schema.jpg)
 
 We use a graph database to store relationships between users, friends, and followers. For this purpose, we follow the property graph model. We can think of a graph database consisting of two relational tables:
 
@@ -84,11 +84,11 @@ Therefore, we follow a relational schema for the graph store, as shown in the fo
 
 An alternative representation of a User can be shown in the graph database below. Where the Users_ID remains the same and attributes are stored in a JSON file format.
 
-[Schema of the graph database to hold relationships between users]
+[Schema of the graph database to hold relationships between users](./user_relationship.jpg)
 
 The following figure demonstrates how graph can be represented using the relational schema:
 
-[A graph between two users consisting of two vertices and an edge]
+[A graph between two users consisting of two vertices and an edge](./relationship.jpg)
 
 ## Detailed design
 Let’s explore the design of the newsfeed system in detail.
@@ -113,7 +113,7 @@ The following steps are performed in sequence to generate a newsfeed for Alice:
 6. In the end, whenever Alice reaches the end of her timeline, the next top N posts are fetched to her screen from the newsfeed cache.
 The process is illustrated in the following figure:
 
-[Working of the newsfeed generation service]
+[Working of the newsfeed generation service](./newsfeed_generation.jpg)
 
 ```
 Question
@@ -136,7 +136,7 @@ In the last step, the fully constructed newsfeed is sent to the client (Alice) u
 Suppose if our service receives billions of requests at once and the system starts generating live newsfeeds. This situation would put an enormous number of users on hold and could crash servers. To avoid this, we can assign dedicated servers that will continuously rank and generate newsfeeds and store them in the newsfeed database and memory. Therefore, upon a request for new posts from a user, our system will provide the pre-generated feeds.
 ```
 
-[The newsfeed publishing service in action]
+[The newsfeed publishing service in action](./newfeed_publishing.jpg)
 
 ```
 Question
@@ -157,7 +157,7 @@ In our design, the newsfeed ranking service consists of these algorithms working
 - Choose topics on which a user spent more time.
 The ranking system considers all the above points to predict relevant and important posts for a user.
 
-[The ranked newsfeeds are stored in the cache servers]
+[The ranked newsfeeds are stored in the cache servers](./ranked_newsfeed.jpg)
 
 ### Posts ranking and newsfeed construction
 The post database contains posts published by different users. Assume that there are 10 posts in the database published by 5 different users. We aim to rank only 4 posts out of 10 for a user (say Bob) who follows those five different users. We perform the following to rank each post and create a newsfeed for Bob:
@@ -169,7 +169,7 @@ The post database contains posts published by different users. Assume that there
 5. The top 4 posts are combined and presented on Bob’s timeline in decreasing order of the score assigned.
 The following figure shows the top 4 posts published on Bob’s timeline:
 
-[A newsfeed consisting of top 4 posts based on the relevance scores]
+[A newsfeed consisting of top 4 posts based on the relevance scores](./newsfeed_example.jpg)
 
 Newsfeed ranking with various machine learning and ranking algorithms is a computationally intensive task. In our design, the ranking service ranks posts and constructs newsfeeds. This service consists of big-data processing systems that might utilize specialized hardware like graphics processing units (GPUs) and tensor processing units (TPUs).
 ```
@@ -182,6 +182,6 @@ This implies that we need enormous computational power and sophisticated learnin
 ## Putting everything together
 The following figure combines all the services related to the detailed design of the newsfeed system:
 
-[The detailed design of newsfeed system]
+[The detailed design of newsfeed system](./detailed_design.jpg)
 
 In this lesson, we discussed the design of the newsfeed system, its database schema, and the newsfeed ranking system. In the next lesson, we’ll evaluate our system’s requirements.
