@@ -59,7 +59,7 @@ So we’ll need at least 56PB of blob storage to store the media content.
 Number of active users (in million)                               500
 Maximum allowed text storage per post (in KBs)                     50
 Number of precomputed posts per user (top N)                      200
-Storage required for textual posts (in PBs)	                       5
+Storage required for textual posts (in PBs)                         5
 Total required media content storage for active users (in PBs)     56
 ```
 
