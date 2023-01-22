@@ -2,6 +2,8 @@
 ## High-level design
 Our system should allow us to upload, view, and search images and videos at a high level. To upload images and videos, we need to store them, and upon fetching, we need to retrieve the data from the storage. Moreover, the users should also be allowed to follow each other.
 
+[The high-level design of Instagram](./hld.jpg)
+
 ## API design
 This section describes APIs invoked by the users to perform different tasks (upload, like, and view photos/videos) on Instagram. We’ll implement REST APIs for these tasks. Let’s develop APIs for each of the following features:
 
@@ -114,7 +116,7 @@ We’ll store the photos and videos in a blob store (like S3) and save the path 
 ```
 The following illustration visualizes the data model:
 
-[The Data model of Instagram]
+[The Data model of Instagram](./model.jpg)
 
 ### Data estimation
 
