@@ -21,6 +21,10 @@ The read requests are more than write requests and it takes time to upload the c
 
 We also need to cache the data to handle millions of reads. It improves the user experience by making the fetching process fast. We’ll also opt for lazy loading, which minimizes the client’s waiting time. It allows us to load the content when the user scrolls and therefore save the bandwidth and focus on loading the content the user is currently viewing. It improves the latency to view or search a particular photo or video on Instagram.
 
+```
+Lazy loading contributes to efficiency in the program’s operation. It is ideal in use cases where network content is accessed and initialization times are to be kept at a minimum, such as in the case of web pages. For example, deferring the loading of images on a web page until they are needed can make the initial display of the web page faster. Source: Wikipedia
+```
+
 The updated design is as follows:
 
 [Various operations on photos]
