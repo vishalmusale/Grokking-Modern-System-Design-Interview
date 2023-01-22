@@ -4,7 +4,7 @@ Instagram is a free social networking application that allows users to post phot
 
 The expansion in the number of users requires more resources (servers, databases, and so on) over time. Knowing the users’ growth rate helps us predict the resources to scale our system accordingly. The following illustration shows the Instagram user base in different countries as of January 2022 (source: Statista).
 
-[Countries with the most Instagram users]
+[Countries with the most Instagram users](./countries.jpg)
 
 ## How will we design Instagram?
 We have divided the design of Instagram into four lessons:
