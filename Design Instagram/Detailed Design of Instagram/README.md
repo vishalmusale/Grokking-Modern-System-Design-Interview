@@ -10,7 +10,7 @@ Let’s add a few more components to our design:
 
 - Blob storage: To store the photos and videos uploaded by the users.
 
-[Adding components to design]
+[Adding components to design](./components.jpg)
 
 ## Upload, view, and search a photo
 The client requests to upload the photo, load balancer passes the request to any of the application servers, which adds an entry to the database. An update that the photo is stored successfully is sent to the user. If an error is encountered, the user is communicated about it as well.
@@ -27,7 +27,7 @@ Lazy loading contributes to efficiency in the program’s operation. It is ideal
 
 The updated design is as follows:
 
-[Various operations on photos]
+[Various operations on photos](./photos.jpg)
 
 ## Generate a timeline
 Now our task is to generate a user-specific timeline. Let’s explore various approaches and the advantages and disadvantages to opt for the appropriate strategy.
@@ -37,7 +37,7 @@ When a user opens their Instagram, we send a request for timeline generation. Fi
 
 We can substantially reduce user-perceived latency by generating the timeline offline. For example, we define a service that fetches the relevant data for the user before, and as the person opens Instagram, it displays the timeline. This decreases the latency rate to show the timeline. Let’s take a look at the slides below to understand the problem and its solution.
 
-[Pull]
+[Pull](./pull)
 
 ```
 Question
@@ -52,7 +52,7 @@ In a push approach, every user is responsible for pushing the content they poste
 
 Now we only need to fetch the data that is pushed towards that particular user to generate the timeline. The push approach has stopped a lot of requests that return empty results when followed users have no post in a specified time.
 
-[Push-based approach]
+[Push-based approach](./push.jpg)
 
 ```
 Question
@@ -80,7 +80,7 @@ We’ll also use CDN (content delivery network) in our design. We can keep image
 
 The final design is given below:
 
-[The final design of Instagram]
+[The final design of Instagram](./final.jpg)
 
 ```
 Question
