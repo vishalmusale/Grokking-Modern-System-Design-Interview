@@ -8,7 +8,7 @@ We store the tasks in a persistent distributed database and push the tasks into 
 ## Scalability
 Our task scheduler provides scalability because the task submitter is distributed in our design. We can add more nodes to the cluster to submit an increasing number of tasks. The tasks are then saved into a distributed relational database, which is also scalable. The tasks from RDB are then pushed to a distributed queue, which can scale with an increasing number of tasks. We can add more queues for different types of tasks. We can also add more resources depending on the resource-to-demand ratio.
 
-[Non-functional requirements fulfilled by our task scheduler system]
+[Non-functional requirements fulfilled by our task scheduler system](./evaluation.jpg)
 
 ## Fault tolerance
 A task is not removed from the queue the first time it is sent for execution. If the execution fails, we retry for the maximum number of allowed attempts. If the task contains an infinite loop, we kill the task after some specified time and notify the user.
