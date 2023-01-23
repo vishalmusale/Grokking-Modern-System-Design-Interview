@@ -13,7 +13,7 @@ The functional requirements of the distributed task scheduler are as follows:
 - Release resources: After successfully executing a task, the system should take back the resources assigned to the task.
 - Show task status: The system should show the users the current status of the task.
 
-[Functional requirements of the distributed task scheduler]
+[Functional requirements of the distributed task scheduler](./fr.jpg)
 
 ### Non-functional requirements
 The non-functional requirements of the distributed task scheduler are as follows:
@@ -23,14 +23,14 @@ The non-functional requirements of the distributed task scheduler are as follows
 - Scalability: The system should be able to schedule and execute an ever-increasing number of tasks per day. Fault-tolerance: The system must be fault-tolerant by providing services uninterrupted despite faults in one or more of its components.
 - Bounded waiting time: This is how long a task needs to wait before starting execution. We must not execute tasks much later than expected. Users shouldn’t be kept on waiting for an infinite time. If the waiting time for users crosses a certain threshold, they should be notified.
 
-[Non-functional requirements of distributed task scheduler]
+[Non-functional requirements of distributed task scheduler](./nfr.jpg)
 
 So far in this lesson, we have learned about task schedulers in general and distinguished between centralized and distributed task schedulers. Lastly, we listed the requirements of the distributed task scheduler system.
 
 ### Building blocks we will use
 We’ll utilize the following building blocks in the design of our task scheduling system:
 
-[Building blocks of a task scheduler]
+[Building blocks of a task scheduler](./bb.jpg)
 
 - Rate limiter is required to limit the number of tasks so that our system is reliable.
 - A sequencer is needed to uniquely identify tasks.
