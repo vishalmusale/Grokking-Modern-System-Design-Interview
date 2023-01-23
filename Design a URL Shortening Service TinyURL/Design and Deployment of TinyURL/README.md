@@ -208,5 +208,5 @@ This technique also helps availability. The node generating short URLs will no l
 
 The above part explains the post-processing of a custom short URL association. Some further details include the following:
 
-Once we generate IDs, we put them in the unused list. As soon as we use an ID from the unused list, we put it in the used list. This eliminates the possibility of duplicate association.
-As encoding guarantees unique mapping between base-10 and base-58, no two long URLs will have the same short URL.
+1. Once we generate IDs, we put them in the unused list. As soon as we use an ID from the unused list, we put it in the used list. This eliminates the possibility of duplicate association.
+2. As encoding guarantees unique mapping between base-10 and base-58, no two long URLs will have the same short URL.
