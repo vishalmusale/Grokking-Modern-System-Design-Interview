@@ -13,7 +13,7 @@ Our design uses global server load balancing (GSLB) to handle our system traffic
 
 We also apply a limit on the requests from clients to secure the intrinsic points of failures. To protect the system against DoS attacks, we use rate limiters between the client and web servers to limit each user’s resource allocation. This will ensure a good and smooth traffic influx and mitigate the exploitation of system resources.
 
-[Guarantees provided by our URL shortening service]
+[Guarantees provided by our URL shortening service](./e.jpg)
 
 ### Scalability
 Our design is scalable because our data can easily be distributed among horizontally sharded databases. We can employ a consistent hashing scheme to balance the load between the application and database layers.
