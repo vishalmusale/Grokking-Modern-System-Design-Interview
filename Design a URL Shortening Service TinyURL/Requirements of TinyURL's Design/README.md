@@ -39,7 +39,7 @@ The following two problems highlight the necessity of producing non-serial, unpr
 Hence, randomly assigning unique IDs deprives the attackers of such system insights, which are needed for enumerating and compromising the user’s private data.
 ```
 
-[Functional and non-functional requirements]
+[Functional and non-functional requirements](./req.jpg)
 
 ## Resource estimation
 It’s better to have realistic estimations at the start. For instance, we might need to change them in the future based on the design modifications. Let’s make some assumptions to complete our estimation.
@@ -68,7 +68,7 @@ Total number of requests     12 Billion
 Total storage                6 TB     
 ```
 
-[Total storage required by the URL shortening service in 5 years]
+[Total storage required by the URL shortening service in 5 years](./storage.jpg)
 
 ### Query rate estimation
 Based on the estimations above, we can expect 20 billion redirection requests per month.
@@ -97,7 +97,7 @@ Redirection requests: Since the expected rate would be 20K URLs redirections per
 
 7.6 K×500 Bytes×8 bits=30.4 Mbps
 
-[The total bandwidth required by the URL shortening service]
+[The total bandwidth required by the URL shortening service](./bandwidth.jpg)
 
 ### Memory estimation
 We need memory estimates in case we want to cache some of the frequently accessed URL redirection requests. Let’s assume a split of 80-20 in the incoming requests. 20 percent of redirection requests generate 80 percent of the traffic.
@@ -126,7 +126,7 @@ We adopt the same approximation discussed in the back-of-the-envelope calculatio
 
 Number of servers = DAU/8000 = 100 M/8000 = 12500 servers
 
-[The number of servers required for the URL shortening service]
+[The number of servers required for the URL shortening service](./servers.jpg)
 
 ### Summarizing estimation
 Based on the assumption above, the following table summarizes our estimations:
@@ -150,7 +150,7 @@ Servers                   12500
 ## Building blocks we will use
 With the estimations done, we can identify the key building blocks in our design. Such a list is given below:
 
-[Building blocks in high level design]
+[Building blocks in high level design](./bb.jpg)
 
 - Database(s) will be needed to store the mapping of long URLs and the corresponding short URLs.
 - Sequencer will provide unique IDs that will serve as a starting point for each short URL generation.
@@ -163,5 +163,5 @@ Besides these building blocks, we'll also need the following additional componen
 - Servers to handle and navigate the service requests along with running the application logic.
 - A Base-58 encoder to transform the sequencer’s numeric output to a more readable and usable alphanumeric form.
 
-[Components in high level design]
+[Components in high level design](./hld.jpg)
 
