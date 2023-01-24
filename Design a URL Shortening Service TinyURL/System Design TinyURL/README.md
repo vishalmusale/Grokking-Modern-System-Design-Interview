@@ -4,7 +4,7 @@ URL shortening is a service that produces short aliases for long URLs, commonly 
 ```
 Uniform Resource Locator (URL), is an address that uniquely identifies a resource on the web.
 ```
-[How URL shortening service works]
+[How URL shortening service works](./url.jpg)
 
 ### Advantages
 The key advantages of a URL shortening service are:
