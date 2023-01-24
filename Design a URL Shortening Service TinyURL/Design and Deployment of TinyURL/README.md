@@ -6,7 +6,7 @@ To expose the functionality of our service, we can use REST APIs for the followi
 - Redirecting a short URL
 - Deleting a short URL
 
-[System API design overview]
+[System API design overview](./api.jpg)
 
 ### Shortening a URL
 We can create new short URLs with the following definition:
@@ -97,7 +97,7 @@ We built a sequencer in our building blocks section to generate 64-bit unique nu
 
 Take a look at the diagram below to understand how the overall short URL generation unit will work.
 
-[Internal working of a short URL generator]
+[Internal working of a short URL generator](./internal.jpg)
 
 Other building blocks: Beside the elements mentioned above, we’ll also incorporate other building blocks like load balancers, cache, and rate limiters.
 
@@ -144,7 +144,7 @@ Let’s assume there are n already generated short URLs in the database. The pro
 ## Design diagram
 A simple design diagram of the URL shortening system is given below.
 
-[A design diagram of the URL shortening service]
+[A design diagram of the URL shortening service](./url.jpg)
 
 ## Workflow
 
