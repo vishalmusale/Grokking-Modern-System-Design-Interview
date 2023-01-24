@@ -144,7 +144,7 @@ Let’s assume there are n already generated short URLs in the database. The pro
 ## Design diagram
 A simple design diagram of the URL shortening system is given below.
 
-[A design diagram of the URL shortening service](./url.jpg)
+[A design diagram of the URL shortening service](./design_diagram.jpg)
 
 ## Workflow
 
@@ -193,6 +193,7 @@ Both of these approaches ensure smooth traffic handling and mitigate the risk of
 4. Custom short links: This task begins with checking the eligibility of the requested short URL. The maximum length allowed is 11 alphanumeric digits. We can find the details on the allowed format and the specific digits in the next lesson. Once verified, the system checks its availability in the database. If the requested URL is available, the user receives a successful short URL generation message, or an error message in the opposite case.
 The illustration below depicts how URL shortening, redirection, and deletion work.
 
+[Operations](./op)
 
 Question
 Upon successful allocation of a custom short URL, how does the system modify its records?
