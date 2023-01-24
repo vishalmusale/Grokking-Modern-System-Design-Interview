@@ -203,7 +203,7 @@ Since the custom short URL is the base-58 encoding of an available base-10 uniqu
 
 On the backend, the system accesses the server with the base-10 equivalent unique ID of that specific base-58 short URL. It marks the ID as unavailable in the range, eliminating any chance of reallocating the same ID to any other request.
 
-
+[Conversion](./bases.jpg)
 
 This technique also helps availability. The node generating short URLs will no longer need to maintain a list of used and unused unique IDs in memory. Instead, a database is maintained for each of the lists. For good performance, this database can be NoSQL.
 
