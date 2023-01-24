@@ -59,21 +59,20 @@ Example: Let's assume that the selected unique ID is 2468135791013. The followin
 
 Base-10 = 2468135791013
 
-  2468135791013 \ \% \ 58 = 17
 2468135791013 % 58=17
-  42554065362 \ \% \ 58 = 6
+
 42554065362 % 58=6
-  733690782 \ \% \ 58 = 4
+
 733690782 % 58=4
-  12649841 \ \% \ 58 = 41
+
 12649841 % 58=41
-  218100 \ \% \ 58 = 20
+
 218100 % 58=20
-  3760 \ \% \ 58 = 48
+
 3760 % 58=48
-  64 \ \% \ 58 = 6
+
 64 % 58=6
-  1 \ \% \ 58 = 1
+
 1 % 58=1
 Now, we need to write the remainders in order of the most recent to the oldest order.
 
@@ -190,7 +189,7 @@ The lifetime of the sequencer = total numbers available/yearly requests ={2^{64}
 Number of requests per month	200 Million
 Number of requests per year	  2.4 Billion
 Lifetime of sequencer	        7,686,143,363.63 years
-
+```
 Therefore, our service can run for a long time before the range depletes.
 
 
