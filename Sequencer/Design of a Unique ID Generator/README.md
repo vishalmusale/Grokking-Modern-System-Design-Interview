@@ -89,7 +89,7 @@ We use a microservice called range handler that keeps a record of all the taken 
 
 This microservice can become a single point of failure, but a failover server acts as the savior in that case. The failover server hands out ranges when the main server is down. We can recover the state of available and unavailable ranges from the latest checkpoint of the replicated store.
 
-[Design of the range handler microservice]
+[Design of the range handler microservice](./range_handler.jpg)
 
 ### Pros
 This system is scalable, available, and yields user IDs that have no duplicates. Moreover, we can maintain this range in 64 bits, which is numeric.
