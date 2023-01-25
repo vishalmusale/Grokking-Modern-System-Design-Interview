@@ -38,7 +38,7 @@ The use of a base-58 encoder, instead of the base-64 encoder, enhances the reada
 This non-functional requirement enhances the user interactivity of our system and makes short URL usage less error-prone for the users.
 
 ```
-Fulfilling Non-functional Requirements
+              Fulfilling Non-functional Requirements
 Requirements                Techniques
 
 Availability                - The Amazon S3 service backs up the storage and cache servers daily. We can restore them upon fault occurrence.
