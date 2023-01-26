@@ -36,7 +36,8 @@ How do we select seed URLs for crawling?
 Answer
 There are multiple approaches to selecting seed URLs. Some of them are:
 
-Location-based: We can have different seed URLs depending on the location of the crawler. Category-based: Depending on the type of content we need to crawl, we can have various sets of seed URLs.
+Location-based: We can have different seed URLs depending on the location of the crawler.
+Category-based: Depending on the type of content we need to crawl, we can have various sets of seed URLs.
 Popularity-based: This is the most popular approach. It combines both the aforementioned approaches. It groups the seed URLs based on hot topics in a specific area.
 ```
 
