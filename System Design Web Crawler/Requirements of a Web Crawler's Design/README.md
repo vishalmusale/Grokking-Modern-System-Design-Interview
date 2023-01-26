@@ -74,7 +74,7 @@ A study suggests that the average size of a webpage content is 2070KB (2.07MB) b
 ```
 
 ```
-It consists of a webpage title and description of the web page showing its purpose.
+The metadata consists of a webpage title and description of the web page showing its purpose.
 ```
 
 ### Storage estimation
