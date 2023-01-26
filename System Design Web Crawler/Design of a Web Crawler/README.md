@@ -151,3 +151,17 @@ The following slideshow gives a detailed overview of the web crawler workflow:
 [Workflow]
 
 The URLs stored in the scheduler’s database have priority and periodicity assigned to them. Enqueuing new URLs into the URL frontier depends on these two factors.
+
+```
+Question
+How frequently does the crawler need to re-crawl?
+
+Answer
+Since crawling is not a one-time activity, the crawler needs to plan its default revisits with a suitable frequency. Let’s define this frequency of revisits as two weeks. The crawler revisits all the standard priority URLs every two weeks. Once the crawler visits a URL, it re-appends the same URL into the URL frontier with a default next visit time that’s equal to two weeks.
+
+The default revisit-time is application-dependent rather than system-dependent, so we change this variable to cater to our needs. It’s a compelling case of assigning the priority comparator to URLs. Our system can predict the content change on a website using predictive analysis of the previous content changes. This way we can confidently assign the priority and revisit-time to each URL. For example, our analysis might show frequent changes on news websites and our crawler might suggest revisiting them on a high priority after every five minutes.
+```
+
+In the next lesson, we’ll explore some shortcomings in our design and their potential workarounds.
+
+
