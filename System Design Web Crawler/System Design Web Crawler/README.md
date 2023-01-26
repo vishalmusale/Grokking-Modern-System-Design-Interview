@@ -11,7 +11,7 @@ Stored URLs that serve as a starting point for a crawler.
 ```
 This is the first step that’s performed by search engines; the stored data is used for indexing and ranking purposes. This specific design problem is limited to web crawlers and doesn’t include explanations of the later stages of indexing and ranking in the search engines.
 
-[An overview of the web crawler system]
+[An overview of the web crawler system](./overview.jpg)
 
 ### Additional benefits
 The additional utilities of a web crawler are as follows:
