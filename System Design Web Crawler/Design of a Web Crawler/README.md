@@ -37,8 +37,11 @@ Let’s calculate the size of the priority queue needed to store all of these UR
 
 2.048 GB is a reasonable amount of space for a queue, indicating that we might not need to implement a distributed mechanism for the URL frontier.
 
+[PriorityQueue](./pq1.jpg)
 
 However, a centralized queue has limited read/write bandwidth and is a single point of failure. Therefore, having a sub-queue for each worker will be the best approach.
+
+[PriorityQueue](./pq2.jpg)
 
 If we use our distributed queue, all workers can get data out of the same queue if they want. But having independent queues can further optimize the crawling process, especially in the case of high priority and more frequent crawls like those news websites that need more than regular workers to do the frequent crawling. This approach will inherently facilitate the case of increasing queue size.
 
@@ -89,7 +92,7 @@ It all depends on the scale of our crawling application.
   2. Each worker is responsible for acquiring the DNS resolutions of the incoming URLs from the DNS resolver.
   3. Each worker acts as a gateway between the scheduler and the HTML fetcher by sending the necessary DNS resolution information to the HTML fetcher for communication initiation.
 
-[Service host interaction with other components]
+[Service host interaction with other components](./service_hosts.jpg)
 
 
 - Extractor: Once the HTML fetcher gets the web page, the next step is to extract two things from the webpage: URLs and the content. The extractor sends the extracted URLs directly and the content with the document input stream (DIS) to the duplicate eliminator. DIS is a cache that’s used to store the extracted document, so that other components can access and process it. Over here, we can use Redis as our cache choice because of its advanced data structure functionality.
@@ -99,7 +102,7 @@ Once it’s verified that the duplicates are absent in the data stores, the extr
 - Duplicate eliminator: Since the web is all interconnected, the probability of two different URLs referring to the same web page or different URLs referring to various web pages having the same content is evident. The crawler needs a component to perform a dedup test to eliminate the risk of exploiting resources by storing and processing the same content twice. The duplicate eliminator calculates the checksum value of each extracted URL and compares it against the URLs checksum data store. If found, it discards the extracted URL. Otherwise, it adds a new entry to the database with the calculated checksum value.
 
 
-[Dedup testing in action]
+[Dedup testing in action](./dedup.jpg)
 
 
 The duplicate eliminator repeats the same process with the extracted content and adds the new webpage’s checksum value in the document checksum data store for future matchings.
@@ -113,7 +116,7 @@ Our proposed design for the duplicate eliminator can be made robust against thes
 - Blob store: Since a web crawler is the backbone of a search engine, storing and indexing the fetched content and relevant metadata is immensely important. The design needs to have a distributed storage, such as a blob store, because we need to store large volumes of unstructured data.
 The following illustration shows the pictorial representation of the overall web crawler design:
 
-[The overall web crawler design]
+[The overall web crawler design](./design.jpg)
 
 
 ### Workflow
@@ -153,7 +156,7 @@ Note: Because of multiple instances of each service and microservices architectu
 The following slideshow gives a detailed overview of the web crawler workflow:
 
 
-[Workflow]
+[Workflow](./workflow)
 
 The URLs stored in the scheduler’s database have priority and periodicity assigned to them. Enqueuing new URLs into the URL frontier depends on these two factors.
 
