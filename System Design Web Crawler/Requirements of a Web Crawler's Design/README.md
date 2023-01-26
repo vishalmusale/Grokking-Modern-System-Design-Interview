@@ -81,7 +81,7 @@ It consists of a webpage title and description of the web page showing its purpo
 The collective storage required to store the textual content of 5 billion web pages is:
 Total storage per crawl=5 Billion×(2070 KB+500B)=10.35PB
 
-[The total storage required by the web crawler system]
+[The total storage required by the web crawler system](./storage.jpg)
 
 ### Traversal time
 Since the traversal time is just as important as the storage requirements, let’s calculate the approximate time for one-time crawling. Assuming that the average HTTP traversal per webpage is 60 ms, the time to traverse all 5 billion pages will be:
@@ -101,11 +101,10 @@ How many servers would we need to complete this same task in one day?
 
 We would need 3,468 servers to complete the same task in just one day.
 
-[The number of servers required for the web crawler system]
+[The number of servers required for the web crawler system](./servers.jpg)
 
 ```
-If there are a n number of threads per server, we’ll divide 3,468 by n. For example, if one server is capable of executing ten threads at a time, then the number of servers is reduced to \frac{3468}{10}\approx 347 servers
-3468/10 ≈ 347servers
+If there are a n number of threads per server, we’ll divide 3,468 by n. For example, if one server is capable of executing ten threads at a time, then the number of servers is reduced to 3468/10 ≈ 347servers
  ```
 
 ### Bandwidth estimation
@@ -117,7 +116,7 @@ Since we want to process 10.35PB of data per day the total bandwidth required wo
 
 (960Gb/sec) / 3468 servers ≈277Mb/sec per server
 
-[The total bandwidth required for the web crawler system]
+[The total bandwidth required for the web crawler system](./bandwidth.jpg)
 
 Let's play around with the initial assumptions and see how the estimates change in the following calculator:
 
@@ -135,7 +134,7 @@ Bandwidth Estimate                                  958.33 Gb/sec
 ## Building blocks we will use
 Here is the list of the main building blocks we’ll use in our design:
 
-[Building blocks in high-level design]
+[Building blocks in high-level design](./bb.jpg)
 
 - Scheduler is used to schedule crawling events on the URLs that are stored in its database.
 
@@ -152,6 +151,6 @@ Here is the list of the main building blocks we’ll use in our design:
 
 In the next lesson, we’ll focus on the high-level and detailed design of a web crawler.
 
-[The components in a high-level design]
+[The components in a high-level design](./components.jpg)
 
 Besides these basic building blocks, our design includes some additional components as well:
