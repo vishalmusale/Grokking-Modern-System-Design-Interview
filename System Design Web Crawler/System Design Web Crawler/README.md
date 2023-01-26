@@ -28,6 +28,9 @@ In this chapter, we’ll design a web crawler and evaluate how it fulfills the f
 
 The output of the crawling process is the data that’s the input for the subsequent processing phases—data cleaning, indexing, page relevance using algorithms like page ranks, and analytics. To learn about some of these subsequent stages, refer to our chapter on distributed search.
 
+```
+Mirroring is like making a dynamic carbon copy of a website. Mirroring refers to network services available by any protocol, such as HTTP or FTP. The URLs of these sites differ from the original sites, but the content is similar or almost identical.
+```
 ## How will we design a Web crawler?
 This chapter consists of four lessons that encompass the overall design of the web crawler system:
 
