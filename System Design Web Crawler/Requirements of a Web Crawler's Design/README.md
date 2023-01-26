@@ -86,6 +86,9 @@ Total storage per crawl=5 Billion×(2070 KB+500B)=10.35PB
 
 ### Traversal time
 Since the traversal time is just as important as the storage requirements, let’s calculate the approximate time for one-time crawling. Assuming that the average HTTP traversal per webpage is 60 ms, the time to traverse all 5 billion pages will be:
+```
+Webpage traversal is a function of the page size. Smaller web pages take less than 60 ms, and large pages take longer; however, the number 60 ms is the average traversal time.
+```
 
 Total traversal time=5 Billion×60 ms=0.3 Billion seconds=9.5 years
 
