@@ -20,7 +20,7 @@ Along the same lines, we expect our design to extend its functionality for other
 ```
 MIME: A multipurpose Internet mail extension, or MIME type, is an Internet standard that describes the contents of Internet files based on their natures and formats.
 ```
-
+[The requirements met by our web crawler](./r.jpg)
 ### Consistency
 Our system consists of several crawling workers. Data consistency among crawled content is crucial. So, to avoid data inconsistency and crawl duplication, our system computes the checksums of URLs and documents and compares them with the existing checksums of the URLs and documents in the URL and document checksum data stores, respectively.
 
