@@ -16,7 +16,7 @@ Adjustment: Since we have two separate components for serving communication hand
 1. HTML Fetcher: We have only discussed the HTTP module in this component so far because of the widely-used HTTP URLs scheme. We can easily extend our design to incorporate other communication protocols like File Transfer Protocol (FTP). The workflow will then have an intermediary step where the crawler invokes the concerned communication module based on the URL’s scheme. The subsequent steps will remain the same.
 2. Extractor: Currently, we only extract the textual content from the downloaded document placed in the Document Input Stream (DIS). This document contains other file types as well, for example, images and videos. If we wish to extract other content from the stored document, we need to add new modules with functionalities to process those media types. Since we use a blob store for content storage, storing the newly-extracted content comprising text, images, and videos won’t be a problem.
 
-[The extensibility of the HTML fetcher and extractor]
+[The extensibility of the HTML fetcher and extractor](./extensibility.jpg)
 
 
 - Shortcoming: The current design doesn’t explain how the multi-worker concept integrates into this system.
@@ -45,7 +45,7 @@ Mostly, web crawler traps are the result of poor website structuring, such as:
 - URLs for the dynamic content generation: These are query-based and can generate a massive number of web pages based on the dynamic content resulting from these queries. Such URLs might become a never-ending crawl on a single domain.
 - URLs with repeated/cyclic directories: They form an indefinite loop of redirections. For example, HTTP://www.abc.com/first/second/first/second/....
 
-[Classification of web crawler traps]
+[Classification of web crawler traps](./classification.jpg)
 
 Mostly, the crawler traps are unintended because of the poor structuring of the website. Interestingly, crawler traps can also be placed intentionally to dynamically generate an endless series of web pages with the pure purpose of exhausting a crawler’s bandwidth. These traps severely impact the throughput of a crawler and hamper its performance.
 ```
@@ -63,7 +63,7 @@ There are mainly two layers to the process of identifying a crawler trap:
 
 2. Analyzing the total number of web pages against a domain: An impossibly large number of web pages against a domain in the URL frontier is a strong indicator of a crawler trap. So, limiting the crawl at such a domain will be of utmost importance.
 
-[The identification process of web crawler traps]
+[The identification process of web crawler traps](./id.jpg)
 
 ### Solution
 Our design lacks details on the responsible crawling mechanism to avoid crawler traps for the identifications described above.
@@ -78,7 +78,7 @@ The crawler must be intelligent enough to limit its crawling at a specific domai
 
 Another essential component of this document is the revisit frequency instructions for the crawler. A popular website might demand a frequent revisit, contrary to a website that rarely updates its content. This standard of websites communicating with the web crawlers is called the Robots Exclusion Protocol. This protocol prevents the crawlers from unnecessarily spending crawling resources on uncrawlable web pages.
 
-[The robots exclusion protocol]
+[The robots exclusion protocol](./robots.txt.jpg)
 
 ```
 The robots.txt file doesn’t protect crawlers from malicious or intended crawler traps. The other explained mechanisms must handle those traps.
