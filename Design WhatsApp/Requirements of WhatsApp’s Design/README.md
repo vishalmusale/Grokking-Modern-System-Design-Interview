@@ -22,7 +22,7 @@ Our design of the WhatsApp messenger should meet the following requirements.
 
 - Security: The system must be secure via end-to-end encryption. The end-to-end encryption ensures that only the two communicating parties can see the content of messages. Nobody in between, not even WhatsApp, should have access.
 
-[The non-functional requirements of the WhatsApp system]
+[The non-functional requirements of the WhatsApp system](./nfr.jpg)
 
 ## Resource estimation
 WhatsApp is the most used messaging application across the globe. According to WhatsApp, it supports more than two billion users around the world who share more than 100 billion messages each day. We need to estimate the storage capacity, bandwidth, and number of servers to support such an enormous number of users and messages.
@@ -39,7 +39,7 @@ For 30 days, the storage capacity would become the following:
 
 Besides chat messages, we also have media files, which take more than 100 Bytes per message. Moreover, we also have to store users’ information and messages’ metadata—for example, time stamp, ID, and so on. Along the way, we also need encryption and decryption for secure communication. Therefore, we would also need to store encryption keys and relevant metadata. So, to be precise, we need more than 300 TB per month, but for the sake of simplicity, let’s stick to the number 300 TB per month.
 
-[The total storage required by WhatsApp in a month]
+[The total storage required by WhatsApp in a month](./storage.jpg)
 
 ### Bandwidth estimation
 According to the storage capacity estimation, our service will get 10TB of data each day, giving us a bandwidth of 926 Mb/s.
@@ -51,7 +51,7 @@ Note: To keep our design simple, we’ve ignored the media content (images, vide
 ```
 We also require an equal amount of outgoing bandwidth as the same message from the sender would need to be delivered to the receiver.
 
-[The total bandwidth required by WhatsApp]
+[The total bandwidth required by WhatsApp](./bandwidth.jpg)
 
 ```
                    High-level Estimates
@@ -81,7 +81,7 @@ No. of servers=Total connections per day/No. of connections per server=2 billion
 So, according to the above estimates, we require 200 chat servers.
 
 
-[Number of chat servers required for WhatsApp]
+[Number of chat servers required for WhatsApp](./servers.jpg)
 
 ### Try it out
 Let’s analyze how the number of messages per day affects the storage and bandwidth requirements. For this purpose, we can change values in the following table to compute the estimates:
