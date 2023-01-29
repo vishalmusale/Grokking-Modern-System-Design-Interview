@@ -99,7 +99,7 @@ Number of chat servers required 200
 ## Building blocks we will use
 The design of WhatsApp utilizes the following building blocks that have also been discussed in the initial chapters:
 
-[The building blocks required to design WhatsApp]
+[The building blocks required to design WhatsApp](./bb.jpg)
 
 - Databases are required to store users’ and groups’ metadata.
 - Blob storage is used to store multimedia content shared in messages.
