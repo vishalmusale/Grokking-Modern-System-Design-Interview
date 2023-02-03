@@ -34,6 +34,10 @@ We reduced the time to traverse the trie by combining nodes with single branches
 Answer
 One way to reduce the trie traversal time is to pre-compute and save the top ten (or any number of our choosing) suggestions for every prefix in the node. This means that instead of traversing the trie each time a user types in “UNIVERS” into the search box, the system will have precomputed, sorted, and stored the solution to the prefix UNIVERS—that is, UNIVERSITY, UNIVERSAL, and so on—inside the node that carries the prefix UNIVERS. However, this approach requires extra space to save precomputed results.
 
+```
+Pre-compute: Instead of traversing the tree each time, the system traverses the tree only once and stores the suggestions in each node which we call pre-computed suggestions.
+```
+
 [Trie]
 
 
