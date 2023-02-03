@@ -2,7 +2,7 @@
 ## Problem statement
 Imagine two students are preparing a report on a project they’ve just completed. Since the students live apart, the first student asks the second student to start writing the report, and the first student will improve the received copy. Although quite motivated, the students soon understand that such a collaboration is disorganized. The following illustration shows how tedious the process can get.
 
-[Problems arising when there’s no collaborative document editing service]
+[Problems arising when there’s no collaborative document editing service](./demo.jpg)
 
 The scenario above is one example that leads to time wastage and frustration when users collaborate on a document by exchanging files with each other.
 
