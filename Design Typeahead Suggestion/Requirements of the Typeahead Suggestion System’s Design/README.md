@@ -47,6 +47,10 @@ Since each character takes 2 Bytes, the bandwidth our system would need is as fo
 ### Number of servers estimation
 Our system will receive 607,000 requests per second concurrently. Therefore, we need to have many servers installed to avoid burdening a single server. Let’s assume that a single server can handle 8,000 queries per second. So, we require around 76 servers to handle 607,000 queries.
 
+```
+The system will suggest queries after each character a user types. Therefore, against 0.607 million characters per second, our system receives 0.607 million or 607,000 requests per second.
+```
+
 607K/8000≈76 servers
 
 Here, we only refer to the number of application servers. For simplicity, we ignored the number of cache and database servers. The actual number is higher than 76 because we would also need redundant servers to achieve availability.
