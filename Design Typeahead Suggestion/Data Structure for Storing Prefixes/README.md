@@ -11,18 +11,18 @@ Recall from the Back-of-the-Envelope Calculation chapter that reading 1MB of dat
 
 The trie (pronounced “try”) is one of the data structures that’s best suited to our needs. A trie is a tree-like data structure for storing phrases, with each tree node storing a character in the phrase in order. If we needed to store UNITED, UNIQUE, UNIVERSAL, and UNIVERSITY in the trie, it would look like this:
 
-[The trie for UNITED, UNIQUE, UNIVERSAL, and UNIVERSITY]
+[The trie for UNITED, UNIQUE, UNIVERSAL, and UNIVERSITY](./trie1.jpg)
 
 If the user types “UNIV,” our service can traverse the trie to go to the node V to find all the terms that start with this prefix—for example, UNIVERSAL, UNIVERSITY, and so on.
 
 The trie can combine nodes as one where only a single branch exists, which reduces the depth of the tree. This also reduces the traversal time, which in turn increases the efficiency. As an example, a space- and time-efficient model of the above trie is the following:
 
-[A reduced Trie for UNITED, UNIQUE, UNIVERSAL, and UNIVERSITY]
+[A reduced Trie for UNITED, UNIQUE, UNIVERSAL, and UNIVERSITY](./reduced.jpg)
 
 ## Track the top searches
 Since our system keeps track of the top searches and returns the top suggestion, we store the number of times each term is searched in the trie node. Let’s say that a user searches for UNITED 15 times, UNIQUE 20 times, UNIVERSAL 21 times, and UNIVERSITY 25 times. In order to provide the top suggestions to the user, these counts are stored in each node where these terms terminate. The resultant trie looks like this:
 
-[A trie showing the search frequency for UNITED, UNIQUE, UNIVERSAL, and UNIVERSITY]
+[A trie showing the search frequency for UNITED, UNIQUE, UNIVERSAL, and UNIVERSITY](./freq.jpg)
 
 If a user types “UNI,” the system starts traversing the tree under the root node for UNI. After comparing all the terms originating from the root node, the system provides suggestions of all the possible words. Since the frequency of the word UNIVERSITY is high, it appears at the top. Similarly, the frequency of the word UNITED is relatively low, so it appears last. If the user picks UNIQUE from the list of suggestions, the number against UNIQUE increases to 21.
 
@@ -38,7 +38,7 @@ One way to reduce the trie traversal time is to pre-compute and save the top ten
 Pre-compute: Instead of traversing the tree each time, the system traverses the tree only once and stores the suggestions in each node which we call pre-computed suggestions.
 ```
 
-[Trie]
+[Trie](./trie.jpg)
 
 
 ## Trie partitioning
