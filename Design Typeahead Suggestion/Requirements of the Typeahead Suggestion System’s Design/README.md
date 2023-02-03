@@ -25,7 +25,7 @@ Storage required per year:
 
 60GB/day×365=21.9TB/year
 
-[Storage requirements for the typeahead suggestion system]
+[Storage requirements for the typeahead suggestion system](./storage.jpg)
 
 ### Bandwidth estimation
 3.5 billion queries will reach our system every day. Assume that each query a user types is 15 characters long on average.
@@ -42,7 +42,7 @@ Since each character takes 2 Bytes, the bandwidth our system would need is as fo
 
 9.7Mb/sec is the incoming bandwidth requirement for queries that have a maximum length of 15 characters. Our system would suggest the top ten queries that are roughly of the same length as the query length after each character a user types. Therefore, the outgoing bandwidth requirement would become the following: 15×10×9.7Mb/sec=1.46Gb/sec.
 
-[The total bandwidth required by the typeahead suggestion system]
+[The total bandwidth required by the typeahead suggestion system](./bandwidth.jpg)
 
 ### Number of servers estimation
 Our system will receive 607,000 requests per second concurrently. Therefore, we need to have many servers installed to avoid burdening a single server. Let’s assume that a single server can handle 8,000 queries per second. So, we require around 76 servers to handle 607,000 queries.
@@ -71,7 +71,7 @@ Number of Servers	76	Severs
 ## Building blocks we will use
 The design of the typeahead suggestion system consists of the following building blocks that have been discussed in the initial chapters of the course:
 
-[Building blocks required in the design of the typeahead suggestion system]
+[Building blocks required in the design of the typeahead suggestion system](./bb.jpg)
 
 - Databases are required to keep the data related to the queries’ prefixes.
 - Load balancers are required to disseminate incoming queries among a number of active servers.
