@@ -80,6 +80,10 @@ UNIVERSITY          3rd hour                           100
 ```
 We can put up a MapReduce (MR) job to process all of the logging data regularly, let’s say every 15 minutes. These MR services calculate the frequency of all the searched phrases in the previous 15 minutes and dump the results into a hash table in a database like Cassandra. After that, we may further update the trie with the new data. We can update the current copy of the trie with all of the new words and their frequencies. We should perform this offline because our priority is to provide suggestions to users instead of keeping them waiting.
 
+```
+MapReduce is a big data processing engine.
+```
+
 Primarily, we can update the trie using the following two approaches.
 
 - We can replicate the trie on each server to update it offline. After that, we can start using it for suggestions and throw away the old ones.
