@@ -51,7 +51,7 @@ Our system will receive 607,000 requests per second concurrently. Therefore, we 
 
 Here, we only refer to the number of application servers. For simplicity, we ignored the number of cache and database servers. The actual number is higher than 76 because we would also need redundant servers to achieve availability.
 
-[The number of servers required for the typeahead suggestion system]
+[The number of servers required for the typeahead suggestion system](./servers.jpg)
 
 In the table below, adjust the values to see how the resource estimations change.
 ```
