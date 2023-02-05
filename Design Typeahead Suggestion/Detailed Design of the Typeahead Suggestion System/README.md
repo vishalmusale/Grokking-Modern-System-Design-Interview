@@ -5,7 +5,7 @@ Let’s go over the flow and interaction of the components shown in the illustra
 - A suggestion service
 - An assembler
 
-[The detailed design of the typeahead suggestion system]
+[The detailed design of the typeahead suggestion system](./design.jpg)
 
 ### Suggestion service
 At the same time that a user types a query in the search box, the getSuggestions(prefix) API calls hit the suggestions services. The top ten popular queries are returned from the distributed cache, Redis.
