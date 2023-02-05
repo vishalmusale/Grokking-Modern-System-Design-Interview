@@ -33,9 +33,9 @@ This section will focus on designing various APIs regarding the functionalities 
 The POST method is used to send the Tweet to the server from the user through the /postTweet API.
 ```
 postTweet(user_id, access_type, tweet_type, content, tweet_length, media_field, list_of_followers, post_time, tweet_location, list_of_used_hashtags, list_of_tagged_people)
-Let’s discuss a few of the parameters:
-```
 
+```
+Let’s discuss a few of the parameters:
 ```
 Parameter             Description
 
@@ -54,6 +54,8 @@ media_field           It specifies the type of media (image, video, GIF, and so 
 list_of_followers     It provides the current followers of the account posting the Tweet. This parameter is filled by the front-end server after it fetches this information using another API.
 
 The rest of the parameters are self-explanatory.
+
+```
 
 ```
 Note: Twitter uses the Snowflake service to generate unique IDs for Tweets. We have a detailed chapter (Sequencer) that explains this service.
