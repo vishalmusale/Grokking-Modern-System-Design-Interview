@@ -7,12 +7,14 @@ A document is a composition of characters in a specific order. Each character ha
 
 The job of the text or document editor is to perform operations like insert(), delete(), edit(), and more on the characters within the document. A depiction of a document and how the editor will perform these operations is below.
 
+[How a document editor performs different operations](./editor.jpg)
+
 ## Concurrency issues
 Collaboration on the same document by different users can lead to concurrency issues. Conflicts may arise whenever multiple users edit the same portion of a document. Since users have a local copy of the document, the final status of the document may be different at the server from what the users see at their end. After the server pushes the updated version, users discover the unexpected outcome.
 
 ### Example 1
 Let’s consider a scenario where two users want to add some characters at the same positional index. Below, we’ve depicted how two users modifying the same sentence can lead to conflicting results:
-[How two users modifying the same text can lead to concurrency issues]
+[How two users modifying the same text can lead to concurrency issues](./concurrency.jpg)
 
 As shown above, two users are trying to modify the same sentence, “Educative by developers.” Both users are performing insert() at index 10. The two possibilities are as follows:
 
@@ -23,7 +25,7 @@ This example shows that operations applied in a different order don’t hold the
 ### Example 2
 Let’s look at another simple example where two users are trying to delete the same character from a word. Let’s use the word “EEDUCATIVE.” Because the word has an extra “E,” both the users would want to remove the extra character. Below, we see how an unexpected result can occur:
 
-[How deleting the same character can lead to unexpected changes]
+[How deleting the same character can lead to unexpected changes](./deletion.jpg)
 
 This second example shows that different users applying the same operation won’t be idempotent. So, conflict resolution is necessary where multiple collaborators are editing the same portion of the document at the same time.
 
@@ -44,9 +46,9 @@ Operational transformation (OT) is a technique that’s widely used for conflict
 
 OT performs operations using the positional index method to resolve conflicts, such as the ones we discussed above. OT resolves the problems above by holding commutativity and idempotency.
 
-[Ensuring commutativity 1]
+[Ensuring commutativity 1](./ot1.jpg)
 
-[Ensuring commutativity 2]
+[Ensuring commutativity 2](./ot2.jpg)
 
 Collaborative editors based on OT are consistent if they have the following two properties:
 
@@ -81,7 +83,7 @@ A CRDT satisfies both commutativity and idempotency by assigning two key propert
 - It globally orders each character.
 Each operation now has an updated data structure:
 
-[Simplified data structure of a CRDT]
+[Simplified data structure of a CRDT](./crdt.jpg)
 
 The SiteID uniquely identifies a user’s site requesting an operation with a Value and a PositionalIndex. The value of PositionalIndex can be in fractions for two main reasons.
 
@@ -89,7 +91,7 @@ The SiteID uniquely identifies a user’s site requesting an operation with a Va
 - The order dependency of operations between different users will be avoided.
 The example below depicts that a user from site ID 123e4567-e89b-12d3 is inserting a character with a value of A at a PositionalIndex of 1.5. Although a new character is added, the positional indexes of existing characters are preserved using fractional indices. Therefore, the order dependency between operations is avoided. As shown below, an insert() between O and T didn’t affect the position of T.
 
-[Preventing order dependency between operations]
+[Preventing order dependency between operations](./prevention.jpg)
 
 CRDTs ensure strong consistency between users. Even if some users are offline, the local replicas at end users will converge when they come back online.
 
