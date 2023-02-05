@@ -12,7 +12,7 @@ We’ve utilized the following set of components to complete our design:
 - Other components: Other components include the session servers that maintain the user’s session information. We’ll manage document access privileges through the session servers. Essentially, there will also be configuration, monitoring, pub-sub, and logging services that will handle tasks like monitoring and electing leaders in case of server failures, queueing tasks like user notifications, and logging debugging information.
 The illustration below provides a depiction of how different components and building blocks coordinate to provide the service.
 
-[A detailed design of the collaborative document editing service]
+[A detailed design of the collaborative document editing service](./design.jpg)
 
 ```
 Question 1
