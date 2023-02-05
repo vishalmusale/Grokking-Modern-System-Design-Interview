@@ -12,7 +12,7 @@ The activities a user will be able to perform using our collaborative document e
 - History: The user should be able to see the history of collaboration on the document.
 A real-world document editor also has to have functions like document creation, deletion, and managing user access. We focus on the core functionalities listed above, but we also discuss the possibility of other functionalities in the lessons ahead.
 
-[Functional and non-functional requirements of collaborative editing service]
+[Functional and non-functional requirements of collaborative editing service](./req.jpg)
 
 ### Non-functional Requirements
 - Latency: Different users can be connected to collaborate on the same document. Maintaining low latency is challenging for users connected from different regions.
@@ -52,7 +52,7 @@ Total storage required per day                 32TB
 - Storage required for images for one day: (80M×30)/100 ×800KBs=19.2 TBs (Thirty percent of documents contain images.)
 - Storage required for video content for one day: (80M×2)/100 ×3MBs=4.8 TBs (Two percent of documents contain videos.)
 
-[Storage required by online collaborative document editing service per day]
+[Storage required by online collaborative document editing service per day](./storage.jpg)
 
 Total storage required for one day is as follows: 8 + 19.2 + 4.8 = 32 TBs per day
 ```
@@ -87,7 +87,7 @@ Total outgoing bandwidth required                      14.81 Gbps
 - Calculating the bandwidth required for video content: (4.6×10^3×2)/100 ×3MB×8=2.2Gbps
 - Total outgoing bandwidth: 3.7 + 8.8 + 2.2 = 14.7 Gbps
 
-[Summarizing the bandwidth requirement]
+[Summarizing the bandwidth requirement](./bandwidth.jpg)
 
 ```
 Note: The total bandwidth required is equal to the sum of incoming and outgoing traffic. =3+14.7≈18Gbps approximately.
@@ -112,7 +112,7 @@ Number of daily active users/Queries handled per second = 80M/8000 =10,000
 
 Informally, the equation above assumes that one server can handle 8,000 users.
 .
-[Number of servers required]
+[Number of servers required](./servers.jpg)
 
 ## Building blocks we will use
 We’ll use the following building blocks in designing the collaborative document editing service.
