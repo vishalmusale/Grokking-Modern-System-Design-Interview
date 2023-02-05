@@ -29,6 +29,10 @@ Let’s look at another simple example where two users are trying to delete the 
 
 This second example shows that different users applying the same operation won’t be idempotent. So, conflict resolution is necessary where multiple collaborators are editing the same portion of the document at the same time.
 
+```
+Idempotent: An operation with the same input produces the same results no matter how many times an operation repeats.
+```
+
 From the examples above, we understand that a solution to concurrency issues in collaborative editing should respect two rules:
 
 - Commutativity: The order of applied operations shouldn’t affect the end result.
