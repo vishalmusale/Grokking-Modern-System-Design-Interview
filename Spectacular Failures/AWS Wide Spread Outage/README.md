@@ -22,6 +22,8 @@ Outages like the one above remind us of famous Lamport’s quip: “A distribute
 - Operators relied on logs to figure out what was going on and initially observed heightened internal DNS failures.
 The following slides show the series of events that led to the outage.
 
+[Sequence of Events](./arch)
+
 ## Analysis
 - Hampered AWS services: The networking difficulties affected a variety of AWS services, impacting customers that utilized these service capabilities. Since the primary AWS network remained unaffected, certain client applications that don’t depend on these capabilities suffered relatively minor consequences as a result of this occurrence. AWS users, such as Amazon RDS, EMR, and Workspaces, were unable to generate new resources due to the inability of the system to launch new EC2 instances.
 
