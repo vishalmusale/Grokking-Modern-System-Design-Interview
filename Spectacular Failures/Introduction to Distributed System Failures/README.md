@@ -26,6 +26,9 @@ Something is always failing for large services. It’s preferred to have a grace
 ```
 Note: Many independent services, such as Downdetector, exist for crowd-sourced problem reporting. It’s interesting to note that if we visit such a service and see the status of our favorite applications, we’ll see that there’s always someone in the world facing some service problem.
 ```
+
+[Types of failure in a distributed system]
+
 ### Importance of independent service providers
 One of the design goals of the original Internet was to provide resilience so that if one part fails, the rest can still operate.
 
@@ -33,5 +36,7 @@ With the emergence of a handful of service providers over the last decade, criti
 ```
 Note: The broader concept here is to use independent failure domains. A failure domain is a concept where anything failing inside a domain or network shouldn’t affect other components and services in other domains. At times, we say that two domains are independent if they’re outside the blast radius of each other.
 ```
+
+[Importance of independent service]
 
 In the following lessons, we’ll discuss the failures of well-known services by giant companies, the causes of failures, and what mitigation techniques can be used to avoid these failures. Although failures are a great way to learn what went wrong and what the original designers could do to avoid such failures, we’d like to prevent them from occurring at all.
