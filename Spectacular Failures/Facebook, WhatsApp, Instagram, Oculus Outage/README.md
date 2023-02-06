@@ -1,84 +1,50 @@
-# High-level Design of Sharded Counters
-## High-level solution sketch
-Managing millions of tweet likes requires many counters operating on many nodes. To manage these counters, we need an efficient system that can provide high performance and scalability as the number of users grows.
+# Facebook, WhatsApp, Instagram, Oculus Outage
+In October 2021, Facebook experienced a global outage for about six hours, affecting its other affiliates, including Messenger, WhatsApp, Mapillary, Instagram, and Oculus. Popular media reported the impact of this failure prominently. The New York Times reported the following headline: “Gone in Minutes, Out for Hours: Outage Shakes Facebook.”
 
-What will happen when a single tweet on Twitter gets a million likes, and the application server receives a write request against each like to increment the relevant counter? These millions of requests are eventually serialized in a queue for data consistency. Such serialization is one way to deal with concurrent activity, though at the expense of added delay. Real-time applications want to keep the quality of experience high by providing as minimum as possible latency for the end user.
+According to one estimate, this outage cost Facebook about $100 million in revenue losses and many billions due to the declining stock of the company.
 
-Let’s see the illustration below to understand this problem:
+Let’s look at the sequence of events that caused this global problem.
+## The sequence of events
+The following sequence of events led to the outage of Facebook and its accompanied services:
 
-[Celebrity vs. common people tweet]
+A routine maintenance system was needed to find out the spare capacity on Facebook’s backbone network.
+Due to a configuration error, the maintenance system disconnected all the data centers from each other on the backbone network. Earlier, an automated configuration review tool was used to look for any issues in the configuration, but tools like these aren’t perfect. In this specific case, the review tool missed the problems present in a configuration.
+The authoritative domain name systems (DNSs) of Facebook had a health check rule that if it couldn’t reach Facebook’s internal data centers, it would stop replying to client DNS queries by withdrawing the routes.
+When the networks routes where Facebook’s authoritative DNS was hosted were withdrawn, all cached mapping of human-readable names to IPs soon timed out at all public DNS resolvers. When a client resolves www.facebook.com, the DNS resolver first goes to one of the root DNS servers, which provides a list of authoritative DNS servers for .com. The resolver connects to one of them, and then they provide IPs for the authoritative DNS servers for Facebook. However, after route withdrawal, it was impossible to reach them.
+Then, no one was able to reach Facebook and its subsidiaries.
+The slides below depict the events in pictorial form.
 
-A single counter for each tweet posted by a celebrity is not enough to handle millions of users. The solution to this problem is a sharded counter, also known as a distributed counter, where each counter has a specified number of shards as needed. These shards run on different computational units in parallel. We can improve performance and reduce contention by balancing the millions of write requests across shards.
+## Analysis
+Some of the key takeaways from the series of events shown above are the following:
 
-First, a write request is forwarded to the specified tweet counter when the user likes that tweet. Then, the system chooses an available shard of the specified tweet counter to increment the like count. Let’s look at the illustration below to understand sharded counters having specified shards:
+- From common activity to catastrophe: The withdrawal or addition of the network routes is a relatively common activity. The confluence of bugs (first a faulty configuration, and then a bug in an audit tool not able to detect such a problem) triggered a chain of events, which resulted in cascading failures. A cascading failure is when one failure can trigger another failure, ultimately bringing the whole system down.
+- Reasons for slow restoration: It might seem odd that it took six hours to restore the service. Wasn’t it easy to reannounce the withdrawn routes? At the scale that Facebook is operating on, rarely is anything done manually, and there are automated systems to perform changes. The internal tools probably relied on the DNS infrastructure, and when all data centers are offline from the backbone, it would have been virtually impossible to use those tools. Manual intervention would have been necessary. Manually bootstrapping a system of this scale isn’t easy. The usual physical and digital security mechanisms that were in place made it a slow process to intervene manually.
+- Low probability events can occur: In retrospect, it might seem odd that authoritative DNS systems disconnect themselves if internal data centers aren’t accessible. This is another example where a very rare event, such as none of the data centers being accessible, happened, triggering another event.
+- Pitfalls of automation: Facebook has been an early advocate of automating network configuration changes, effectively saying that software can do a better job of running the network than humans, who are more prone to errors. However, software can have bugs, such as this one.
 
-[Counters and their shards working on different computational units]
 
-In the above illustration, the total number of shards per counter is (N+1). We’ll use an appropriate value for N according to our needs. Let’s discuss an example to understand how sharded counters handle millions of write and read requests for a single post.
+## Lessons learned
 
-Let’s assume that a famous YouTube channel with millions of subscribers uploads a new video. The server receives a burst of write requests for video views from worldwide users. First, a new counter initiates for a newly uploaded video. The server forwards the request to the corresponding counter, and our system chooses the shard randomly and updates the shard value, which is initially zero. In contrast, when the server receives read requests, it adds the values of all the shards of a counter to get the current total.
-
-We can use a sharded counter for every scenario where we need scalable counting (such as Facebook posts and YouTube videos).
-
-## API design for sharded counters
-This section discusses the APIs that will be called for sharded counters. Our API design will help us understand the interactions between sharded counters and their callers. To make our discussion concrete, we’ll discuss each API function in the context of Twitter. Let’s develop APIs for each of the following functionalities:
-
-- Create counter
-- Write counter
-- Read counter
-Although the above list of API functions is not exhaustive, they represent some of the most important ones.
-
-### Create counter
-The \createCounter API initializes a distributed counter for use. The \createCounter API is given below:
-```
-createCounter(counter_id, number_of_shards)
-```
-
-```
-Parameter            Description
-
-counter_id           It represents the unique ID of the counter. The caller of this API can use a sequencer to get a unique identifier. See the lesson on sequencer building blocks for more details.
-
-number_of_shards     It specifies the number of shards for the counter.
-```
-
-We can use an appropriate data store to keep our metadata, which includes counter identifiers, their number of shards, and the mapping of shards to physical machines.
-
-Let’s consider Twitter as an example to understand how an application uses the above API. The \createCounter API is used when a user posts something on social media. For instance, if a user posts a tweet on Twitter, the application server calls the \createCounter API. The content_type parameter is the post type that the system uses to decide the number of counters that need to be created. For example, the system needs a view counter only if the tweet contains a video clip.
-
-To find an appropriate value for number_of_shards, we can use the following heuristics:
-
-- The followers_count parameter denotes the followers’ count of the user who posts a tweet.
-- The post_type parameter specifies whether the post is public or protected. Protected tweets are for the followers only, and in this case, we have a better predictor of the number of shards.
-
-### Write counter
-The \writeCounter API is used when we want to increment (or decrement) a counter. In reality, a specific shard of the counter is incremented or decremented, and our service makes that decision based on multiple factors, which we’ll discuss later. The \writeCounter API is given below:
-```
-writeCounter(counter_id, action_type)
-```
+- Ready operations team: There can be a hidden single point of failure in complex systems. The best defense against such faults is to have the operations team ready for such an occurrence through regular training. Thinking clearly under high-stress situations becomes necessary to deal with such events.
+- Simple system design: As systems get bigger, they become more complex, and they have emergent behaviors. To understand the overall behavior of the system, it might not be sufficient to understand only the behavior of its components. Cascading failures can arise. This is one reason to keep the system design as simple as possible for the current needs and evolve the design slowly. Unfortunately, there’s no perfect solution to deal with this problem. We should accept the possibility of such failures, perform continuous monitoring, have the ability to solve issues when they arise, and learn from the failures to improve the system.
+- Contingency plan: Some third-party services rely on Facebook for single sign-on. When the outage occurred, third-party services were up and running, but their clients were unable to use them because Facebook’s login facility was also unavailable. This is another example of assuming that some service will always remain available and of a hidden single point of failure.
+- Hosting DNS to independent third-party providers: There are a few services that are so robustly designed and perfected over time that their clients start assuming that the service is and will always be 100% available. The DNS is one such service, and it has been very carefully crafted. Designers often assume that it will never fail. Hosting DNS to independent third-party providers might be a way to guard against such problems. DNS allows multiple authoritative servers, and an organization might have many at different places. Although, we should note that DNS at Facebook’s scale isn’t simple, is tightly connected to their backbone infrastructure, and changes frequently. Delegating such a piece to an independent third party is expensive, and it might reveal internal service details. So, there can be a trade-off between business and robustness needs.
+- Trade-offs: There can be some surprising trade-offs. An example here is the need for data security and the need for rapid manual repair. Because so many physical and digital safeguards were in place, manual intervention was slow. This is a catch-22 situation—lowering security needs can cause immense trouble, and slow repair for such events can also make it hard for the companies. The hope is that the need for such repairs is a very rare event.
+- Surge in load: The failure of large players disrupts the entire Internet. Third-party public resolvers, such as Google and Cloudflare, saw a surge in the load due to unsuccessful DNS retries.
+- Resuming the service: Restarting a large service isn’t as simple as flipping a switch. When the load suddenly becomes almost zero, turning them up suddenly may lead to a many megawatt uptick in power usage. This might even cause issues for the electric grid. Complex systems usually have a steady state, and if they go out of that steady state, care must be taken to bring them back.
 
 ```
-Parameter          Description
+Question
+What can we do to safeguard against the kinds of faults experienced by Facebook?
 
-counter_id         It is the unique identifier (provided at the time of counter creation).
+Answer
+Some possible solutions can look like the following:
 
-action_type        It specifies the intended action (increment or decrement value of the counter). We extract the required information about the counter from our data store.
+Network verification has recently gained momentum and has shown promise in catching bugs early on. Such tools use an abstract model of the infrastructure.
+There can be more than one layer of auditing. Second layers might use a simulator to make sure that after the configuration changes, critical network infrastructures remain available from multiple global vantage points.
+Every effort should be taken to reduce the scope of a configuration change to avoid cascading effects.
+Critical infrastructure might be programmed in such a way that if something bad happens, it could return to the last known good state. This is easier said than done owing to the sheer number of components.
+
+- Network verification is the usage of network tools to investigate, troubleshoot, maintain, operate, and report to ensure that hardware, software, and network configuration will operate error-free.
+
 ```
-In our Twitter example, the \writeCounter API is used when users act (by liking, replying, and so on) on someone else’s post or their own post.
-
-### Read counter
-The \readCounter API is used when we want to know the current value of the counter. Our system fetches appropriate information from the datastore to collect value from all shards. The \readCounter API is given below:
-```
-readCounter(counter_id)
-```
-
-```
-Parameter        Description
-
-counter_id       It is the unique identifier (provided at the time of counter creation).
-                 For Twitter, the counter_id will be decided based on the following metrics: 
-                 The tweet_id specifies the tweet's unique ID for which the request is generated. We can use tweet_id to get the counter_id for all the counters of the features (likes, retweets, and so on).
-```
-The \readCounter API is called when users want to see the number of likes or view counts on a specific tweet. Usually, this API is triggered by another API when users want to see their home or user timeline.
-
-The following section will discuss what happens in the back-end system when all the above APIs are called.
